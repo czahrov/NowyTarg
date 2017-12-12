@@ -1,5 +1,6 @@
 <?php
 	
+	setlocale( LC_ALL, 'poland' );
 	date_default_timezone_set( "Europe/Warsaw" );
 	
 	add_theme_support( 'post-thumbnails' );
@@ -57,17 +58,17 @@
 				$page_title = single_cat_title();
 				
 			}
-			elseif( is_page() ){
+			else{
 				$page_title = get_post()->post_title;
 				
 			}
 			
 		}
 		
-	printf( "%s | %s",
-		$page_title,
-		$site_name
-	);
+		printf( "%s | %s",
+			$page_title,
+			$site_name
+		);
 		
 	} );
 	
@@ -328,6 +329,12 @@
 				
 			) );
 			
+			array_push( $data, array(
+				'title' => $post->post_title,
+				'url' => get_permalink( $post->ID ),
+				
+			) );
+			
 		}
 		
 /* 
@@ -346,8 +353,9 @@
 				<span>Przeglądasz teraz:</span> 
 				<div class='sep'><a href='" . home_url() . "'>Strona Główna</a></div>";
 		
-		foreach( $data as $item ){
-			echo "<div class='sep'><a class='active' href='{$item['url']}'>{$item['title']}</a></div>";
+		foreach( $data as $num => $item ){
+			$class = $num === count( $data ) - 1?( 'active' ):( '' );
+			echo "<div class='sep'><a class='{$class}' href='{$item['url']}'>{$item['title']}</a></div>";
 			
 		}
 		
@@ -356,5 +364,7 @@
 			</div>";
 		
 	} );
+	
+	
 	
 	

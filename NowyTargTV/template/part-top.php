@@ -2,7 +2,7 @@
 <?php do_action( 'get_live' ); ?>
 
 <div class="container">
-	<a class="navbar-brand" href="index.html"></a>
+	<a class="navbar-brand" href="<?php echo home_url(); ?>"></a>
 </div>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-mainmenu static-top">
@@ -24,10 +24,10 @@
 				</li>
 				<?php endforeach; ?>
 			</ul>
-			<form class="searchbar row" method="get">
+			<form class="searchbar" method="get">
 				<input class="input-text" type="text" name="nazwa" placeholder="Wyszukaj artykuł">
 				<button class="input-submit pointer bold alt" type="submit">
-				Szukaj
+					Szukaj
 				</button>
 			</form>
 		</div>
