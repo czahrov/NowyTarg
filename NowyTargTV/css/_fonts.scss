@@ -1,0 +1,270 @@
+@font-face {
+    font-family: 'latoblack';
+    src: url('fonts/lato/lato-black-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latoblack_italic';
+    src: url('fonts/lato/lato-blackitalic-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-blackitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latobold';
+    src: url('fonts/lato/lato-bold-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latobold_italic';
+    src: url('fonts/lato/lato-bolditalic-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latohairline';
+    src: url('fonts/lato/lato-hairline-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-hairline-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latohairline_italic';
+    src: url('fonts/lato/lato-hairlineitalic-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-hairlineitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latoitalic';
+    src: url('fonts/lato/lato-italic-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latolight';
+    src: url('fonts/lato/lato-light-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latolight_italic';
+    src: url('fonts/lato/lato-lightitalic-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latoregular';
+    src: url('fonts/lato/lato-regular-webfont.woff2') format('woff2'),
+         url('fonts/lato/lato-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ws-medium';
+    /* src: url('fonts/worksans/WorkSans-Medium.eot'); */
+    src: url('fonts/worksans/WorkSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Medium.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-extrabold';
+    /* src: url('fonts/worksans/WorkSans-ExtraBold.eot'); */
+    src: url('fonts/worksans/WorkSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-ExtraBold.woff') format('woff'),
+        url('fonts/worksans/WorkSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-thin';
+    /* src: url('fonts/worksans/WorkSans-Thin.eot'); */
+    src: url('fonts/worksans/WorkSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Thin.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-extralight';
+    /* src: url('fonts/worksans/WorkSans-ExtraLight.eot'); */
+    src: url('fonts/worksans/WorkSans-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-ExtraLight.woff') format('woff'),
+        url('fonts/worksans/WorkSans-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-black';
+    /* src: url('fonts/worksans/WorkSans-Black.eot'); */
+    src: url('fonts/worksans/WorkSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Black.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-light';
+    /* src: url('fonts/worksans/WorkSans-Light.eot'); */
+    src: url('fonts/worksans/WorkSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Light.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-bold';
+    /* src: url('fonts/worksans/WorkSans-Bold.eot'); */
+    src: url('fonts/worksans/WorkSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Bold.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-regular';
+    /* src: url('fonts/worksans/WorkSans-Regular.eot'); */
+    src: url('fonts/worksans/WorkSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Regular.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ws-semibold';
+    /* src: url('fonts/worksans/WorkSans-SemiBold.eot'); */
+    src: url('fonts/worksans/WorkSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-SemiBold.woff') format('woff'),
+        url('fonts/worksans/WorkSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-Medium.eot'); */
+    src: url('fonts/worksans/WorkSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Medium.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-ExtraBold.eot'); */
+    src: url('fonts/worksans/WorkSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-ExtraBold.woff') format('woff'),
+        url('fonts/worksans/WorkSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-Thin.eot'); */
+    src: url('fonts/worksans/WorkSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Thin.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-ExtraLight.eot'); */
+    src: url('fonts/worksans/WorkSans-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-ExtraLight.woff') format('woff'),
+        url('fonts/worksans/WorkSans-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-Black.eot'); */
+    src: url('fonts/worksans/WorkSans-Black.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Black.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-Light.eot'); */
+    src: url('fonts/worksans/WorkSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Light.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-Bold.eot'); */
+    src: url('fonts/worksans/WorkSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Bold.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-Regular.eot'); */
+    src: url('fonts/worksans/WorkSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-Regular.woff') format('woff'),
+        url('fonts/worksans/WorkSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    /* src: url('fonts/worksans/WorkSans-SemiBold.eot'); */
+    src: url('fonts/worksans/WorkSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/worksans/WorkSans-SemiBold.woff') format('woff'),
+        url('fonts/worksans/WorkSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
