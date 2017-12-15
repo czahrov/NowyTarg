@@ -5,56 +5,33 @@
 
 date_default_timezone_set( "Europe/Warsaw" );
 
-// print_r( wp_get_nav_menu_items( 'glowne-menu' ) );
+/* $source = "http://nowytarg24.tv/images/galerie/2016/2016.01.01.nowa.targowica/targowica05.jpg";
+$dst = __DIR__ . "/import/" . basename( $source );
 
-/* $posts = get_posts( array( 
-	'category_name' => 'baner-reklamowy',
-	'meta_key' => 'typ',
-	'meta_value' => 'duży',
-	
-) );
+var_dump( copy( $source, $dst ) ); */
 
-$meta = get_post_meta( $posts[0]->ID );
+/* $t = array(
+	'ID' => 0,
+	'post_author' => 1,
+	'post_date' => date( "Y-m-d H:i:s" ),
+	'post_title' => 'Testowy',
+	'post_content' => '...',
+	'post_excerpt' => '',
+	'post_status' => 'publish',
+	'post_category' => array(),
+	'tags_input' => array(),
+	'comment_status' => 'open',
+	'meta_input' => array(
+		'thumb' => 'obrazek wyróżniajacy',
+		'youtube' => 'link do twojej tuby',
+		'gallery_name' => 'galeryja',
+		
+	)
+); */
 
-print_r( $posts );
-print_r( $meta );
-*/
+// var_dump( wp_insert_post( $t ) );
 
-// do_action( 'get_ad', 'h' );
-
-// do_action( 'get_live' );
-
-// $start = "01/06/2020-12:00";
-// sscanf( $start, "%u/%u/%u-%u:%u", $start_day, $start_month, $start_year, $start_hour, $start_minute );
-// $t = new DateTime( sprintf( "%u-%u-%u %u:%u:00", 
-	// $start_year,
-	// $start_month,
-	// $start_day,
-	// $start_hour,
-	// $start_minute
-	
-// ) );
-
-// print_r( array( $start_day, $start_month, $start_year, $start_hour, $start_minute ) );
-
-// var_dump( $t );
-
-/* echo date( "d/m/Y H:i:s" );
-
-$dt = new DateTime();
-echo timezone_name_get( $dt->getTimezone() ); */
-
-print_r( get_terms( array(
-    'taxonomy' => 'category',
-	'name' => 'Transmisja Live',
-	
-) ) );
-
-print_r( get_category( 5 ) );
-
-print_r( wp_get_post_categories( 88 ) );
-
-print_r( get_post( 42 ) );
-print_r( get_post( 88 ) );
-
+$jimp = new JoomlaImporter( __DIR__ . "/import/artykuly.json", "NE" );
+// print_r( array_slice( $jimp->export(), 0, 3 ) );
+echo count( $jimp->export() );
 

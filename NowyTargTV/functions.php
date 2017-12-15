@@ -281,6 +281,7 @@
 		
 	} );
 	
+	/* generuje breadcrumb */
 	add_action( 'breadcrumb', function( $arg ){
 				
 		$data = array();
@@ -365,6 +366,248 @@
 		
 	} );
 	
+	/* Zwraca ID kategorii po tytule */
+	function getCatByName( $name ){
+		$cat = get_terms( array(
+			'taxonomy' => 'category',
+			'hide_empty' => false,
+			'name' => $name,
+			
+		) );
+		
+		if( count( $cat ) > 0 ){
+			return $cat[0]->term_id;
+			
+		}
+		else return false;
+		
+		
+	}
 	
+	/* Zwraca listę załączników, albo pojedyczny załącznik po ID albo po tytule */
+	function wpMedia( $arg = null ){
+		if( $arg === null ){
+			return get_posts( array(
+				'numberposts' =>  -1,
+				'post_type' => 'attachment',
+				
+			) );
+			
+		}
+		elseif( is_string( $arg ) ){
+			return get_posts( array(
+				'numberposts' =>  1,
+				'post_type' => 'attachment',
+				'title' => $arg,
+				
+			) )[0];
+			
+		}
+		elseif( is_int( $arg ) ){
+			return get_posts( array(
+				'numberposts' =>  1,
+				'post_type' => 'attachment',
+				'attachment_id' => $arg,
+				
+			) )[0];
+			
+		}
+		else{
+			return false;
+			
+		}
+		
+	}
 	
+	/* Wgrywanie pliku do folderu z mediami ( testowe ) | zwraca ID dodanego wpisu, albo false */
+	function wpMediaImport( $source ){
+		/* pobieranie pliku zdalnego */
+		$dst = __DIR__ . "/import/" . basename( $source );
+		$path = "/wp-content/uploads/" . date( "Y/m" ) . "/" . basename( $source );
+		$dst = constant( 'ABSPATH' ) . $path;
+
+		if( !file_exists( $dst ) && copy( $source, $dst ) === true ){
+			/* dodawanie wpisu */
+			
+			$post_data = array(
+				'ID' => 0,
+				'post_author' => 1,
+				'post_title' => 'Test',
+				'post_status' => 'publish',
+				'post_type' => 'attachment',
+				'guid' => get_bloginfo( 'url' ) . $path,
+				'post_mime_type' => mime_content_type( $dst ),
+				
+			);
+			
+			return wp_insert_post( $post_data );
+			
+		}
+		else{
+			return false;
+			
+		}
+		
+	}
+	
+	class JoomlaImporter{
+		// ścieżka do pliku JSON ze wpisami z joomli
+		private $_fpath;
+		// tablica odczytana z pliku JSON
+		private $_data = array();
+		// tablica z odczytanymi wpisami z joomli
+		private $_import = array();
+		// ścieżka do miejsca zapisywania obrazów pobieranych z joomli
+		private $_img;
+		// tryb przetwarzania wpisów EN, [E] - istniejące wpisy, [N] - nowe wpisy
+		private $_mode;
+		
+		public function __construct( $fpath, $mode = 'NE' ){
+			if( file_exists( $fpath ) ){
+				$this->_update = (bool)$update;
+				$this->_img = __DIR__ . "/joomla_img/";
+				$this->_fpath = $fpath;
+				$this->_loadData();
+				$this->_iterateItems();
+				
+			}
+			
+		}
+		
+		// zwraca tablicę odczytanych wpisów
+		public function export(){
+			return $this->_import;
+			
+		}
+		
+		// wczytuje do pamięci dane z pliku JSON
+		private function _loadData(){
+			$content = file_get_contents( $this->_fpath );
+			$this->_data = json_decode( $content, true );
+			
+		}
+		
+		// wyciąga dane do wpisu z pojedynczego elementu z JSONa i dodaje wpis do WP
+		private function _importItem( $item ){
+			// pobiera ID wpisu o takim samym tytule, jeśli wpis nie istnieje zwraca 0 (zero)
+			$id = $this->_checkPost( $item['name'] );
+			// pomiń, jeśli wpis już istnieje a przetwarzane są tylko NOWE wpisy
+			if( $id !== 0 && $this->_mode === 'N' ) return false;
+			// pomiń, jeśli wpis NIE istnieje a przetwarzane są tylko ISTNIEJĄCE wpisy
+			if( $id === 0 && $this->_mode === 'E' ) return false;
+			
+			$categories = array();
+			$categories[] = getCatByName( 'Import' );
+			
+			if( !empty( $item['categories'] ) ) foreach( $item['categories'] as $slug ){
+				$categories[] = get_category_by_slug( $slug )->cat_ID;
+				
+			}
+			
+			$excerpt = "";
+			$content = "";
+			$thumb = "";
+			$youtube = array();
+			$gallery_name = "";
+			
+			foreach( $item['elements'] as $element ){
+				
+				switch( $element['name'] ){
+					case "Ilustracja":
+						$thumb = $element['data']['file'];
+						
+					break;
+					case "Lead":
+						$excerpt = $element['data'][0]['value'];
+						
+					break;
+					case "Tekst":
+						$content = $element['data'][0]['value'];
+						
+					break;
+					case "Media":
+					case "Media2":
+						if( !empty( $element['data']['url'] ) ){
+							$youtube[] = $element['data']['url'];
+							
+						}
+						
+					break;
+					case "Galeria zdjęć":
+						$gallery_name = $element['data']['value'];
+						
+					break;
+					
+				}
+				
+			}
+			
+			$this->_downloadImg( $thumb );
+			
+			$t = array(
+				'ID' => $id,
+				'post_author' => 1,
+				'post_date' => $item['created'],
+				'post_title' => $item['name'],
+				'post_content' => $content,
+				'post_excerpt' => $excerpt,
+				'post_status' => 'publish',
+				'post_category' => $categories,
+				'tags_input' => $item['tags'],
+				'comment_status' => 'open',
+				'meta_input' => array(
+					'thumb' => $thumb,
+					'youtube' => implode( "|", $youtube ),
+					'gallery_name' => $gallery_name,
+					
+				),
+				
+			);
+			
+			$this->_import[] = $t;
+			
+			wp_insert_post( $t );
+			
+		}
+		
+		// funkcja przechodząca po wszystkich importowanych elementach
+		private function _iterateItems(){
+			if( !empty( $this->_data['items'] ) ) foreach( $this->_data['items'] as $item ){
+				$this->_importItem( $item );
+				
+			}
+			
+		}
+		
+		// pobiera obrazek wyróżniajacy na dysk
+		private function _downloadImg( $file ){
+			$src = "http://nowytarg24.tv/" . $file;
+			$path = pathinfo( $src, PATHINFO_DIRNAME );
+			if( !file_exists( $path ) ){
+				mkdir( $path, 0755, true );
+				
+			}
+			$dst = $this->_img . basename( $src );
+			
+			if( !file_exists( $dst ) ){
+				return @copy( $src, $dst );
+				
+			}
+			else return false;
+			
+		}
+		
+		// funkcja sprawdzająca czy dany post już istnieje, zwraca numer ID
+		private function _checkPost( $title ){
+			$posts = get_posts( array(
+				'title' => $title,
+				
+			) );
+			
+			return count( $posts ) === 0?( 0 ):( $posts[0]->ID );
+			
+		}
+		
+	}
+
 	
