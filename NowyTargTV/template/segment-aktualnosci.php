@@ -1,77 +1,8 @@
 <?php
-	$data = array(
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => 'video',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => 'image',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => 'video',
-			
-		),
+	$data = getAktualnosci( array(
+		'numberposts' => 10,
 		
-	);
+	) );
 	
 ?>
 <div class="row section_title aktualnosci">
@@ -79,23 +10,29 @@
 		<h1>Aktualności</h1>
 	</div>
 	<div class="col-xl-6">
-		<a class="link_post" href="<?php echo $data[0]['url']; ?>">
-			<div class="post_news_big" style='background-image: url(<?php echo $data[0]['img']; ?>);'>
+		<?php $item = $data[0]; ?>
+		<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+			<div class="post_news_big" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
+				<?php echo genPostIcon( $item->ID ); ?>
 				<img class="cover_img" src="<?php echo get_template_directory_uri(); ?>/media/cover_img.png">
-				<span><?php echo $data[0]['title']; ?></span>
+				<span><?php echo $item->post_title; ?></span>
 			</div>
 		</a>
 	</div>
 	<!-- /.col-md-6 -->
 	<div class="col-xl-3 clear-mobile">
 		<div class='row'>
-			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php echo $data[1]['url']; ?>">
-				<div class="post_news_small" style='background-image: url(<?php echo $data[1]['img']; ?>);'> </div>
-				<span class="post_news_small_tiitle"><?php echo $data[1]['title']; ?></span>
+			<?php $item = $data[1]; ?>
+			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php the_permalink( $item->ID ); ?>">
+				<?php echo genPostIcon( $item->ID ); ?>
+				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'> </div>
+				<span class="post_news_small_tiitle"><?php echo $item->post_title; ?></span>
 			</a>
-			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php echo $data[2]['url']; ?>">
-				<div class="post_news_small" style='background-image: url(<?php echo $data[2]['img']; ?>);'> </div>
-				<span class="post_news_small_tiitle"><?php echo $data[2]['title']; ?></span>
+			<?php $item = $data[2]; ?>
+			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php echo the_permalink( $item->ID ); ?>">
+				<?php echo genPostIcon( $item->ID ); ?>
+				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'> </div>
+				<span class="post_news_small_tiitle"><?php echo $item->post_title; ?></span>
 			</a>
 		</div>
 	</div>
@@ -103,24 +40,12 @@
 	<div class="col-xl-3 clear-mobile">
 		<h2 class="red_title">Najnowsze wiadomości</h2>
 		<ul class="top_news_list row">
-			<?php
-				for( $i=3; $i<count( $data ); $i++ ):
-				$icon = '';
-				switch( $data[$i]['type'] ){
-					case 'video':
-						$icon = " <i class='fa fa-play-circle-o'></i>";
-					break;
-					case 'image':
-						$icon = " <i class='fa fa-picture-o'></i>";
-					break;
-					
-				}
-			?>
+			<?php for( $i=3; $i<count( $data ); $i++ ): ?>
 			<li class='col-md-6 col-xl-12'>
 				<?php printf( "<a href='%s'>%s%s</a>",
-					$data[$i]['url'],
-					$data[$i]['title'],
-					$icon
+					get_the_permalink( $data[$i]->ID ),
+					$data[$i]->post_title,
+					genPostIcon( $item->ID )
 					
 				); ?>
 			</li>

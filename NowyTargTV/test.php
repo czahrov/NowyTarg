@@ -3,35 +3,34 @@
 	Template Name: test
 */
 
-date_default_timezone_set( "Europe/Warsaw" );
+// $jimp = new JoomlaImporter( __DIR__ . "/import/artykuly.json" );
+// var_dump( $jimp->loadItems( 2000 ) );
 
-/* $source = "http://nowytarg24.tv/images/galerie/2016/2016.01.01.nowa.targowica/targowica05.jpg";
-$dst = __DIR__ . "/import/" . basename( $source );
+/* print_r( get_terms( array(
+    'taxonomy' => 'post_format',
+    'hide_empty' => false,
+	
+) ) ); */
 
-var_dump( copy( $source, $dst ) ); */
 
-/* $t = array(
-	'ID' => 0,
-	'post_author' => 1,
-	'post_date' => date( "Y-m-d H:i:s" ),
-	'post_title' => 'Testowy',
-	'post_content' => '...',
-	'post_excerpt' => '',
-	'post_status' => 'publish',
-	'post_category' => array(),
-	'tags_input' => array(),
-	'comment_status' => 'open',
-	'meta_input' => array(
-		'thumb' => 'obrazek wyróżniajacy',
-		'youtube' => 'link do twojej tuby',
-		'gallery_name' => 'galeryja',
+/* print_r( get_posts( array(
+	'tax_query' => array(
+		// 'relation' => 'AND',
+		array(
+			'taxonomy' => 'post_format',
+			'field' => 'slug',
+			'terms' => array( 'post-format-video' ),
+			
+		),
 		
-	)
-); */
+	),
+	
+) ) ); */
 
-// var_dump( wp_insert_post( $t ) );
+/* print_r( get_terms( array(
+	'taxonomy' => 'category',
+	'parent' => getCatByName( 'Portal' ),
+	
+) ) ); */
 
-$jimp = new JoomlaImporter( __DIR__ . "/import/artykuly.json", "NE" );
-// print_r( array_slice( $jimp->export(), 0, 3 ) );
-echo count( $jimp->export() );
-
+var_dump( getTagCloud() );

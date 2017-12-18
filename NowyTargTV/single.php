@@ -37,7 +37,11 @@
 					<div class="bold_post_desc">
 						<?php the_excerpt(); ?>
 					</div>
-					<?php do_action( 'get_ad', 'horizontal' ); ?>
+					<?php //do_action( 'get_ad', 'horizontal' ); ?>
+					<div class='thumb d-flex'>
+						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID() ) ); ?>
+						
+					</div>
 					<div class="regular_post_txt">
 						<?php the_content(); ?>
 					</div>
@@ -46,7 +50,7 @@
 				
 			</div>
 			<!-- comments -->
-			<div class='comments col-12'>
+			<div class='comments row'>
 				<?php
 					if( comments_open() ) get_template_part( "template/part-comment", "form" );
 					get_template_part( "template/part-comment", "view" );

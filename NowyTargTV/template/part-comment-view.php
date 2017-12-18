@@ -8,9 +8,9 @@
 	
 	if( empty( $comments ) ):
 ?>
-<p class="comment-nr">Jeszcze nikt nie komentował tego arytukłu.<br>Twój komentarz może być pierwszy!</p>
+<p class="comment-nr col-12">Jeszcze nikt nie komentował tego arytukłu.<br>Twój komentarz może być pierwszy!</p>
 <?php else: ?>
-<p class="comment-nr"><span><?php echo get_comments_number( get_post()->ID ); ?></span> komentarzy</p>
+<p class="comment-nr col-12"><span><?php echo get_comments_number( get_post()->ID ); ?></span> komentarzy</p>
 <?php
 	foreach( $comments as $item ):
 	$class = $item->comment_parent == 0?( '' ):( ' answer ' );
@@ -40,7 +40,7 @@
 
 <!--
 <?php
-	print_r( $comments );
+	// print_r( $comments );
 ?>
 
 -->

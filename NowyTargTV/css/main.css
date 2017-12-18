@@ -413,7 +413,7 @@ h2.red_title{
     height: 194px;
     position: relative;
     width: 100%;
-    background: url(../media/small_post_3.png);
+    /* background: url(../media/small_post_3.png); */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -980,11 +980,14 @@ p.comm-msg{
 
 .see-more-ex{
     border-bottom: 1px dashed #dedede;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+	margin: 1rem 0;
 }
 
 .see-more-ex img{
     width: 100%;
+	/* max-height: 200px; */
+	
 }
 
 .see-more-ex p{

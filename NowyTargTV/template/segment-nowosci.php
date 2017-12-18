@@ -1,43 +1,26 @@
 <?php
-	$data = array(
-		array(
-			'title' => 'Lorem ipsum title',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/320x200?text=obrazek',
-			'date' => date( "Y-m-d" ),
-			'comments' => 10,
-			'excerpt' => 'Lorem ipsum opis',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum title',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/320x200?text=obrazek',
-			'date' => date( "Y-m-d" ),
-			'comments' => 10,
-			'excerpt' => 'Lorem ipsum opis',
-			
-		),
+	$data = getLatestNews( array(
+		'numberposts' => 2,
+		'exclude' => array( get_post()->ID ),
 		
-	);
+	) );
 	
 ?>
-<div class="col-xl-12 section_title">
+<div class="col-xl-12 section_title latest_news">
 	<h1>Ostatnie nowości</h1>
 	<div class="row clear">
 		<?php foreach( $data as $item ): ?>
 		<div class="col-md-6 load_more">
-			<a class="link_post" href="<?php echo $item['url']; ?>">
-				<div class="post_aktualnosci">
-					<div class="news_date"><?php echo $item['date']; ?></div>
-					<img class="cover_img" src="<?php echo $item['img']; ?>">
-					<span><?php echo $item['comments']; ?> komentarzy</span>
+			<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+				<div class="post_aktualnosci" style='background-image:url(<?php echo getPostImg( $item->ID ); ?>);'>
+					<div class="news_date"><?php echo get_the_date( "Y-m-d", $item->ID ); ?></div>
+					<span><?php echo get_comment_count( $item->ID )['approved']; ?> komentarzy</span>
 				</div>
 				<span class="post_aktualnosci_tiitle">
-					<?php echo $item['title']; ?>
+					<?php echo $item->post_title; ?>
 				</span>
 				<p class="post_aktulanosci">
-					<?php echo $item['excerpt']; ?>
+					<?php echo $item->post_excerpt; ?>
 				</p>
 			</a>
 		</div>

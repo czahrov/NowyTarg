@@ -148,7 +148,8 @@ span.txt-ad-300x600{
 			padding: 10px;
 			top: 38%;
 			transform: translate(0,-50%);
-			color: #173e6d;
+			/* color: #173e6d; */
+			color: #f8030a;
 			font-size: 60px;
 			cursor: pointer;
 			transition-property: transform, opacity;
@@ -361,6 +362,26 @@ span.txt-ad-300x600{
 		
 	}
 	
+	.thumb{
+		
+		& > img{
+			margin: auto;
+			max-width: 100%;
+			
+		}
+		
+	}
+	
+	.post{
+		margin: 0;
+		
+	}
+	
+	.latest_news{
+		padding: 0;
+		
+	}
+	
 }
 
 #respond{
@@ -403,4 +424,25 @@ span.txt-ad-300x600{
 	}
 	
 }
+
+.link_post{
+	
+	.fa{
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 10px 20px;
+		z-index: 5;
+		color: #fff;
+		font-size: 40px;
+		
+	}
+	
+}
+
+.img-side{
+	max-width: 120px;
+	
+}
+
 

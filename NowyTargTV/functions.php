@@ -5,13 +5,14 @@
 	
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5' );
+	add_theme_support( 'post-formats', array( 'gallery', 'video' ) );
 	
 	if( !is_admin() ){
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
 		wp_enqueue_script( "jq-touchSwipe", get_stylesheet_directory_uri() . "/js/jquery.touchSwipe.min.js", array(), false, true );
 		wp_enqueue_script( "bootstrap-bundle", get_stylesheet_directory_uri() . "/js/bootstrap.bundle.min.js", array(), false, true );
-		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main.js", array(), false, true );
+		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main.js", array(), time(), true );
 		wp_enqueue_script( "agency", get_stylesheet_directory_uri() . "/js/agency.js", array(), false, true );
 		wp_enqueue_script( "more", get_stylesheet_directory_uri() . "/js/more.js", array(), false, true );
 		wp_enqueue_script( "facepalm", get_stylesheet_directory_uri() . "/js/facepalm.js", array(), time(), true );
@@ -419,195 +420,227 @@
 		
 	}
 	
-	/* Wgrywanie pliku do folderu z mediami ( testowe ) | zwraca ID dodanego wpisu, albo false */
-	function wpMediaImport( $source ){
-		/* pobieranie pliku zdalnego */
-		$dst = __DIR__ . "/import/" . basename( $source );
-		$path = "/wp-content/uploads/" . date( "Y/m" ) . "/" . basename( $source );
-		$dst = constant( 'ABSPATH' ) . $path;
-
-		if( !file_exists( $dst ) && copy( $source, $dst ) === true ){
-			/* dodawanie wpisu */
-			
-			$post_data = array(
-				'ID' => 0,
-				'post_author' => 1,
-				'post_title' => 'Test',
-				'post_status' => 'publish',
-				'post_type' => 'attachment',
-				'guid' => get_bloginfo( 'url' ) . $path,
-				'post_mime_type' => mime_content_type( $dst ),
+	/* Funkcja importująca grafiki z Joomli */
+	function JoomlaImgs(){
+		/* Tablica plików do pobrania */
+		$files = json_decode( file_get_contents( "http://nowytarg24.tv/scepter.php?sprytne" ) );
+		
+		/* Jeśli dane nie zostały wczytane poprawnie zwraca false */
+		if( !is_array( $files ) or count( $files ) === 0 ) return false;
+		
+		/* Pobieranie plików */
+		$local_base = __DIR__ . "/joomla_import";
+		$remote_base = "http://nowytarg24.tv/";
+		foreach( $files as $file ){
+			/* Pomija już istniejące pliki */
+			if( file_exists( "{$local_base}/{$file}" ) ){
+				if( is_dir( "{$local_base}/{$file}" ) ) rmdir( "{$local_base}/{$file}" );
+				continue;
 				
-			);
+			}
 			
-			return wp_insert_post( $post_data );
+			/* Sprawdza czy istnieje docelowy folder zapisu dla pliku ( tworzy go jeśli nie istnieje ) */
+			if( !file_exists( dirname( "{$local_base}/{$file}" ) ) ) mkdir( dirname( "{$local_base}/{$file}" ), 0755, true );
+			
+			/* Pobiera plik */
+			@copy( "{$remote_base}/{$file}", "{$local_base}/{$file}" );
 			
 		}
-		else{
-			return false;
-			
-		}
+		
+		return true;
 		
 	}
 	
-	class JoomlaImporter{
-		// ścieżka do pliku JSON ze wpisami z joomli
-		private $_fpath;
-		// tablica odczytana z pliku JSON
-		private $_data = array();
-		// tablica z odczytanymi wpisami z joomli
-		private $_import = array();
-		// ścieżka do miejsca zapisywania obrazów pobieranych z joomli
-		private $_img;
-		// tryb przetwarzania wpisów EN, [E] - istniejące wpisy, [N] - nowe wpisy
-		private $_mode;
+	/* Klasa importująca wpisy z JSONa */
+	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
+	
+	// Zwraca url obrazka wyróżniającego
+	function getPostImg( $id ){
+		$thumb = get_the_post_thumbnail_url( $id, 'full' );
+		$meta = get_post_meta( $id, 'thumb', true );
 		
-		public function __construct( $fpath, $mode = 'NE' ){
-			if( file_exists( $fpath ) ){
-				$this->_update = (bool)$update;
-				$this->_img = __DIR__ . "/joomla_img/";
-				$this->_fpath = $fpath;
-				$this->_loadData();
-				$this->_iterateItems();
-				
-			}
-			
-		}
+		return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( "http://via.placeholder.com/200x200" ) );
 		
-		// zwraca tablicę odczytanych wpisów
-		public function export(){
-			return $this->_import;
-			
-		}
-		
-		// wczytuje do pamięci dane z pliku JSON
-		private function _loadData(){
-			$content = file_get_contents( $this->_fpath );
-			$this->_data = json_decode( $content, true );
-			
-		}
-		
-		// wyciąga dane do wpisu z pojedynczego elementu z JSONa i dodaje wpis do WP
-		private function _importItem( $item ){
-			// pobiera ID wpisu o takim samym tytule, jeśli wpis nie istnieje zwraca 0 (zero)
-			$id = $this->_checkPost( $item['name'] );
-			// pomiń, jeśli wpis już istnieje a przetwarzane są tylko NOWE wpisy
-			if( $id !== 0 && $this->_mode === 'N' ) return false;
-			// pomiń, jeśli wpis NIE istnieje a przetwarzane są tylko ISTNIEJĄCE wpisy
-			if( $id === 0 && $this->_mode === 'E' ) return false;
-			
-			$categories = array();
-			$categories[] = getCatByName( 'Import' );
-			
-			if( !empty( $item['categories'] ) ) foreach( $item['categories'] as $slug ){
-				$categories[] = get_category_by_slug( $slug )->cat_ID;
-				
-			}
-			
-			$excerpt = "";
-			$content = "";
-			$thumb = "";
-			$youtube = array();
-			$gallery_name = "";
-			
-			foreach( $item['elements'] as $element ){
-				
-				switch( $element['name'] ){
-					case "Ilustracja":
-						$thumb = $element['data']['file'];
-						
-					break;
-					case "Lead":
-						$excerpt = $element['data'][0]['value'];
-						
-					break;
-					case "Tekst":
-						$content = $element['data'][0]['value'];
-						
-					break;
-					case "Media":
-					case "Media2":
-						if( !empty( $element['data']['url'] ) ){
-							$youtube[] = $element['data']['url'];
-							
-						}
-						
-					break;
-					case "Galeria zdjęć":
-						$gallery_name = $element['data']['value'];
-						
-					break;
-					
-				}
-				
-			}
-			
-			$this->_downloadImg( $thumb );
-			
-			$t = array(
-				'ID' => $id,
-				'post_author' => 1,
-				'post_date' => $item['created'],
-				'post_title' => $item['name'],
-				'post_content' => $content,
-				'post_excerpt' => $excerpt,
-				'post_status' => 'publish',
-				'post_category' => $categories,
-				'tags_input' => $item['tags'],
-				'comment_status' => 'open',
-				'meta_input' => array(
-					'thumb' => $thumb,
-					'youtube' => implode( "|", $youtube ),
-					'gallery_name' => $gallery_name,
+	}
+	
+	// Zwraca tablicę najnowszych wpisów z wideo
+	function getLatestVideo( $arg = array() ){
+		$params = array(
+			'category__in' => getBaseCats(),
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'post_format',
+					'field' => 'slug',
+					'terms' => array( 'post-format-video' ),
 					
 				),
 				
-			);
+			),
 			
-			$this->_import[] = $t;
-			
-			wp_insert_post( $t );
+		);
+		
+		if( is_array( $arg ) ){
+			$params = array_merge( $params, $arg );
 			
 		}
 		
-		// funkcja przechodząca po wszystkich importowanych elementach
-		private function _iterateItems(){
-			if( !empty( $this->_data['items'] ) ) foreach( $this->_data['items'] as $item ){
-				$this->_importItem( $item );
-				
-			}
-			
-		}
-		
-		// pobiera obrazek wyróżniajacy na dysk
-		private function _downloadImg( $file ){
-			$src = "http://nowytarg24.tv/" . $file;
-			$path = pathinfo( $src, PATHINFO_DIRNAME );
-			if( !file_exists( $path ) ){
-				mkdir( $path, 0755, true );
-				
-			}
-			$dst = $this->_img . basename( $src );
-			
-			if( !file_exists( $dst ) ){
-				return @copy( $src, $dst );
-				
-			}
-			else return false;
-			
-		}
-		
-		// funkcja sprawdzająca czy dany post już istnieje, zwraca numer ID
-		private function _checkPost( $title ){
-			$posts = get_posts( array(
-				'title' => $title,
-				
-			) );
-			
-			return count( $posts ) === 0?( 0 ):( $posts[0]->ID );
-			
-		}
+		return get_posts( $params );
 		
 	}
-
+	
+	// Zwraca tablicę ID kategorii dla podkategorii kategorii Portal
+	function getBaseCats( $arg = array() ){
+		static $ret = array();
+		
+		if( empty( $ret ) ){
+			$params = array(
+				'taxonomy' => 'category',
+				'parent' => getCatByName( 'Portal' ),
+				
+			);
+			
+			if( is_array( $arg ) ){
+				$params = array_merge( $params, $arg );
+				
+			}
+			
+			$cats = get_terms( $params );
+			
+			foreach( $cats as $cat ){
+				$ret[] = $cat->term_id;
+				
+			}
+			
+		}
+		
+		return $ret;
+		
+	}
+	
+	// Generuje ikonkę dla wpisu
+	function genPostIcon( $ID ){
+		$item = get_post( $ID );
+		$icon = '';
+		switch( get_post_format( $item ) ){
+			case 'video':
+				$icon = " <i class='fa fa-play-circle-o'></i>";
+			break;
+			case 'gallery':
+				$icon = " <i class='fa fa-picture-o'></i>";
+			break;
+			
+		}
+		
+		return $icon;
+		
+	}
+	
+	// Generuje tablicę tagów ( WP_Term ) występujących na stronie
+	function getTagCloud( $arg = array() ){
+		$ret = array();
+		
+		$params = array(
+			'taxonomy' => 'post_tag',
+			'order' => 'DESC',
+			'orderby' => 'count',
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_tags( $params );
+		
+	}
+	
+	// Generuje tablicę wpisów z wydarzeniami
+	function getWydarzenia( $arg = array() ){
+		$params = array(
+			'category__in' => getBaseCats(),
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
+	// Generuje tablicę z ostatnimi nowościami
+	function getLatestNews( $arg = array() ){
+		$params = array(
+			'category__in' => getBaseCats(),
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
+	// Generuje tablicę z aktualnościami
+	function getAktualnosci( $arg = array() ){
+		$params = array(
+			'category_name' => 'Aktualności',
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
+	// Generuje tablicę z najpopularniejszymi wpisami
+	function getPopulars( $arg = array() ){
+		$params = array(
+			'category_name' => 'Popularne',
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
+	// Generuje tablicę z wpisami ze sportu
+	function getSport( $arg = array() ){
+		$params = array(
+			'category_name' => 'Sport',
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
+	// Generuje tablicę z wpisami z kultury
+	function getKultura( $arg = array() ){
+		$params = array(
+			'category_name' => 'Kultura',
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
+	// Generuje tablicę z ogłoszeniami
+	function getOgloszenia( $arg = array() ){
+		$params = array(
+			'category_name' => 'Ogłoszenia urzędowe',
+			
+		);
+		
+		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
+		
+		return get_posts( $params );
+		
+	}
+	
 	

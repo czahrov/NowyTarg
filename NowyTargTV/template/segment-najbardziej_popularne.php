@@ -1,39 +1,5 @@
 <?php
-	$data = array(
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			'cat' => 'przegląd',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			'cat' => 'sport',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			'cat' => 'kultura',
-			
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/200x200?text=obrazek',
-			'type' => '',
-			'cat' => 'aktualności',
-			
-		),
-		
-	);
+	$data = getPopulars( array( 'numberposts' => 4, ) );
 	
 ?>
 <div class="row">
@@ -43,18 +9,27 @@
 </div>
 <!-- /.row -->
 <div class="row ad-padding clear">
-	<?php for( $i=0; $i<count( $data ); $i++ ): ?>
+	<?php
+		foreach( $data as $item ):
+		$cats = wp_get_post_categories( $item->ID, array(
+			'term_taxonomy_id' => getBaseCats( array( 'exclude' => getCatByName( 'Popularne' ) ) ),
+			
+		) );
+		$name = get_category( $cats[0] )->name;
+		
+	?>
 	<div class="col-md-6 col-xl-3 no-padding clear-mobile">
-		<a href="" class="link_post">
-			<div class="last1" style='background-image: url(<?php echo $data[$i]['img']; ?>);'>
+		<a href=<?php echo the_permalink( $item->ID ); ?>" class="link_post">
+			<?php echo genPostIcon( $item->ID ); ?>
+			<div class="last1" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
 				<div class="post_category_small">
-					<?php echo $data[$i]['cat']; ?>
+					<?php echo $name; ?>
 				</div>
 				<img class="cover_img" src="<?php echo get_template_directory_uri(); ?>/media/cover_img.png">
-				<span><?php echo $data[$i]['title']; ?></span>
+				<span><?php echo $item->post_title; ?></span>
 			</div>
 		</a>
 	</div>
-	<?php endfor; ?>
+	<?php endforeach; ?>
 	
 </div>

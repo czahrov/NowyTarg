@@ -1,37 +1,5 @@
 <?php
-	$data = array(
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/400x200?text=obrazek',
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/400x200?text=obrazek',
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/400x200?text=obrazek',
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/400x200?text=obrazek',
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/400x200?text=obrazek',
-		),
-		array(
-			'title' => 'Lorem ipsum',
-			'url' => '#',
-			'img' => 'http://via.placeholder.com/400x200?text=obrazek',
-		),
-		
-	);
+	$data = getWydarzenia( array( 'numberposts' => 6 ) );
 	
 ?>
 <div class="col-md-9 section_title wydarzenia">
@@ -40,10 +8,10 @@
 		<div class="row clear view">
 			<?php foreach( $data as $num => $item ): ?>
 			<div class="col-md-6 col-xl-4 item">
-				<a class="link_post" href="<?php echo $item['url']; ?>">
-					<div class="overview_small_photo" style='background-image: url(<?php echo $item['img']; ?>);'></div>
+				<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+					<div class="overview_small_photo" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'></div>
 					<span class="post_news_small_tiitle">
-						<?php echo $item['title'] . $num; ?>
+						<?php echo $item->post_title; ?>
 					</span>
 				</a>
 			</div>
