@@ -18,14 +18,14 @@
 			<!-- content -->
 			<div class='post row justify-content-between'>
 				<div class="social_bar_top d-flex justify-content-between">
-					<span class="social_date">Data dodania: 21.10.2017</span>
-					<span class='share'>
+					<span class="social_date">Data dodania <?php echo get_the_date( "d.m.Y", get_post()->ID ); ?></span>
+					<span class='share d-inline-flex'>
 						<span class="social_share">Udostepnij</span>
-						<span class='icons'>
-							<div class="circle_icon"><i class="fa fa-facebook aria-hidden="true"></i></div>
+						<div class='icons'>
+							<div class="circle_icon"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 							<div class="circle_icon"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 							<div class="circle_icon"><i class="fa fa-google" aria-hidden="true"></i></div>
-						</span>
+						</div>
 						
 					</span>
 					
@@ -40,11 +40,12 @@
 					<?php //do_action( 'get_ad', 'horizontal' ); ?>
 					<div class='thumb d-flex'>
 						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID() ) ); ?>
-						
 					</div>
 					<div class="regular_post_txt">
 						<?php the_content(); ?>
 					</div>
+					<?php do_action( "youtube", get_post()->ID ); ?>
+					<?php do_action( "gallery", get_post()->ID ); ?>
 					
 				</div>
 				

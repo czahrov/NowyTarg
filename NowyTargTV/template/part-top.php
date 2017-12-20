@@ -24,8 +24,8 @@
 				</li>
 				<?php endforeach; ?>
 			</ul>
-			<form class="searchbar" method="get">
-				<input class="input-text" type="text" name="nazwa" placeholder="Wyszukaj artykuł">
+			<form class="searchbar" method="get" action="<?php echo home_url( '/' ); ?>">
+				<input class="input-text" type="text" name="s" placeholder="Wyszukaj artykuł">
 				<button class="input-submit pointer bold alt" type="submit">
 					Szukaj
 				</button>

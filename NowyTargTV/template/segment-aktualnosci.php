@@ -1,6 +1,6 @@
 <?php
 	$data = getAktualnosci( array(
-		'numberposts' => 10,
+		'numberposts' => 13,
 		
 	) );
 	
@@ -11,7 +11,7 @@
 	</div>
 	<div class="col-xl-6">
 		<?php $item = $data[0]; ?>
-		<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+		<a class="link_post big" href="<?php the_permalink( $item->ID ); ?>">
 			<div class="post_news_big" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
 				<?php echo genPostIcon( $item->ID ); ?>
 				<img class="cover_img" src="<?php echo get_template_directory_uri(); ?>/media/cover_img.png">
@@ -22,18 +22,17 @@
 	<!-- /.col-md-6 -->
 	<div class="col-xl-3 clear-mobile">
 		<div class='row'>
-			<?php $item = $data[1]; ?>
+			<?php
+				for( $i=1; $i<=2; $i++ ):
+				$item = $data[$i];
+			?>
 			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php the_permalink( $item->ID ); ?>">
-				<?php echo genPostIcon( $item->ID ); ?>
-				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'> </div>
+				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
+					<?php echo genPostIcon( $item->ID ); ?>
+				</div>
 				<span class="post_news_small_tiitle"><?php echo $item->post_title; ?></span>
 			</a>
-			<?php $item = $data[2]; ?>
-			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php echo the_permalink( $item->ID ); ?>">
-				<?php echo genPostIcon( $item->ID ); ?>
-				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'> </div>
-				<span class="post_news_small_tiitle"><?php echo $item->post_title; ?></span>
-			</a>
+			<?php endfor; ?>
 		</div>
 	</div>
 	<!-- /.col-md-3 -->

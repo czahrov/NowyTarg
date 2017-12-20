@@ -49,8 +49,12 @@
 			$categories = array();
 			$categories[] = getCatByName( 'Import' );
 			
-			if( !empty( $item['categories'] ) ) foreach( $item['categories'] as $slug ){
-				$categories[] = get_category_by_slug( $slug )->cat_ID;
+			if( !empty( $item['categories'] ) ) foreach( $item['categories'] as $t ){
+				// $categories[] = get_category_by_slug( $t )->cat_ID;
+				// $categories[] = getCatByName( $t['name'] );
+				$name = $this->_data[ 'categories' ][ $t ][ 'name' ];
+				// logger( $name );
+				$categories[] = getCatByName( $name );
 				
 			}
 			
@@ -130,6 +134,10 @@
 			}
 			elseif( count( $youtube ) > 0 ){
 				set_post_format( $NID, 'video' );
+				
+			}
+			else{
+				set_post_format( $NID, '' );
 				
 			}
 			

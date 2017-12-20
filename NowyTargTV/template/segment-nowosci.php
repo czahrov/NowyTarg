@@ -20,7 +20,7 @@
 					<?php echo $item->post_title; ?>
 				</span>
 				<p class="post_aktulanosci">
-					<?php echo $item->post_excerpt; ?>
+					<?php echo shortText( $item->post_excerpt ); ?>
 				</p>
 			</a>
 		</div>

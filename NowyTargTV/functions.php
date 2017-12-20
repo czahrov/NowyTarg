@@ -149,7 +149,6 @@
 	add_action( 'get_live', function( $arg ){
 		
 		/* tablica przechowująca wszystkie transmisje live, które mogą być wyświetlane */
-		
 		$lives = get_posts( array(
 			'numberposts' => 1,
 			'order' => 'DESC',
@@ -220,18 +219,18 @@
 			switch( $meta[ 'header_type' ][0] ){
 				case "text":
 					printf( 
-						"<div id='live'>
+						"<div id='live' class='text'>
 							<div class='container'>
 								<div class='row'>
-									<div class='col-xl-2 box'>
+									<div class='box col-md-3 col-xl-2 d-flex align-items-center justify-content-center'>
 										transmisja na żywo:
 									</div>
-									<div class='col-xl-8 align-self-center info'>
+									<div class='col-12 col-md align-self-center info d-flex flex-column justify-content-center'>
 										<div class='header'>%s</div>
 										<div class='subheader'>%s</div>
 										
 									</div>
-									<a href='%s' target='_blank' class='col-xl-2 align-self-center btn'>
+									<a class='col-12 col-md col-lg-3 align-self-center btn' href='%s' target='_blank'>
 										<span class='icon fa fa-play-circle-o'></span>
 										oglądaj na żywo
 										
@@ -250,13 +249,13 @@
 				break;
 				case "img":
 					printf( 
-						"<div id='live'>
+						"<div id='live' class='img'>
 							<div class='container'>
 								<div class='row'>
-									<div class='col-xl-2 box'>
+									<div class='box col-md-3 col-xl-2 d-flex align-items-center justify-content-center'>
 										transmisja na żywo:
 									</div>
-									<a href='%s' target='_blank' class='col-xl-10 banner' style='background-image: url(%s)'></a>
+									<a class='col banner' href='%s' target='_blank' style='background-image: url(%s)'></a>
 									
 								</div>
 								
@@ -320,6 +319,21 @@
 			) );
 			
 		}
+		elseif( is_tag() ){
+			$path = $_SERVER[ 'REQUEST_URI' ];
+			$t = get_option( 'tag_base' );
+			$tag_word = !empty( $t )?( $t ):( 'tag' );
+			$pattern = "~([^/]+)/~";
+			preg_match_all( $pattern, $path, $match );
+			$tag = getTag( end( $match[1] ) );
+			
+			$data[] = array(
+				'title' => $tag->name,
+				'url' => get_tag_link( $tag ),
+				
+			);
+			
+		}
 		else{
 			$post = get_post();
 			$cats = wp_get_post_categories( $post->ID );
@@ -366,6 +380,148 @@
 			</div>";
 		
 	} );
+	
+	/* osadza filmiki z youtube na stronie */
+	add_action( 'youtube', function( $id ){
+		$post = get_post( $id );
+		$yt = get_post_meta( $id, 'youtube', true );
+		if( empty( $yt ) ) return false;
+		
+		$arr = array_map( "trim", explode( "|", $yt ) );
+		
+		/*
+			https://youtu.be/fGDfbAOyTuM
+			https://www.youtube.com/watch?v=fGDfbAOyTuM&feature=youtu.be
+			https://www.youtube.com/watch?v=zMZfLkvNlkE&feature=share
+		*/
+		
+		$vids = array();
+		
+		foreach( $arr as $video ){
+			// $pattern = "~(?:v=([^&]+))|(?:/([^/]+)$)~";
+			$pattern = "~.+/(.+?v=)?([^&]+)?~";
+			preg_match( $pattern, $video, $match );
+			$vids[] = sprintf( "<iframe class='player col-12' src='https://www.youtube.com/embed/%s' allowfullscreen></iframe>", 
+				end( $match )
+				
+			);
+			
+		}
+		
+		printf(
+			"<div class='col-12 section_title youtube'>
+				<h1>Filmy</h1>
+				<div class=''>
+					%s
+				</div>
+			</div>", 
+			implode( "", $vids )
+		);
+		
+/* <<<EOT
+<div class='col-xl-12 section_title latest_news'>
+	<h1>Ostatnie nowości</h1>
+	<div class='row clear'>
+		<div class='col-md-6 load_more' style='display: block;'>
+			<a class='link_post' href='http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/oskar-kaczmarczyk-po-mistrzostwach-swiata-superenduro-poczynilem-progres/'>
+				<div class='post_aktualnosci' style='background-image:url(http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV/joomla_import/images/galerie/2017/sport/hokej/111aaoskikaczmarczykk12121.jpg);'>
+					<div class='news_date'>2017-12-11</div>
+					<span>0 komentarzy</span>
+				</div>
+				<span class='post_aktualnosci_tiitle'>
+					Oskar Kaczmarczyk po Mistrzostwach Świata SuperEnduro: „Poczyniłem progres”
+				</span>
+				<p class='post_aktulanosci'></p>
+				<p style='text-align: justify;'>
+					<strong>Inauguracyjna eliminacja Mistrzostw Świata FIM SuperEnduro 2018 nie tylko przejdzie do historii jako runda wielkiego powrotu do gry Tadka Błażusiaka – zwycięzcy sobotniego wyścigu klasy Prestige – ale także jako runda z mocnym wejściem Juniora Oskara Kaczmarczyka. Nowotarżanin, dla którego rozpoczynający się sezon jest już trzecim w Mistrzostwach Świata SuperEnduro, pierwszy przystanek nowej serii podsumował wysokim szóstym miejscem.</strong>
+				</p>
+				<p></p>
+			</a>
+		</div>
+	</div>
+</div>
+EOT; */
+		
+	} );
+	
+	/* generuje galerię obrazków */
+	add_action( 'gallery', function( $id ){
+		$post = get_post( $id );
+		$gal_name = get_post_meta( $id, 'gallery_name', true );
+		if( empty( $gal_name ) ) return false;
+		
+		/* /home/users/scepterssd/public_html/poligon/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV */
+		$base_url = get_template_directory();
+		/* http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV */
+		$base_uri = get_template_directory_uri();
+		$file_path = "/joomla_import/" . $gal_name;
+		$files = glob( "{$base_url}{$file_path}/*" );
+		
+		$items = array();
+		foreach( $files as $file ){
+			if( in_array( strtolower( pathinfo( $file, PATHINFO_EXTENSION  ) ), array( "jpg", "jpeg", "bmp", "png" ) ) ){
+				$items[] = sprintf( "<a href='%s' target='_blank' class='item col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
+					str_replace( $base_url, $base_uri, $file ),
+					str_replace( $base_url, $base_uri, $file )
+					
+				);
+				
+			}
+			
+		}
+		
+		// print_r( $items );
+		
+		printf(
+			"<div class='col-12 section_title gallery'>
+				<h1>Galeria zdjęć</h1>
+				<div class='row'>
+					%s
+				</div>
+			</div>", 
+			implode( "", $items )
+		);
+		
+/* <<<EOT
+<div class='col-xl-12 section_title latest_news'>
+	<h1>Ostatnie nowości</h1>
+	<div class='row clear'>
+		<div class='col-md-6 load_more' style='display: block;'>
+			<a class='link_post' href='http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/oskar-kaczmarczyk-po-mistrzostwach-swiata-superenduro-poczynilem-progres/'>
+				<div class='post_aktualnosci' style='background-image:url(http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV/joomla_import/images/galerie/2017/sport/hokej/111aaoskikaczmarczykk12121.jpg);'>
+					<div class='news_date'>2017-12-11</div>
+					<span>0 komentarzy</span>
+				</div>
+				<span class='post_aktualnosci_tiitle'>
+					Oskar Kaczmarczyk po Mistrzostwach Świata SuperEnduro: „Poczyniłem progres”
+				</span>
+				<p class='post_aktulanosci'></p>
+				<p style='text-align: justify;'>
+					<strong>Inauguracyjna eliminacja Mistrzostw Świata FIM SuperEnduro 2018 nie tylko przejdzie do historii jako runda wielkiego powrotu do gry Tadka Błażusiaka – zwycięzcy sobotniego wyścigu klasy Prestige – ale także jako runda z mocnym wejściem Juniora Oskara Kaczmarczyka. Nowotarżanin, dla którego rozpoczynający się sezon jest już trzecim w Mistrzostwach Świata SuperEnduro, pierwszy przystanek nowej serii podsumował wysokim szóstym miejscem.</strong>
+				</p>
+				<p></p>
+			</a>
+		</div>
+	</div>
+</div>
+EOT; */
+		
+	} );
+	
+	/* Logger do celów diagnostycznych */
+	function logger( $log = null ){
+		static $data = array();
+		
+		if( $log !== null ){
+			$data[] = $log;
+			
+		}
+		else{
+			return $data;
+			
+		}
+		
+	}
 	
 	/* Zwraca ID kategorii po tytule */
 	function getCatByName( $name ){
@@ -555,7 +711,7 @@
 	// Generuje tablicę wpisów z wydarzeniami
 	function getWydarzenia( $arg = array() ){
 		$params = array(
-			'category__in' => getBaseCats(),
+			'category_name' => 'Będzie się działo',
 			
 		);
 		
@@ -567,8 +723,11 @@
 	
 	// Generuje tablicę z ostatnimi nowościami
 	function getLatestNews( $arg = array() ){
+		$cats = wp_get_post_categories( get_post()->ID );
+		
 		$params = array(
-			'category__in' => getBaseCats(),
+			'category' => $cats[0],
+			'exclude' => get_post()->ID,
 			
 		);
 		
@@ -643,4 +802,27 @@
 		
 	}
 	
+	// Zwraca ID tagu po slugu
+	function getTag( $slug ){
+		$term = get_terms( array(
+			'taxonomy' => 'post_tag',
+			'hide_empty' => false,
+			'slug' => $slug,
+			
+		) );
+		
+		return $term[0];
+		
+	}
+	
+	// Funkcja skracająca opis
+	function shortText( $text ="", $limit = 200 ){
+		$text = strip_tags( $text );
+		$pattern = "~^(.{0,{$limit}}(?:\s))(.+)$~";
+		preg_match( $pattern, $text, $match );
+		$replace = "$1(...)";
+		
+		return preg_replace( $pattern, $replace, $text );
+		
+	}
 	

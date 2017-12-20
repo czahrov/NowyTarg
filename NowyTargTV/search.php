@@ -6,13 +6,7 @@
 <?php
 	
 	$path = $_SERVER[ 'REQUEST_URI' ];
-	$t = get_option( 'category_base' );
-	$cat_word = !empty( $t )?( $t ):( 'category' );
-	$pattern = "~([^/]+)/~";
-	preg_match_all( $pattern, $path, $match );
-	$cat = get_category_by_slug( end( $match[1] ) );
-	$cat_link = get_category_link( $cat );
-	$base_link = preg_replace( "~/\w+$~", "xxx", $cat_link );
+	$search_word = $_GET[ 's' ];
 	
 	$page_num = !empty( $_GET[ 'strona' ] )?( (int)$_GET[ 'strona' ] ):( 1 );
 	
@@ -27,12 +21,12 @@
 		
 	) );
 	
-	/* echo "<!--cat\r\n";
+	echo "<!--cat\r\n";
 	print_r( $page_num );
-	echo "\r\n-->"; */
+	echo "\r\n-->";
 	
 	$posts = get_posts( array(
-		'category' => $cat->cat_ID,
+		's' => $search_word,
 		'posts_per_page' => get_option( 'posts_per_page' ),
 		'paged' => $page_num,
 		
@@ -50,7 +44,7 @@
 	<!-- ostatnie nowości -->
 	<div class="row">
 		<div class="col-xl-9 section_title">
-			<h1><?php echo $cat->name; ?></h1>
+			<h1><?php printf( "Szukana fraza: %s", $search_word ); ?></h1>
 				<div class="row clear">
 					<?php
 						foreach( $posts as $item ):

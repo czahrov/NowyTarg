@@ -1,11 +1,5 @@
 <?php
-	$current_cat = get_category( wp_get_post_categories( get_post()->ID )[0] );
-	$wiecej = get_posts( array(
-		'exclude' => array( get_post()->ID ),
-		'numberposts' => 5,
-		'category' => $current_cat->cat_ID,
-		
-	) );
+	$wiecej = getLatestNews( array( 'numberposts' => 5 ) );
 	
 	$wydarzenia = getWydarzenia( array( 'numberposts' => 6 ) );
 	
@@ -25,7 +19,7 @@
 		<?php foreach( $wiecej as $item ): ?>
 		<div class="see-more-ex col-md-6 col-lg-12">
 			<a href="<?php echo the_permalink( $item->ID ); ?>">
-				<img src="<?php echo getPostImg( $item->ID ); ?>">
+				<div class='img' style='background-image:url( <?php echo getPostImg( $item->ID ); ?> )'></div>
 				<p>
 					<?php echo $item->post_title; ?>
 				</p>
@@ -47,14 +41,14 @@
 	<h1 class="clear">Najnowsze Video</h1>
 	<?php foreach( $video as $item ): ?>
 	<a href='<?php echo the_permalink( $item->ID ); ?>' class="last_video_box clear">
-		<div class="play_icon"></div>
+		<?php echo genPostIcon( $item->ID ); ?>
 		<img src="<?php echo getPostImg( $item->ID ); ?>">
 	</a>
 	<?php endforeach; ?>
 	<h1 class="clear">Filmy Promocyjne</h1>
 	<?php foreach( $promo as $item ): ?>
 	<a href='<?php the_permalink( $item->ID ); ?>' class="last_video_box clear">
-		<div class="play_icon"></div>
+		<?php echo genPostIcon( $item->ID ); ?>
 		<img src="<?php echo getPostImg( $item->ID ); ?>">
 	</a>
 	<?php endforeach; ?>
