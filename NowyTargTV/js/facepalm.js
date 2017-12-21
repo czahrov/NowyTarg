@@ -157,6 +157,99 @@
 				console.log('page.default()');
 			}
 			
+			/* popup galerii zdjęć w single */
+			(function( popup, box, items ){
+				var lock = false;
+				
+				var TL = new TimelineLite({
+					paused: true,
+					onStart: function(){
+						popup.addClass( 'open' );
+						
+					},
+					onReverseComplete: function(){
+						popup.removeClass( 'open' );
+						lock = false;
+						
+					},
+					onComplete: function(){
+						lock = false;
+						
+					},
+					
+				})
+				.add( 'start', 0 )
+				.add(
+					TweenLite.fromTo(
+						popup,
+						.3,
+						{
+							opacity: 0,
+						},
+						{
+							opacity: 1,
+						}
+					), 'start'
+				)
+				.add(
+					TweenLite.fromTo(
+						box,
+						.3,
+						{
+							opacity: 0,
+							// y: -100,
+						},
+						{
+							opacity: 1,
+							// y: 0,
+						}
+					), 'start+=0.3'
+				)
+				
+				popup
+				.on({
+					img: function( e, uri ){
+						if( typeof uri === 'string' ){
+							box.attr( 'src', uri );
+							
+						}
+						
+					},
+					open: function( e, uri ){
+						popup.triggerHandler( 'img', uri );
+						TL.play();
+						
+					},
+					close: function( e ){
+						if( !lock ) TL.reverse();
+						
+					},
+					click: function( e ){
+						popup.triggerHandler( 'close' );
+						
+					},
+					
+				});
+				
+				box.click( function( e ){
+					e.stopPropagation();
+					
+				} );
+				
+				items.click( function( e ){
+					
+					if( !lock ){
+						e.preventDefault();
+						lock = true;
+						popup.triggerHandler( 'open', $(this).css( 'background-image' ).match( /(http[^\)]+)/ )[0] );
+						
+					}
+					
+				} );
+				
+			})
+			( $( '#popup' ), $( '#popup > .box' ), $( '#single .gallery .item.popup' ) );
+			
 		},
 		alternate: function(){
 			var addon = root.addon;

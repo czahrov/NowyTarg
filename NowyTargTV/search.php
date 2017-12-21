@@ -36,7 +36,7 @@
 <!-- Page Content -->
 <div id='category' class="container">
 	<!-- img ad -->
-	<?php do_action( 'get_ad', 'full' ); ?>
+	<?php do_action( 'get_ad', 'search_top' ); ?>
 	<!-- ..img-ad-->
 	<?php do_action( 'breadcrumb' ); ?>
 	
@@ -77,7 +77,7 @@
 			<!-- /.col-xl-9 -->
 		</div>
 		<!-- wydarzenia -->
-		<?php get_sidebar( "category" ); ?>
+		<?php get_sidebar( "search" ); ?>
 		<!-- /.row -->
 	</div>
 <!-- /.container -->

@@ -7,7 +7,7 @@
 	<div class='slider'>
 		<div class="row clear view">
 			<?php foreach( $data as $num => $item ): ?>
-			<div class="col-md-6 col-xl-4 item">
+			<div class="col-12 col-md-6 col-xl-4 item">
 				<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
 					<div class="overview_small_photo" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'></div>
 					<span class="post_news_small_tiitle">
@@ -25,7 +25,7 @@
 		
 	</div>
 	<div class="clear">
-		<?php do_action( 'get_ad', 'large' ); ?>
+		<?php do_action( 'get_ad', 'home_slider' ); ?>
 	</div>
 	<!-- /.row -->
 </div>

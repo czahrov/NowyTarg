@@ -4,10 +4,14 @@
 	
 ?>
 
+<div id='popup' class=''>
+	<img class='box' src=''/>
+	
+</div>
 <!-- Page Content -->
 <div id='single' class="container">
 	<!-- img ad -->
-	<?php do_action( 'get_ad', 'full' ); ?>
+	<?php do_action( 'get_ad', 'single_top' ); ?>
 	<!-- ..img-ad-->
 	<?php do_action( 'breadcrumb' ); ?>
 	<!-- /.row -->
@@ -22,9 +26,15 @@
 					<span class='share d-inline-flex'>
 						<span class="social_share">Udostepnij</span>
 						<div class='icons'>
-							<div class="circle_icon"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-							<div class="circle_icon"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-							<div class="circle_icon"><i class="fa fa-google" aria-hidden="true"></i></div>
+							<a class="circle_icon" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
+								<i class="fa fa-facebook" aria-hidden="true"></i>
+							</a>
+							<a class="circle_icon" href="https://twitter.com/intent/tweet?text=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+							</a>
+							<a class="circle_icon" href="https://plus.google.com/share?url=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
+								<i class="fa fa-google" aria-hidden="true"></i>
+							</a>
 						</div>
 						
 					</span>
@@ -37,7 +47,7 @@
 					<div class="bold_post_desc">
 						<?php the_excerpt(); ?>
 					</div>
-					<?php //do_action( 'get_ad', 'horizontal' ); ?>
+					<?php //do_action( 'get_ad', 'single_inpost' ); ?>
 					<div class='thumb d-flex'>
 						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID() ) ); ?>
 					</div>

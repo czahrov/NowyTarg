@@ -42,7 +42,7 @@
 <!-- Page Content -->
 <div id='category' class="container">
 	<!-- img ad -->
-	<?php do_action( 'get_ad', 'full' ); ?>
+	<?php do_action( 'get_ad', 'category_top' ); ?>
 	<!-- ..img-ad-->
 	<?php do_action( 'breadcrumb' ); ?>
 	

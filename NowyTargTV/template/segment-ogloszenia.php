@@ -6,7 +6,7 @@
 	<h1>Ogłoszenia urzędowe</h1>
 	<?php
 		foreach( $data as $num => $item ):
-		if( $num === 2 ) do_action( 'get_ad', 'horizontal' );
+		if( $num === 2 ) do_action( 'get_ad', 'home_ogloszenia' );
 	?>
 	<div class="row clear city_news">
 		<a href="<?php the_permalink( $item->ID ); ?>" class="list_post col-sm-4">
@@ -21,5 +21,5 @@
 	<!-- /.row -->
 	<div class="dashed"></div>
 	<?php endforeach; ?>
-	<?php do_action( 'get_ad', 'large' ); ?>
+	<?php do_action( 'get_ad', 'home_bot' ); ?>
 </div>

@@ -15,8 +15,11 @@
 		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main.js", array(), time(), true );
 		wp_enqueue_script( "agency", get_stylesheet_directory_uri() . "/js/agency.js", array(), false, true );
 		wp_enqueue_script( "more", get_stylesheet_directory_uri() . "/js/more.js", array(), false, true );
+		wp_enqueue_script( "gsap-css", get_stylesheet_directory_uri() . "/js/CSSPlugin.min.js", array(), false, true );
+		wp_enqueue_script( "gsap-TweenL", get_stylesheet_directory_uri() . "/js/TweenLite.min.js", array(), false, true );
+		wp_enqueue_script( "gsap-TimeL", get_stylesheet_directory_uri() . "/js/TimelineLite.min.js", array(), false, true );
+		wp_enqueue_script( "parallax", get_stylesheet_directory_uri() . "/js/parallax.min.js", array(), false, true );
 		wp_enqueue_script( "facepalm", get_stylesheet_directory_uri() . "/js/facepalm.js", array(), time(), true );
-		
 		
 		// wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )
 		wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . "/css/bootstrap.css" );
@@ -52,6 +55,21 @@
 		
 		if( is_home() ){
 			$page_title = 'Strona główna';
+			
+		}
+		elseif( is_tag() ){
+			$path = $_SERVER[ 'REQUEST_URI' ];
+			$t = get_option( 'tag_base' );
+			$tag_word = !empty( $t )?( $t ):( 'tag' );
+			$pattern = "~([^/]+)/~";
+			preg_match_all( $pattern, $path, $match );
+			$tag = getTag( end( $match[1] ) );
+			
+			$page_title = $tag->name;
+			
+		}
+		elseif( is_search() ){
+			$page_title = $_GET[ 's' ];
 			
 		}
 		else{
@@ -92,31 +110,17 @@
 		echo implode( " ", $t );
 	} );
 	
-	/* generuje raklamę - v/h/l/f ( pionowy/poziomy/duży/pełna szerokość ) */
-	add_action( 'get_ad', function( $type ){
+	/* generuje raklamę */
+	add_action( 'get_ad', function( $place, $args = array() ){
 		
-		$m_val = null;
-		switch( $type ){
-			case 'vertical':
-				$m_val = 'pionowy';
-				
-			break;
-			case 'horizontal':
-				$m_val = 'poziomy';
-				
-			break;
-			case 'large':
-				$m_val = 'duży';
-				
-			break;
-			case 'full':
-				$m_val = 'full';
-				
-			break;
-			
-		}
+		/*
+			<div class='img-ad'>
+				<span class='header-ad'>reklama</span>
+				<a href='%s'>
+					<img src='%s'>
+				</a>
+			</div>
 		
-		if( $m_val !== null ){
 			$posts = get_posts( array( 
 				'numberposts' => 1,
 				'orderby' => 'rand',
@@ -124,26 +128,75 @@
 				'meta_key' => 'typ',
 				'meta_value' => $m_val,
 				
-			) );
+			)
+		
+			wp_get_attachment_image_url( $img_id, 'full' )
+		*/
+		
+		$posts = get_posts( array(
+			'numberposts' => 1,
+			'orderby' => 'rand',
+			'meta_query' => array(
+				array(
+					'key' => 'miejsce',
+					'value' => $place,
+					'compare' => 'LIKE',
+					
+				),
+				
+			),
 			
-			$meta = get_post_meta( $posts[0]->ID );
-			$url = $meta['url'][0];
-			$img_id = $meta['obraz'][0];
+		) );
+		
+		if( !empty( $posts ) ){
+			$item = $posts[0];
+			$img = null;
+			switch( get_post_meta( $item->ID, 'typ', true ) ){
+				case "local":
+					$img = wp_get_attachment_image_url( get_post_meta( $item->ID, 'obraz', true ), 'full' );
+					
+				break;
+				case "uri":
+					$img = get_post_meta( $item->ID, 'uri', true );
+					
+				break;
+				
+			}
 			
-			printf( 
-				"<div class='img-ad'>
-					<span class='header-ad'>reklama</span>
-					<a href='%s'>
-						<img src='%s'>
-					</a>
-				</div>",
-				$url,
-				wp_get_attachment_image_url( $img_id, 'full' )
-			);
+			$href = get_post_meta( $item->ID, 'href', true );
+			$target = get_post_meta( $item->ID, 'target', true );
 			
+			/*
+			<div class="parallax-window" data-parallax="scroll" data-image-src="/path/to/image.jpg"></div>
+			*/
+			
+			if( $args['parallax'] === true ){
+				printf(
+					"<a href='%s' target='%s' class='parallax-window d-block' data-parallax='scroll' data-image-src='%s'></a> ",
+					$href,
+					$target,
+					$img
+				);
+				
+			}
+			else{
+				printf(
+					"<div class='img-ad'>
+						<span class='header-ad'>reklama</span>
+						<a href='%s' target='%s'>
+							<img src='%s'>
+						</a>
+					</div>",
+					$href,
+					$target,
+					$img
+				);
+				
+			}
+						
 		}
 		
-	} );
+	}, 10, 2 );
 	
 	/* generuje komunikat o transmisji live */
 	add_action( 'get_live', function( $arg ){
@@ -334,6 +387,14 @@
 			);
 			
 		}
+		elseif( is_search() ){
+			$data[] = array(
+				'title' => $_GET[ 's' ],
+				'url' => home_url( "/?s={$_GET[ 's' ]}" ),
+				
+			);
+			
+		}
 		else{
 			$post = get_post();
 			$cats = wp_get_post_categories( $post->ID );
@@ -460,7 +521,7 @@ EOT; */
 		$items = array();
 		foreach( $files as $file ){
 			if( in_array( strtolower( pathinfo( $file, PATHINFO_EXTENSION  ) ), array( "jpg", "jpeg", "bmp", "png" ) ) ){
-				$items[] = sprintf( "<a href='%s' target='_blank' class='item col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
+				$items[] = sprintf( "<a href='%s' target='_blank' class='item popup col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
 					str_replace( $base_url, $base_uri, $file ),
 					str_replace( $base_url, $base_uri, $file )
 					
@@ -505,6 +566,63 @@ EOT; */
 	</div>
 </div>
 EOT; */
+		
+	} );
+	
+	/* Generowanie meta-tagów dla social-mediów na stronie pojedynczego wpisu */
+	add_action( 'social_tag', function(){
+		
+		// https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse
+		/*
+			<meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+			<meta property="og:type"               content="article" />
+			<meta property="og:title"              content="When Great Minds Don’t Think Alike" />
+			<meta property="og:description"        content="How much does culture influence creative thinking?" />
+			<meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+		*/
+		
+		if( is_single() ){
+			$item = get_post();
+			$url = get_permalink( $item->ID );
+			$title = $item->post_title;
+			
+			preg_match( "~(?:[^\.]+\.){1,4}~", strip_tags( $item->post_excerpt ), $match );
+			$description = $match[0];
+			
+			$meta = get_post_meta( $item->ID );
+			$img = null;
+			$t = $meta[ 'thumb' ][0];
+			if( !empty( $t ) ){
+				$img = get_template_directory_uri() . "/joomla_import/{$t}";
+				
+			}
+			else{
+				$t = get_the_post_thumbnail_url( $item->ID );
+				if( !empty( $t ) ){
+					$img = $t;
+					
+				}
+				else{
+					$img = get_template_directory_uri() . "/media/logo.png";
+					
+				}
+				
+			}
+			
+			printf( 
+				"<meta property='og:url' content='%s' />
+				<meta property='og:type' content='article' />
+				<meta property='og:title' content='%s' />
+				<meta property='og:description' content='%s' />
+				<meta property='og:image' content='%s' />", 
+				$url,
+				$title,
+				$description,
+				$img
+				
+			);
+			
+		}
 		
 	} );
 	
@@ -825,4 +943,9 @@ EOT; */
 		return preg_replace( $pattern, $replace, $text );
 		
 	}
+	
+	add_shortcode( 'reklama', function(){
+		do_action( 'get_ad', 'single_inpost' );
+		
+	} );
 	
