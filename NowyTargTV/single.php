@@ -20,12 +20,11 @@
 		<div class='col-lg-9'>
 			<?php if( have_posts() ): the_post(); ?>
 			<!-- content -->
-			<div class='post row justify-content-between'>
-				<div class="social_bar_top d-flex justify-content-between">
+				<div class="social_bar_top d-flex flex-wrap justify-content-between">
 					<span class="social_date">Data dodania <?php echo get_the_date( "d.m.Y", get_post()->ID ); ?></span>
-					<span class='share d-inline-flex'>
+					<span class="share d-inline-flex">
 						<span class="social_share">Udostepnij</span>
-						<div class='icons'>
+						<div class="icons">
 							<a class="circle_icon" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
 								<i class="fa fa-facebook" aria-hidden="true"></i>
 							</a>
@@ -40,6 +39,7 @@
 					</span>
 					
 				</div>
+				
 				<div class="content">
 					<h1 class="news_post_title">
 						<?php the_title(); ?>

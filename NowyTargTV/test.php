@@ -22,11 +22,30 @@
 	
 ) ) ); */
 
-$input = <<<EOT
-The canonical URL for your page. This should be the undecorated URL, without session variables, user identifying parameters, or counters. Likes and Shares for this URL will aggregate at this URL. For example, mobile domain URLs should point to the desktop version of the URL as the canonical URL to aggregate Likes and Shares across different versions of the page.
-EOT;
+// /Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
 
-// preg_match( "~(?:[^\.]+\.){1,4}~", $input, $match );
-// print_r( $match );
+// echo $_SERVER[ 'HTTP_USER_AGENT' ];
 
-print_r( get_post_meta( 1916 ) );
+// dynamic_sidebar( 'sidebar-weather' );
+
+/* $id = 10254;
+
+$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
+
+$resp = file_get_contents( $uri );
+$json = json_decode( $resp, true );
+
+print_r( $json );
+
+$uri = "http://api.gios.gov.pl/pjp-api/rest/station/findAll";
+$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
+$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/52";
+$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
+
+$resp = file_get_contents( $uri );
+$json = json_decode( $resp, true );
+
+print_r( $json ); */
+
+print_r( getAirCon() );
+

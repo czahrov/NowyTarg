@@ -250,6 +250,56 @@
 			})
 			( $( '#popup' ), $( '#popup > .box' ), $( '#single .gallery .item.popup' ) );
 			
+			/* toggle menu */
+			(function( toggle, panel ){
+				
+				toggle.click( function( e ){
+					
+					if( panel.hasClass( 'show' ) ){
+						toggle.removeClass( 'open' );
+						
+					}
+					else{
+						toggle.addClass( 'open' );
+						
+					}
+					
+				} );
+				
+			})
+			( $( '.navbar-toggler > .box' ), $( '.navbar-collapse' ) );
+			
+			/* minipanel */
+			(function( panel, view, button ){
+				
+				panel
+				.on({
+					mouseleave: function( e ){
+						view.hide();
+						
+					},
+					
+				});
+				
+				button.click( function( e ){
+					var id = $(this).attr( 'view' );
+					
+					if( typeof id !== undefined ){
+						view
+						.filter( "." + id )
+						.fadeIn()
+						.siblings()
+						.hide();
+						
+					}
+					
+				} );
+				
+			})
+			( $( '#minipanel > .popup' ), 
+			$( '#minipanel > .popup > .view' ), 
+			$( '#minipanel > .item' ) );
+			
 		},
 		alternate: function(){
 			var addon = root.addon;
@@ -375,10 +425,12 @@
 				view
 				.swipe({
 					swipeLeft: function(){
+						slider.triggerHandler( 'stop' );
 						slider.triggerHandler( 'next' );
 						
 					},
 					swipeRight: function(){
+						slider.triggerHandler( 'stop' );
 						slider.triggerHandler( 'prev' );
 						
 					},
@@ -401,7 +453,6 @@
 					slider.triggerHandler( 'stop' );
 					current = $(this).index();
 					slider.triggerHandler( 'set' );
-					slider.triggerHandler( 'start' );
 					
 				} );
 				

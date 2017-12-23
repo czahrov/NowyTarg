@@ -12,8 +12,8 @@
 	) );
 	
 ?>
-<div class="col-lg-3 clear-mobile section_title">
-	<?php do_action( 'get_ad', 'single_sidebar_top' ); ?>
+<div class="col-lg-3 clear-mobile section_title sidebar-single">
+	<?php  if( !isMobile() ) do_action( 'get_ad', 'single_sidebar_top' ); ?>
 	<h1 class="clear">Zobacz więcej</h1>
 	<div class='row'>
 		<?php foreach( $wiecej as $item ): ?>
@@ -37,7 +37,7 @@
 		<?php endforeach; ?>
 		
 	</ul>
-	<?php do_action( 'get_ad', 'single_sidebar_mid' ); ?>
+	<?php if( !isMobile() ) do_action( 'get_ad', 'single_sidebar_mid' ); ?>
 	<h1 class="clear">Najnowsze Video</h1>
 	<?php foreach( $video as $item ): ?>
 	<a href='<?php echo the_permalink( $item->ID ); ?>' class="last_video_box clear">

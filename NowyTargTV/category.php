@@ -16,7 +16,7 @@
 	
 	$page_num = !empty( $_GET[ 'strona' ] )?( (int)$_GET[ 'strona' ] ):( 1 );
 	
-	$pagin = paginate_links( array(
+	$pagin_params = array(
 		'base' => $base_link . "%_%",
 		'format' => "?strona=%#%",
 		'current' => $page_num,
@@ -25,7 +25,19 @@
 		// 'type' => 'array',
 		// 'show_all' => true,
 		
-	) );
+	);
+	
+	if( isMobile() ){
+		$pagin_params = array_merge( $pagin_params, array(
+			'end_size' => 1,
+			'mid_size' => 2,
+			'prev_next' => false,
+			
+		) );
+		
+	}
+	
+	$pagin = paginate_links( $pagin_params );
 	
 	/* echo "<!--cat\r\n";
 	print_r( $page_num );

@@ -49,6 +49,20 @@
 	
 	register_nav_menu( "menu-top", "menu na górze strony" );
 	
+	register_sidebar( array(
+		'name' => 'pogoda',
+		'id' => 'sidebar-weather',
+		'description' => 'Sidebar na pogodę',
+		
+	) );
+	
+	register_sidebar( array(
+		'name' => 'waluta',
+		'id' => 'sidebar-currency',
+		'description' => 'Sidebar kurs wymiany walut',
+		
+	) );
+	
 	/* generuje tytuł strony */
 	add_action( 'page_title', function( $arg ){
 		$site_name = get_bloginfo( 'name' );
@@ -106,6 +120,8 @@
 		}
 		
 		if( is_admin_bar_showing() ) $t[] = 'wp_bar';
+		
+		if( isMobile() ) $t[] = 'mobile';
 		
 		echo implode( " ", $t );
 	} );
@@ -944,8 +960,123 @@ EOT; */
 		
 	}
 	
-	add_shortcode( 'reklama', function(){
-		do_action( 'get_ad', 'single_inpost' );
+	// Sprawdza czy klient korzysta z urządzenia mobilnego
+	function isMobile(){
+		$pattern = "~Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini~i";
+		preg_match( $pattern, $_SERVER[ 'HTTP_USER_AGENT' ], $match );
+		return count( $match ) !== 0;
+		
+	}
+	
+	// Zwraca dane o stanie powietrza
+	function getAirCon(){
+		$data = array();
+		
+		// ID stacji pomiarowej w Nowym Targu
+		$id = 10254;
+		
+		$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
+		$resp = file_get_contents( $uri );
+		$json_typy = json_decode( $resp, true );
+
+		$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
+		$resp = file_get_contents( $uri );
+		$json_status = json_decode( $resp, true );
+		
+		foreach( $json_typy as $typ ){
+			$data[ 'type' ][ $typ[ 'param' ][ 'paramFormula' ] ] = array(
+				'name' => $typ[ 'param' ][ 'paramName' ],
+				
+			);
+			
+		}
+		
+		foreach( $data[ 'type' ] as $key => $arr ){
+			$id = strtolower( $key );
+			$data[ 'type' ][ $key ][ 'status' ] = $json_status[ "{$id}IndexLevel" ][ 'indexLevelName' ];
+			$data[ 'type' ][ $key ][ 'date' ] = $json_status[ "{$id}SourceDataDate" ];
+			
+		}
+		
+		$data[ 'main' ] = array(
+			'name' => $json_status[ 'stIndexLevel' ][ 'indexLevelName' ],
+			'date' => $json_status[ 'stCalcDate' ],
+			
+		);
+		
+		/*
+		Array
+		(
+			[type] => Array
+				(
+					[PM10] => Array
+						(
+							[name] => pył zawieszony PM10
+							[status] => Bardzo dobry
+							[date] => 2017-12-23 22:00:00
+						)
+
+					[SO2] => Array
+						(
+							[name] => dwutlenek siarki
+							[status] => Bardzo dobry
+							[date] => 2017-12-23 23:00:00
+						)
+
+				)
+
+			[main] => Array
+				(
+					[name] => Bardzo dobry
+					[date] => 2017-12-23 23:20:27
+				)
+
+		)
+		*/
+		
+		return $data;
+		
+	}
+	
+	add_action( 'minipanel-air', function( $data ){
+		
+		$append = array();
+		
+		foreach( $data[ 'type' ] as $key => $type ){
+			$append[] = sprintf(
+				"<div class='col-6'>
+					Stan %s:
+				</div>
+				<div class='col-6'>
+					%s
+				</div>",
+				$key,
+				$type[ 'status' ]
+				
+			);
+			
+		}
+		
+		printf(
+			"<div class='row'>
+				<div class='col-6'>
+					Ogólny stan powietrza: 
+				</div>
+				<div class='col-6'>
+					%s
+				</div>
+				%s
+				<div class='col-12'>
+					Dane z godziny: %s
+				</div>
+				
+			</div>",
+			$data[ 'main' ][ 'name' ],
+			implode( "", $append ),
+			$data[ 'main' ][ 'date' ]
+			
+		);
 		
 	} );
+	
 	
