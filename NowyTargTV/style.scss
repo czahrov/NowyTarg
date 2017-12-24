@@ -1019,6 +1019,7 @@ body.mobile{
 	& > .popup{
 		position: absolute;
 		padding: 10px 20px;
+		margin-top: 10px;
 		top: 100%;
 		right: 0;
 		overflow: hidden;
@@ -1027,6 +1028,58 @@ body.mobile{
 		
 		& > .view{
 			display: none;
+			
+			&.air{
+				
+				.line{
+					margin: 5px 0;
+					
+				}
+				
+				.cond{
+					$bdobry: lightgreen;
+					$dobry: green;
+					$umiar: yellow;
+					$dost: orange;
+					$zly: red;
+					$bzly: darkviolet;
+					
+					width: 100px;
+					height: 20px;
+					
+					&.bardzo_dobry{
+						background-color: $bdobry;
+						
+					}
+					
+					&.dobry{
+						background: linear-gradient( to right, $bdobry, $dobry );
+						
+					}
+					
+					&.umiarkowany{
+						background: linear-gradient( to right, $dobry, $umiar );
+						
+					}
+					
+					&.dostateczny{
+						background: linear-gradient( to right, $umiar, $dost );
+						
+					}
+					
+					&.zły{
+						background: linear-gradient( to right, $dost, $zly );
+						
+					}
+					
+					&.bardzo_zły{
+						background: linear-gradient( to right, $zly, $bzly );
+						
+					}
+					
+				}
+				
+			}
 			
 		}
 		

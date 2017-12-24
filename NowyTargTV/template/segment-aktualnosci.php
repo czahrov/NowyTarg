@@ -1,6 +1,6 @@
 <?php
 	$data = getAktualnosci( array(
-		'numberposts' => 13,
+		'numberposts' => 11,
 		
 	) );
 	

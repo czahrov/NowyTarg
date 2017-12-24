@@ -524,26 +524,63 @@ EOT; */
 	/* generuje galerię obrazków */
 	add_action( 'gallery', function( $id ){
 		$post = get_post( $id );
-		$gal_name = get_post_meta( $id, 'gallery_name', true );
-		if( empty( $gal_name ) ) return false;
-		
-		/* /home/users/scepterssd/public_html/poligon/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV */
-		$base_url = get_template_directory();
-		/* http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV */
-		$base_uri = get_template_directory_uri();
-		$file_path = "/joomla_import/" . $gal_name;
-		$files = glob( "{$base_url}{$file_path}/*" );
 		
 		$items = array();
-		foreach( $files as $file ){
-			if( in_array( strtolower( pathinfo( $file, PATHINFO_EXTENSION  ) ), array( "jpg", "jpeg", "bmp", "png" ) ) ){
+		
+		$gal_name = get_post_meta( $id, 'gallery_name', true );
+		// logger( array( 'gallery_name' => $gal_name ) );
+		// logger( array( 'post_content' => $post->post_content ) );
+		
+		if( !empty( $gal_name ) ){
+			/* Generowanie galerii na podstawie listy plików we wskazanym folderze */
+			/* /home/users/scepterssd/public_html/poligon/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV */
+			$base_url = get_template_directory();
+			/* http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV */
+			$base_uri = get_template_directory_uri();
+			$file_path = "/joomla_import/" . $gal_name;
+			$files = glob( "{$base_url}{$file_path}/*" );
+			
+			foreach( $files as $file ){
+				if( in_array( strtolower( pathinfo( $file, PATHINFO_EXTENSION  ) ), array( "jpg", "jpeg", "bmp", "png" ) ) ){
+					$items[] = sprintf( "<a href='%s' target='_blank' class='item popup col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
+						str_replace( $base_url, $base_uri, $file ),
+						str_replace( $base_url, $base_uri, $file )
+						
+					);
+					
+				}
+				
+			}
+			
+			
+		}
+		elseif( stripos( $post->post_content, "[gallery" ) !== false ){
+			
+			// [gallery columns="9" link="file" size="full" ids="4,5,6" orderby="rand"]
+			preg_match_all( "~\[gallery[^\]]+?\]~", $post->post_content, $galleries );
+			$ids = array();
+			foreach( $galleries[0] as $gallery ){
+				preg_match( "~ids=\"(.+?)\"~", $gallery, $match );
+				$ids = array_merge( $ids, explode( ",", $match[1] ) );
+				// logger( array( 'ids' => $ids ) );
+				
+			}
+			
+			// 4,5,6
+			foreach( $ids as $id ){
+				$img = wp_get_attachment_image_url( $id, 'full' );
+				
 				$items[] = sprintf( "<a href='%s' target='_blank' class='item popup col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
-					str_replace( $base_url, $base_uri, $file ),
-					str_replace( $base_url, $base_uri, $file )
+					$img,
+					$img
 					
 				);
 				
-			}
+			}			
+			
+		}
+		else{
+			return false;
 			
 		}
 		
@@ -749,7 +786,7 @@ EOT; */
 		$thumb = get_the_post_thumbnail_url( $id, 'full' );
 		$meta = get_post_meta( $id, 'thumb', true );
 		
-		return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( "http://via.placeholder.com/200x200" ) );
+		return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( false ) );
 		
 	}
 	
@@ -1040,18 +1077,46 @@ EOT; */
 	
 	add_action( 'minipanel-air', function( $data ){
 		
+		/*
+		Array
+		(
+			[type] => Array
+				(
+					[PM10] => Array
+						(
+							[name] => pył zawieszony PM10
+							[status] => Bardzo dobry
+							[date] => 2017-12-23 22:00:00
+						)
+
+					[SO2] => Array
+						(
+							[name] => dwutlenek siarki
+							[status] => Bardzo dobry
+							[date] => 2017-12-23 23:00:00
+						)
+
+				)
+
+			[main] => Array
+				(
+					[name] => Bardzo dobry
+					[date] => 2017-12-23 23:20:27
+				)
+
+		)
+		*/
+		
 		$append = array();
 		
 		foreach( $data[ 'type' ] as $key => $type ){
 			$append[] = sprintf(
-				"<div class='col-6'>
-					Stan %s:
-				</div>
-				<div class='col-6'>
+				"<div class='line col-6'>
 					%s
-				</div>",
+				</div>
+				<div class='line col-6 align-self-center cond %s'></div>",
 				$key,
-				$type[ 'status' ]
+				str_replace( " ", "_", strtolower( $type[ 'status' ] ) )
 				
 			);
 			
@@ -1059,19 +1124,20 @@ EOT; */
 		
 		printf(
 			"<div class='row'>
-				<div class='col-6'>
+				<div class='line col-6'>
 					Ogólny stan powietrza: 
 				</div>
-				<div class='col-6'>
-					%s
-				</div>
+				<div class='line col-6 align-self-center cond %s'></div>
 				%s
-				<div class='col-12'>
-					Dane z godziny: %s
+				<div class='line col-12'>
+					Dane z godziny
+				</div>
+				<div class='line col-12'>
+					%s
 				</div>
 				
 			</div>",
-			$data[ 'main' ][ 'name' ],
+			str_replace( " ", "_", strtolower( $data[ 'main' ][ 'name' ] ) ),
 			implode( "", $append ),
 			$data[ 'main' ][ 'date' ]
 			

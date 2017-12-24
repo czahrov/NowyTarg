@@ -22,30 +22,13 @@
 	
 ) ) ); */
 
-// /Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
+/*
+	bardzo dobry
+	dobry
+	umiarkowany
+	dostateczny
+	zły
+	bardzo zły
+*/
 
-// echo $_SERVER[ 'HTTP_USER_AGENT' ];
-
-// dynamic_sidebar( 'sidebar-weather' );
-
-/* $id = 10254;
-
-$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
-
-$resp = file_get_contents( $uri );
-$json = json_decode( $resp, true );
-
-print_r( $json );
-
-$uri = "http://api.gios.gov.pl/pjp-api/rest/station/findAll";
-$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
-$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/52";
-$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
-
-$resp = file_get_contents( $uri );
-$json = json_decode( $resp, true );
-
-print_r( $json ); */
-
-print_r( getAirCon() );
-
+$input = "https://www.youtube.com/watch?v=QYVjcIpvt10|https://youtu.be/FUpza22te6g|FUpza22te6g|OFEUOTnqNHA";

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name: Nowy Targ TV
 Author: the SCEPTER Agencja interaktywna
@@ -810,34 +811,65 @@ body.mobile #single .sidebar-single {
   #minipanel > .popup {
     position: absolute;
     padding: 10px 20px;
+    margin-top: 10px;
     top: 100%;
     right: 0;
     overflow: hidden;
     z-index: 50;
     background-color: #fff; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031028}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031029}}
     #minipanel > .popup > .view {
       display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031035}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031034}}
+      #minipanel > .popup > .view.air .line {
+        margin: 5px 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031039}}
+      #minipanel > .popup > .view.air .cond {
+        width: 100px;
+        height: 20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031050}}
+        #minipanel > .popup > .view.air .cond.bardzo_dobry {
+          background-color: lightgreen; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031055}}
+        #minipanel > .popup > .view.air .cond.dobry {
+          background: -webkit-gradient(linear, left top, right top, from(lightgreen), to(green));
+          background: linear-gradient(to right, lightgreen, green); }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031060}}
+        #minipanel > .popup > .view.air .cond.umiarkowany {
+          background: -webkit-gradient(linear, left top, right top, from(green), to(yellow));
+          background: linear-gradient(to right, green, yellow); }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031065}}
+        #minipanel > .popup > .view.air .cond.dostateczny {
+          background: -webkit-gradient(linear, left top, right top, from(yellow), to(orange));
+          background: linear-gradient(to right, yellow, orange); }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031070}}
+        #minipanel > .popup > .view.air .cond.zły {
+          background: -webkit-gradient(linear, left top, right top, from(orange), to(red));
+          background: linear-gradient(to right, orange, red); }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031075}}
+        #minipanel > .popup > .view.air .cond.bardzo_zły {
+          background: -webkit-gradient(linear, left top, right top, from(red), to(darkviolet));
+          background: linear-gradient(to right, red, darkviolet); }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031088}}
   #minipanel > .item {
     position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031038}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031091}}
     #minipanel > .item, #minipanel > .item * {
       cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031043}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031096}}
     #minipanel > .item > .icon {
       height: 46px;
       background-position: center;
       background-size: contain;
       background-repeat: no-repeat; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031054}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031107}}
     #minipanel > .item > .title {
       line-height: 24px;
       font-size: 12px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031060}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031113}}
     #minipanel > .item:not(:first-child) {
       margin: 0 4px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031065}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031118}}
     #minipanel > .item::before {
       content: '';
       position: absolute;
@@ -851,30 +883,30 @@ body.mobile #single .sidebar-single {
       transition: transform .3s linear, -webkit-transform .3s linear;
       -webkit-transform: scaleX(0);
               transform: scaleX(0); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031077}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031130}}
     #minipanel > .item:hover {
       text-decoration: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031080}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031133}}
       #minipanel > .item:hover::before {
         -webkit-transform: scaleX(1);
                 transform: scaleX(1); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031089}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031142}}
   #minipanel li {
     list-style-type: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031102}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031155}}
 #kamery > .row > .item > .img {
   background-position: center;
   background-repeat: no-repeat; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031162}}
   #kamery > .row > .item > .img > .wrapper {
     padding-bottom: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031171}}
 #kamery > .row > .item > .title > .icon {
   margin-right: 10px;
   color: #d1050d;
   font-size: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031125}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031178}}
 #kamery > .row > .item > .title > .text {
   font-size: 14px;
   font-family: 'ws-reguar'; }

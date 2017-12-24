@@ -7,7 +7,7 @@
 	
 	$reportaze = get_posts( array(
 		'category_name' => 'Reportaże',
-		'numberposts' => 12,
+		'numberposts' => 9,
 		
 	) );
 	
