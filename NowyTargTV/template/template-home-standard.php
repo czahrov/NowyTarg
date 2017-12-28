@@ -31,7 +31,7 @@
 		<?php get_template_part( "template/segment", "wydarzenia" ); ?>
 		<!-- /.col-xl-9 -->
 		<!-- reklama -->
-		<div class="col-md-3 clear">
+		<div class="col-md-3 clear d-none d-md-block">
 			<?php do_action( 'get_ad', 'home_wydarzenia' ); ?>
 		</div>
 	</div>

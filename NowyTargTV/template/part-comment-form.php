@@ -18,6 +18,8 @@
 			'class_submit' => 'send-comment',
 			'label_submit' => 'Dodaj komentarz',
 			'title_reply' => 'Napisz komentarz',
+			'title_reply_before'   => '<h3 id="reply-title" class="comment-reply-title">',
+			'title_reply_after'    => '</h3><div>Komentarze muszą najpierw zostać zaakceptowane przez administratora</div>',
 			'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required" placeholder="Twój komentarz"></textarea></p>',
 			
 		) );

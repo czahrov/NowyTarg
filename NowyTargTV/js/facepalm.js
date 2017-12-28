@@ -270,35 +270,41 @@
 			( $( '.navbar-toggler > .box' ), $( '.navbar-collapse' ) );
 			
 			/* minipanel */
-			(function( panel, view, button ){
-				
-				panel
+			(function( panel, popup, view, button ){
+				popup
 				.on({
-					mouseleave: function( e ){
-						view.hide();
+					show: function( e, id ){
+						if( typeof id !== undefined ){
+							view
+							.filter( "." + id )
+							.addClass( 'open' )
+							.siblings()
+							.removeClass( 'open' );
+							
+						}
+						
+					},
+					hide: function( e ){
+						popup.fadeOut( function(){
+							view.hide();
+							
+						} );
 						
 					},
 					
 				});
 				
-				button.click( function( e ){
-					var id = $(this).attr( 'view' );
+				button.mouseenter( function( e ){
+					popup.triggerHandler( 'show', $(this).attr( 'view' ) );
 					
-					if( typeof id !== undefined ){
-						view
-						.filter( "." + id )
-						.fadeIn()
-						.siblings()
-						.hide();
-						
-					}
 					
 				} );
 				
 			})
-			( $( '#minipanel > .popup' ), 
-			$( '#minipanel > .popup > .view' ), 
-			$( '#minipanel > .item' ) );
+			( $( '#minipanel' ), 
+			$( '#minipanel .popup' ), 
+			$( '#minipanel .popup > .view' ), 
+			$( '#minipanel .item' ) );
 			
 		},
 		alternate: function(){

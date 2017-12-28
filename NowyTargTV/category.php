@@ -72,7 +72,7 @@
 							<div class="post_multi">
 								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID ); ?>);'>
 									<div class="post_date"><?php echo get_the_date( "Y-m-d", $item->ID ); ?></div>
-									<div class='comment'><?php echo count( get_comments( array( 'post_id' => $item->ID ) ) ); ?> komentarzy</div>
+									<div class='comment'><?php echo count( get_comments( array( 'post_id' => $item->ID, 'status' => 'approve' ) ) ); ?> komentarzy</div>
 								</div>
 							</div>
 							<div class="post_title">

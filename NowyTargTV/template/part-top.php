@@ -1,49 +1,47 @@
 
 <?php do_action( 'get_live' ); ?>
 
-<div class="container d-flex align-items-center justify-content-between flex-wrap">
+<div class="container d-flex align-items-center justify-content-center 
+justify-content-md-between flex-wrap">
 	<a class="navbar-brand" href="<?php echo home_url(); ?>"></a>
-	<div id='minipanel' class='row'>
+	<div id='minipanel' class='row flex-wrap'>
+		<div class='items d-flex justify-content-between align-self-center'>
+			<div class='item d-flex flex-column' view='weather'>
+				<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_weather.png);'></div>
+				<div class='title'>
+					Pogoda
+				</div>
+				
+			</div>
+			<div class='item d-flex flex-column' view='air'>
+				<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_air.png);'></div>
+				<div class='title'>
+					Stan powietrza
+				</div>
+				
+			</div>
+			<div class='item d-flex flex-column' view='currency'>
+				<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_currency.png);'></div>
+				<div class='title'>
+					Kurs walut
+				</div>
+				
+			</div>
+			<a class='item d-flex flex-column' href='<?php echo home_url( '/kamery' ); ?>'>
+				<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_cam.png);'></div>
+				<div class='title'>
+					Kamery online
+				</div>
+				
+			</a>
+			
+		</div>
 		<div class='popup'>
-			<div class='view weather'>
-				<?php dynamic_sidebar( 'sidebar-weather' ); ?>
-			</div>
-			<div class='view air'>
-				<?php do_action( 'minipanel-air', getAirCon() ); ?>
-			</div>
-			<div class='view currency'>
-				<?php dynamic_sidebar( 'sidebar-currency' ); ?>
-			</div>
+			<?php get_template_part( "template/part-minipanel", "weather" ); ?>
+			<?php get_template_part( "template/part-minipanel", "air" ); ?>
+			<?php get_template_part( "template/part-minipanel", "currency" ); ?>
 			
 		</div>
-		<div class='item d-flex flex-column' view='weather'>
-			<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_weather.png);'></div>
-			<div class='title'>
-				Pogoda
-			</div>
-			
-		</div>
-		<div class='item d-flex flex-column' view='air'>
-			<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_air.png);'></div>
-			<div class='title'>
-				Stan powietrza
-			</div>
-			
-		</div>
-		<div class='item d-flex flex-column' view='currency'>
-			<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_currency.png);'></div>
-			<div class='title'>
-				Kurs walut
-			</div>
-			
-		</div>
-		<a class='item d-flex flex-column' href='<?php echo home_url( '/kamery' ); ?>'>
-			<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_cam.png);'></div>
-			<div class='title'>
-				Kamery online
-			</div>
-			
-		</a>
 		
 	</div>
 	
@@ -61,7 +59,7 @@
 			</div>
 			
 		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
+		<div class="collapse navbar-collapse flex-wrap" id="navbarResponsive">
 			<ul class="navbar-nav mr-auto">
 				<?php
 					$page_title = get_post()->post_title;

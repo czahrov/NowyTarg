@@ -50,13 +50,6 @@
 	register_nav_menu( "menu-top", "menu na górze strony" );
 	
 	register_sidebar( array(
-		'name' => 'pogoda',
-		'id' => 'sidebar-weather',
-		'description' => 'Sidebar na pogodę',
-		
-	) );
-	
-	register_sidebar( array(
 		'name' => 'waluta',
 		'id' => 'sidebar-currency',
 		'description' => 'Sidebar kurs wymiany walut',
@@ -358,7 +351,24 @@
 		if( is_page() ){
 			$current = get_post();
 			
-			do{
+			array_push( $data, array(
+				'title' => $current->post_title,
+				'url' =>  get_permalink( $current->ID ),
+				
+			) );
+			
+			while( $current->post_parent !== 0 ){
+				$current = get_post( $current->post_parent );
+				
+				array_push( $data, array(
+					'title' => $current->post_title,
+					'url' =>  get_permalink( $current->ID ),
+					
+				) );
+				
+			}
+			
+			/* do{
 				array_push( $data, array(
 					'title' => $current->post_title,
 					'url' =>  get_permalink( $current->ID ),
@@ -368,7 +378,9 @@
 				$current = get_post( $current->post_parent );
 				
 			}
-			while( $current->ID !== 0 );
+			while( $current->ID !== 0 ); */
+			
+			
 			
 		}
 		elseif( is_category() ){
@@ -1014,32 +1026,19 @@ EOT; */
 		
 		$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
 		$resp = file_get_contents( $uri );
-		$json_typy = json_decode( $resp, true );
-
+		$resp = json_decode( $resp, true );
+		$data[ 'sensors' ] = $resp;
+		
+		foreach( $resp as $item ){
+			$uri = "http://api.gios.gov.pl/pjp-api/rest/data/getData/{$item['id']}";
+			$data[ 'measure' ][] = json_decode( file_get_contents( $uri ), true );
+			
+		}
+		
 		$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
 		$resp = file_get_contents( $uri );
-		$json_status = json_decode( $resp, true );
-		
-		foreach( $json_typy as $typ ){
-			$data[ 'type' ][ $typ[ 'param' ][ 'paramFormula' ] ] = array(
-				'name' => $typ[ 'param' ][ 'paramName' ],
-				
-			);
-			
-		}
-		
-		foreach( $data[ 'type' ] as $key => $arr ){
-			$id = strtolower( $key );
-			$data[ 'type' ][ $key ][ 'status' ] = $json_status[ "{$id}IndexLevel" ][ 'indexLevelName' ];
-			$data[ 'type' ][ $key ][ 'date' ] = $json_status[ "{$id}SourceDataDate" ];
-			
-		}
-		
-		$data[ 'main' ] = array(
-			'name' => $json_status[ 'stIndexLevel' ][ 'indexLevelName' ],
-			'date' => $json_status[ 'stCalcDate' ],
-			
-		);
+		$resp = json_decode( $resp, true );
+		$data[ 'airquality' ] = $resp;
 		
 		/*
 		Array
@@ -1075,74 +1074,165 @@ EOT; */
 		
 	}
 	
-	add_action( 'minipanel-air', function( $data ){
-		
+	// Pobiera dane o prognozie pogody
+	function getForecast(){
 		/*
-		Array
-		(
-			[type] => Array
-				(
-					[PM10] => Array
-						(
-							[name] => pył zawieszony PM10
-							[status] => Bardzo dobry
-							[date] => 2017-12-23 22:00:00
-						)
-
-					[SO2] => Array
-						(
-							[name] => dwutlenek siarki
-							[status] => Bardzo dobry
-							[date] => 2017-12-23 23:00:00
-						)
-
-				)
-
-			[main] => Array
-				(
-					[name] => Bardzo dobry
-					[date] => 2017-12-23 23:20:27
-				)
-
-		)
+			 {
+				"id": 7532650,
+				"name": "Nowy Targ",
+				"country": "PL",
+				"coord": {
+				  "lon": 20.044201,
+				  "lat": 49.489201
+				}
+			  },
+			  {
+				"id": 763523,
+				"name": "Nowy Targ",
+				"country": "PL",
+				"coord": {
+				  "lon": 20.03228,
+				  "lat": 49.477829
+				}
+			  },
 		*/
 		
-		$append = array();
-		
-		foreach( $data[ 'type' ] as $key => $type ){
-			$append[] = sprintf(
-				"<div class='line col-6'>
-					%s
-				</div>
-				<div class='line col-6 align-self-center cond %s'></div>",
-				$key,
-				str_replace( " ", "_", strtolower( $type[ 'status' ] ) )
+		// OpenWeatherMap
+		$data = array();
+		$file = __DIR__ . "/prognoza.info.php";
+		$dt = new DateTime();
+		$now = $dt->getTimestamp();
+		// czy plik był aktualizowany NIE dawniej niż 10 minut temu
+		if( file_exists( $file ) && $now - filectime( $file ) <= 10 * 60 ){
+			// wczytanie danych z pliku
+			$data = json_decode( file_get_contents( $file ), true );
+			
+		}
+		else{
+			// pobieranie danych ze strony i zapis do pliku
+			// api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1111111111 
+			$api_key = "7470d10567aa7388d997eba8b8ec3a15";
+			$city_id = 763523;
+			$lat = 49.477465;
+			$long = 20.032096;
+			/* weather, forecast, forecast/daily */
+			$type = 'weather';
+			$language = 'pl';
+			$units = 'metric';
+			$icon_base = "https://openweathermap.org/img/w/";
+			$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
+			
+			// aktualny stan pogody
+			$resp = json_decode(file_get_contents( $url ), true );
+			// logger( $resp );
+			$data[ 'current' ] = $resp;
+			
+			// prognozy na kolejne dni
+			/*
+				chcemy wyznaczyć element tablicy wskazujący na południe dnia jutrzejszego
+				obecnie jest np 14:30
+				prognozy są co 3 godziny, więc najbliższa jest na 15:00 ( ceil( 14 / 3 ) * 3 )
+				minęło południe, więc do 12 dodajemy 24, mamy 36		// dla godziny mniejszej niż 12, należy dodać 36h
+				od 36 odejmujemy aktualną godzinę ( 15 ), otrzymujemy 21 ( godzin )
+				21 dzielimy na 3, bo co tyle są generowane prognozy, otrzymujemy 7 i tyle powinien wynosić szukany indeks
 				
-			);
+			*/
+			/* $godzina = getdate()['hours'];
+			$t = ceil( $godzina / 3 ) * 3;
+			$t += $t < 12?( 36 ):( 24 );
+			$t -= $godzina;
+			$t /= 3;
+			$t--; */
+			// logger( $t );
+			$type = 'forecast';
+			$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
+			$resp = json_decode(file_get_contents( $url ), true );
+			// logger( $resp );
+			// $item = $resp[ 'list' ][ $t ];
+			// $data[ 'forecast' ] = array();
+			// logger( $url );
+			foreach( $resp[ 'list' ] as $item ){
+				if( stripos( $item[ 'dt_txt' ], '12:00:00' ) !== false ){
+					$data[ 'forecast' ][] = $item;
+					
+				}
+				
+			}
+			
+			file_put_contents( $file, json_encode( $data ) );
 			
 		}
 		
-		printf(
-			"<div class='row'>
-				<div class='line col-6'>
-					Ogólny stan powietrza: 
-				</div>
-				<div class='line col-6 align-self-center cond %s'></div>
-				%s
-				<div class='line col-12'>
-					Dane z godziny
-				</div>
-				<div class='line col-12'>
-					%s
-				</div>
-				
-			</div>",
-			str_replace( " ", "_", strtolower( $data[ 'main' ][ 'name' ] ) ),
-			implode( "", $append ),
-			$data[ 'main' ][ 'date' ]
-			
-		);
+		return $data;
 		
-	} );
+		/*
+			array(2) {
+			  ["current"]=>
+			  array(4) {
+				["temp"]=>
+				float(6.63)
+				["status"]=>
+				string(28) "pochmurno z przejaśnieniami"
+				["icon"]=>
+				string(40) "https://openweathermap.org/img/w/04d.png"
+				["clouds"]=>
+				int(75)
+			  }
+			  ["forecast"]=>
+			  array(4) {
+				["temp"]=>
+				float(1.26)
+				["status"]=>
+				string(20) "słabe opady deszczu"
+				["icon"]=>
+				string(40) "https://openweathermap.org/img/w/10n.png"
+				["clouds"]=>
+				int(88)
+			  }
+			}
+		*/
+		/*
+			kod pogody
+			01 - clear sky
+			02 - few clouds
+			03 - scattered clouds
+			04 - broken clouds
+			09 - shower rain
+			10 - rain
+			11 - thunderstorm
+			13 - snow
+			50 - mist
+			
+			kod pory dnia
+			d - dzień
+			n - noc
+			
+			zasada tworzenia kodu
+			{kod_pogody}{kod_pory_dnia}.png
+			
+		*/
+		
+	}
 	
+	// Pobiera dane o aktualnym kursie ( kupno / sprzedaż ) aktualnej waluty
+	function getTrade( $code ){
+		/*		przykład odpowiedzi dla $code = 'USD'
+			{
+				"table": "C",
+				"currency": "dolar amerykański",
+				"code": "USD",
+				"rates": [
+					{
+						"no": "250/C/NBP/2017",
+						"effectiveDate": "2017-12-28",
+						"bid": 3.4844,
+						"ask": 3.5548
+					}
+				]
+			}
+		*/
+		
+		return json_decode( file_get_contents( "http://api.nbp.pl/api/exchangerates/rates/c/{$code}/?format=json" ), true );
+		
+	}
 	

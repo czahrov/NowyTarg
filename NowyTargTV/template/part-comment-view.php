@@ -3,6 +3,7 @@
 		'post_id' => get_post()->ID,
 		'order' => 'ASC',
 		'order_by' => 'date',
+		'status' => 'approve',
 		
 	) );
 	
@@ -15,10 +16,10 @@
 	foreach( $comments as $item ):
 	$class = $item->comment_parent == 0?( '' ):( ' answer ' );
 ?>
-<div class="comment-aded<?php echo $class; ?>">
+<div class="comment-aded col-12<?php echo $class; ?>">
 	<p class="comm-nick"><?php echo $item->comment_author; ?></p>
 	<p class="comm-date"><?php echo get_comment_date( 'F d, Y, \o H:i:s', $item->comment_ID ); ?></p>
-	<p class="comm-msg"><?php echo $item->comment_content; ?></p>
+	<p class="comm-msg"><?php echo nl2br( strip_tags( $item->comment_content ) ); ?></p>
 	<!--
 	<button class="button-answer">Odpowiedz</button>
 	-->
