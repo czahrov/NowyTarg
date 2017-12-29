@@ -136,6 +136,16 @@ span.txt-ad-300x600{
 	
 }
 
+.flex-grow{
+	flex-grow: 1;
+	
+}
+
+.flex-shrink{
+	flex-shrink: 1;
+	
+}
+
 .wydarzenia{
 	
 	& > .slider{
@@ -1031,232 +1041,135 @@ body.mobile{
 
 #minipanel{
 	position: relative;
-	/* width: 350px; */
-	max-width: 100%;
 	margin:{
 		top: 26px;
 		bottom: 26px;
 	};
 	
 	& > .popup{
-		width: 350px;
 		/* overflow: hidden; */
 		border-left: dashed 1px #dadada;
 		
 		& > .view{
+			position: relative;
 			height: 110px;
 			
-			&.air{
+			& > .cell{
+				padding: 0 10px;
+				flex: 1;
 				
-				& > .cell{
-					
-					& > .title{
-						margin-bottom: 10px;
-						font-size: 12px;
-						color: #777372;
-						
-					}
-					
-					& > .box{
-						
-						& > .icon{
-							height: 40px;
-							
-						}
-						
-						& > .text{
-							
-						}
-						
-						& > .item{
-							
-							& > .name{
-								font-family: 14px;
-								
-							}
-							
-							& > .procent{
-								font-size: 26px;
-								font-family: 'ws-bold';
-								
-							}
-							
-						}
-						
-					}
-					
-					&:nth-child(n+2){
-						
-						& > .box{
-							position: relative;
-							
-							&::before{
-								content: '';
-								position: absolute;
-								top: 24px;
-								left: 0;
-								bottom: 24px;
-								border-left: solid 1px #dadada;
-								
-							}
-							
-						}
-						
-					}
-					
-				}
-				
-			}
-			
-			&.weather{
-				
-				& > .cell{
-					
-					& > .title{
-						margin-bottom: 10px;
-						font-size: 12px;
-						color: #777372;
-						
-					}
-					
-					& > .box{
-						
-						& > .text{
-							font-size: 18px;
-							
-						}
-						
-						& > .icon{
-							padding: 0 14px;
-							height: 40px;
-							
-						}
-						
-						
-					}
-					
-					&.weather{
-						
-						& > .box{
-							
-							& > .icon{
-								height: 60px;
-								
-							}
-							
-						}
-						
-					}
-					
-					&:nth-child(n+2){
-						
-						& > .box{
-							position: relative;
-							
-							&::before{
-								content: '';
-								position: absolute;
-								top: 14px;
-								left: 0;
-								bottom: 14px;
-								border-left: solid 1px #dadada;
-								
-							}
-							
-						}
-						
-					}
-					
-				}
-				
-				& > .more{
-					position: relative;
+				& > .title{
 					font-size: 12px;
-					cursor: pointer;
-					color: #777372;
-					
-					& > .sub{
-						position: absolute;
-						top: 100%;
-						left: 0;
-						right: 0;
-						z-index: 50;
-						background-color: #fff;
-						color: #000;
-						
-						& > .cell{
-							padding: 10px 0;
-							
-							& > .title{
-								
-							}
-							
-							& > .box{
-								
-								& > .text{
-									
-								}
-								
-								& > .icon{
-									height: 40px;
-									padding: 0 10px;
-									
-								}
-								
-							}
-							
-						}
-						
-					}
-					
-					&:not(:hover) > .sub{
-						display: none !important;
-						
-					}
+					color: #777171;
+					font-family: 'latoregular';
 					
 				}
 				
-			}
-			
-			&.currency{
-				
-				& > .data{
-					height: 24px;
-					font-size: 12px;
-					color: #777374;
-				}
-				
-				& > .cell{
-					position: relative;
+				& > .box{
+					
+					& > .text{
+						font-family: 'latobold';
+						
+					}
 					
 					& > .icon{
-						width: 50px;
+						padding: 0 10px;
+						height: 30px;
 						
 					}
 					
-					& > .code{
-						padding-left: 10px;
+					& > .param{
+						padding: 0 5px;
 						
-					}
-					
-					& > .trade{
-						font-family: 'ws-bold';
-						line-height: 16px;
-						font-size: 14px;
-						
-					}
-					
-					&:nth-child(n+3){
-						
-						&::before{
-							content: '';
-							position: absolute;
-							top: 14px;
-							left: 0;
-							bottom: 14px;
-							border-left: solid 1px #e1e1e1;
+						& > .name{
+							font-size: 16px;
+							font-family: 'latoregular';
 							
 						}
+						
+						& > .procent{
+							font-size: 26px;
+							font-family: 'ws-bold';
+							
+						}
+						
+					}
+					
+					.trade{
+						font-size: 14px;
+						font-family: 'ws-bold';
+						
+					}
+					
+				}
+				
+				&:nth-child(2){
+					position: relative;
+					
+					&::before{
+						content: '';
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						margin: 14px 0;
+						border-left: solid 1px #dadada;
+						
+					}
+					
+				}
+				
+			}
+			
+			& > .more{
+				position: relative;
+				width: 100%;
+				
+				& > .sub{
+					position: absolute;
+					margin: 0 10px;
+					top: 100%;
+					left: 0;
+					right: 0;
+					z-index: 50;
+					background-color: #fff;
+					box-shadow: 0px 3px 10px -3px black;
+					/* border-radius: 0 0 20px 20px; */
+					
+					& > .cell{
+						padding: 10px 0;
+						
+						& > .title{
+							padding: 0 10px;
+							width: 50%;
+							font-size: 14px;
+							font-family: 'latoregular';
+							
+						}
+						
+						& > .box{
+							width: 50%;
+							
+							& > .text{
+								
+							}
+							
+							& > .icon{
+								height: 40px;
+								padding: 0 20px;
+								
+							}
+							
+						}
+						
+					}
+				
+				}
+				
+				&:not(:hover){
+					
+					& > .sub{
+						display: none !important;
 						
 					}
 					
@@ -1269,11 +1182,32 @@ body.mobile{
 				
 			}
 			
+			@media(min-width:992px){
+				width: 320px;
+				
+			}
+			
+		}
+		
+		@media(max-width: 767px){
+			flex-grow: 1;
+			
+			&:not(.mob_open){
+				display: none;
+				
+			}
+			
 		}
 		
 	}
 	
 	& > .items{
+		margin:{
+			top: 20px;
+			bottom: 20px;
+		};
+		padding: 0 12px;
+		width: 300px;
 		
 		& > .item{
 			position: relative;
@@ -1317,7 +1251,7 @@ body.mobile{
 				
 			}
 			
-			&:hover{
+			&:hover, &.active{
 				text-decoration: none;
 				
 				&::before{
@@ -1326,6 +1260,11 @@ body.mobile{
 				}
 				
 			}
+			
+		}
+		
+		@media(max-width: 767px){
+			flex-grow: 1;
 			
 		}
 		

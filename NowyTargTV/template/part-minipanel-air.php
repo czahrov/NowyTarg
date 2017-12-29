@@ -18,33 +18,37 @@
 	// print_r( $data );
 	echo "-->";
 	
+	$pollution = array();
+	foreach( $data[ 'air' ][ 'measure' ] as $item ){
+		$value = null;
+		foreach( $item[ 'values' ] as $sub ){
+			
+			$value = $sub[ 'value' ];
+			if( $value !== null ){
+				$pollution[ $item[ 'key' ] ] = array(
+					// 2017-12-29 13:00:00
+					'date' => date_create_from_format( "Y-m-d H:i:s", $sub[ 'date' ] ),
+					'value' => $value,
+					
+				);
+				
+				break;
+			}
+			
+		}
+		
+	}
+	
 ?>
 <div class='view air d-flex'>
-	<div class='cell status col-4 d-flex flex-column'>
+	<div class='cell left d-flex flex-column'>
 		<div class='title'>
-			Dzisiaj:
+			Powietrze, Nowy Targ
 		</div>
-		<div class='box col d-flex align-items-center'>
+		<div class='box d-flex align-items-center flex-grow justify-content-around'>
 			<?php
-				$note = '';
-				switch( strtolower( $data[ 'air' ][ 'airquality' ][ 'stIndexLevel' ][ 'indexLevelName' ] ) ){
-					case "bardzo dobry":
-					case "dobry":
-						$note = "good";
-						
-					break;
-					case "umiarkowany":
-					case "dostateczny":
-						$note = "average";
-						
-					break;
-					case "zły":
-					case "bardzo zły":
-						$note = "bad";
-						
-					break;
-					
-				}
+				$note = strtolower( $data[ 'air' ][ 'airquality' ][ 'stIndexLevel' ][ 'indexLevelName' ] );
+				
 				
 			?>
 			<img class='icon' src='<?php printf( "%s/media/air/%s.png", get_template_directory_uri(), $note ); ?>' />
@@ -55,26 +59,29 @@
 		</div>
 		
 	</div>
-	<div class='cell params col d-flex flex-column'>
-		<div class='title'></div>
-		<div class='box d-flex col-12 align-items-center justify-content-around'>
+	<div class='cell right d-flex flex-column'>
+		<div class='title'>
 			<?php
-				foreach( $data[ 'air' ][ 'measure' ] as $item ):
-				$value = null;
-				foreach( $item[ 'values' ] as $sub ){
-					$value = $sub[ 'value' ];
-					if( $value !== null ) break;
+				$text = array();
+				
+				foreach( $pollution as $code => $item ){
+					$text[] = "{$code}: " . strftime( "%H:%M", $item[ 'date' ]->getTimestamp() );
 					
 				}
 				
+				echo implode( ", ", $text );
+				
 			?>
-			<div class='item text-center d-flex flex-column'>
+		</div>
+		<div class='box d-flex flex-grow align-items-center justify-content-around'>
+			<?php foreach( $pollution as $code => $item ): ?>
+			<div class='param text-center d-flex flex-column'>
 				<div class='name'>
-					<?php echo $item[ 'key' ]; ?>
+					<?php echo $code; ?>
 				</div>
 				<div class='procent'>
 					<?php
-						printf( "%.1f%%", $value / $limit[ $item[ 'key' ] ] * 100 );
+						printf( "%.0f%%", $item[ 'value' ] / $limit[ $code ] * 100 );
 					?>
 				</div>
 				

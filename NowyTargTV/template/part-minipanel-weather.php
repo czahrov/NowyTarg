@@ -286,44 +286,34 @@ Array
 	
 ?>
 <div class='view weather open d-flex flex-wrap'>
-	<div class='cell weather col-6 d-flex flex-column'>
+	<div class='cell left d-flex flex-column'>
 		<div class='title'>
-			Dzisiaj:
+			<?php
+				echo strftime( "%d %B", (int)$data[ 'weather' ][ 'current' ][ 'dt' ] ) . "<br>Nowy Targ" ;
+			?>
 		</div>
-		<div class='box d-flex align-items-center'>
+		<div class='box d-flex align-items-center flex-grow justify-content-around'>
 			<div class='text'>
-				<?php printf( "%.1f&#8451", $data[ 'weather' ][ 'current' ][ 'main' ][ 'temp' ] ); ?>
+				<?php printf( "%.0f&#8451", $data[ 'weather' ][ 'current' ][ 'main' ][ 'temp' ] ); ?>
 			</div>
-			<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $data[ 'weather' ][ 'current' ][ 'weather' ][0][ 'icon' ] ); ?>' />
+			<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $data[ 'weather' ][ 'current' ][ 'weather' ][0][ 'icon' ] ); ?>' alt='' />
 		
 		</div>
 		
 	</div>
-	<div class='cell cond col-6 d-flex flex-column'>
+	<div class='cell right d-flex flex-column'>
 		<div class='title'>
-			Stan powietrza:
-		</div>
-		<div class='box d-flex col align-items-center'>
 			<?php
-				$note = '';
-				switch( strtolower( $data[ 'air' ][ 'airquality' ][ 'stIndexLevel' ][ 'indexLevelName' ] ) ){
-					case "bardzo dobry":
-					case "dobry":
-						$note = "good";
-						
-					break;
-					case "umiarkowany":
-					case "dostateczny":
-						$note = "average";
-						
-					break;
-					case "zły":
-					case "bardzo zły":
-						$note = "bad";
-						
-					break;
-					
-				}
+				// 2017-12-29 13:21:02
+				$dt = date_create_from_format( "Y-m-d H:i:s", $data[ 'air' ][ 'airquality' ][ 'stCalcDate' ] );
+				
+				printf( "%s<br>Nowy Targ", strftime( "%A %H:%M:%S", $dt->getTimestamp() ) );
+				
+			?>
+		</div>
+		<div class='box d-flex align-items-center flex-grow justify-content-around'>
+			<?php
+				$note = strtolower( $data[ 'air' ][ 'airquality' ][ 'stIndexLevel' ][ 'indexLevelName' ] );
 				
 			?>
 			<img class='icon' src='<?php printf( "%s/media/air/%s.png", get_template_directory_uri(), $note );
@@ -340,14 +330,14 @@ Array
 		<div class='sub d-flex flex-column'>
 			<?php foreach( $data[ 'weather' ][ 'forecast' ] as $item ): ?>
 			<div class='cell cell weather d-flex align-items-center justify-content-around'>
-				<div class='title'>
+				<div class='title text-left'>
 					<?php
-						echo date( "d.m.Y", (int)$item[ 'dt' ] );
+						echo strftime( "%d.%m, %A", (int)$item[ 'dt' ] );
 					?>
 				</div>
-				<div class='box d-flex align-items-center'>
+				<div class='box d-flex align-items-center justify-content-between'>
 					<div class='text'>
-						<?php printf( "%.1f&#8451", $item[ 'main' ][ 'temp' ] ); ?>
+						<?php printf( "%.0f&#8451", $item[ 'main' ][ 'temp' ] ); ?>
 					</div>
 					<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $item[ 'weather' ][0][ 'icon' ] ); ?>' />
 				

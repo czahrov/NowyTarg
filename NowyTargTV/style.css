@@ -254,21 +254,32 @@ span.txt-ad-300x600 {
 .sep::before {
   margin: 0 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003141}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003139}}
+.flex-grow {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003144}}
+.flex-shrink {
+  -ms-flex-negative: 1;
+      flex-shrink: 1; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003151}}
 .wydarzenia > .slider {
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003144}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003154}}
   .wydarzenia > .slider > .view {
     overflow: hidden;
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003160}}
     .wydarzenia > .slider > .view > .item .overview_small_photo {
       position: relative;
       width: 100%;
       height: 160px;
       background-size: cover; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003162}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003172}}
   .wydarzenia > .slider > .arrow {
     position: absolute;
     padding: 10px;
@@ -285,17 +296,17 @@ span.txt-ad-300x600 {
     transition-property: transform, opacity, -webkit-transform;
     -webkit-transition: .3s linear;
     transition: .3s linear; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003174}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003184}}
     .wydarzenia > .slider > .arrow.left {
       left: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003189}}
     .wydarzenia > .slider > .arrow.right {
       right: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003186}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003196}}
   .wydarzenia > .slider > .pagin {
     padding: 10px 0;
     text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003200}}
     .wydarzenia > .slider > .pagin > .item {
       display: inline-block;
       margin: 0 5px;
@@ -309,25 +320,25 @@ span.txt-ad-300x600 {
       cursor: pointer;
       -webkit-transition: border .3s linear;
       transition: border .3s linear; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003205}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003215}}
       .wydarzenia > .slider > .pagin > .item.active, .wydarzenia > .slider > .pagin > .item:hover {
         border-width: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003217}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003227}}
   .wydarzenia > .slider:not(:hover) > .arrow.left {
     -webkit-transform: translate(100%, -50%);
             transform: translate(100%, -50%);
     opacity: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003223}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003233}}
   .wydarzenia > .slider:not(:hover) > .arrow.right {
     -webkit-transform: translate(-100%, -50%);
             transform: translate(-100%, -50%);
     opacity: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003235}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003245}}
 .img-ad {
   padding-top: 10px;
   margin: 10px 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003239}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003249}}
   .img-ad > .header-ad {
     position: absolute;
     padding: 0 20px;
@@ -342,13 +353,13 @@ span.txt-ad-300x600 {
     font-family: 'ws-light';
     text-transform: uppercase; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003256}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003266}}
 #live {
   background-color: #f5f5f5; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003263}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003273}}
   #live > .container > .row > *:not(.btn) {
     min-height: 100px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003268}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003278}}
   #live > .container > .row > .box {
     /* padding: 24px 34px; */
     background-color: #a20f05;
@@ -357,44 +368,44 @@ span.txt-ad-300x600 {
     font-size: 20px;
     font-family: 'ws-bold';
     text-transform: uppercase; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003279}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003289}}
   #live > .container > .row > .info {
     color: #000; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003282}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003292}}
     #live > .container > .row > .info > .header {
       font-size: 20px;
       font-family: 'ws-bold'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003298}}
     #live > .container > .row > .info > .subheader {
       font-size: 18px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003295}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003305}}
   #live > .container > .row > .banner {
     background-position: top center;
     background-size: cover;
     background-repeat: no-repeat; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003305}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003315}}
   #live > .container > .row > .btn {
     padding: 7px 11px;
     background-color: #a20f05;
     color: #f5f5f5;
     text-transform: uppercase; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003321}}
     #live > .container > .row > .btn > .icon {
       padding-right: 10px;
       font-size: 20px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003337}}
 #single .news_post_title {
   margin: 16px 0 18px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003344}}
 #single .bold_post_desc, #single .bold_post_desc > * {
   font-family: 'ws-extrabold';
   font-size: 1rem;
   margin-top: 1rem; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003353}}
 #single .regular_post_txt {
   margin-top: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003348}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003358}}
 #single .social_bar_top {
   display: block;
   width: 100%;
@@ -402,26 +413,26 @@ span.txt-ad-300x600 {
   padding: 15px 0;
   border-top: 5px solid #f7f7f7;
   border-bottom: 5px solid #f7f7f7; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003366}}
   #single .social_bar_top .icons {
     display: inline-block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003359}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003369}}
     #single .social_bar_top .icons .circle_icon {
       position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003372}}
       #single .social_bar_top .icons .circle_icon, #single .social_bar_top .icons .circle_icon * {
         cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003367}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003377}}
       #single .social_bar_top .icons .circle_icon > .fa {
         position: absolute;
         top: 50%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003381}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003391}}
 #single .social_share {
   float: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003396}}
 #single .button-answer {
   /* background: #f0f0f0; */
   border-radius: 28px;
@@ -433,48 +444,48 @@ span.txt-ad-300x600 {
   border: none;
   display: inline;
   cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003400}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003410}}
   #single .button-answer:hover, #single .button-answer:hover * {
     text-decoration: none;
     color: #fff; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003412}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003422}}
 #single .thumb > img {
   margin: auto;
   max-width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003420}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003430}}
 #single .post {
   margin: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003425}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003435}}
 #single .latest_news {
   padding: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003430}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003440}}
 #single .youtube {
   padding: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003433}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003443}}
   #single .youtube > div {
     /* max-height: 500px; */
     overflow: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003439}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003449}}
   #single .youtube h1 {
     margin-bottom: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003444}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003454}}
   #single .youtube .player {
     margin: 10px 0;
     padding: 0;
     height: 400px;
     border: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003454}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003464}}
 #single .gallery {
   padding: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003457}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003467}}
   #single .gallery h1 {
     margin-bottom: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003462}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003472}}
   #single .gallery .row {
     margin: 0 -15px;
     /* max-height: 500px; */
     overflow: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003467}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003477}}
     #single .gallery .row .item {
       padding: 15px;
       height: 200px;
@@ -484,16 +495,16 @@ span.txt-ad-300x600 {
       background-origin: content-box;
       background-clip: content-box; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003487}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003497}}
 #respond {
   margin-top: 2rem;
   background: #f0f0f0;
   padding: 25px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003492}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003502}}
   #respond .comment-reply-title {
     font-size: 1.3rem;
     font-family: 'ws-bold'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003498}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003508}}
   #respond #comment {
     height: 170px;
     width: 100%;
@@ -503,7 +514,7 @@ span.txt-ad-300x600 {
     border: none;
     background: #fff;
     resize: vertical; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003510}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003520}}
   #respond #author, #respond #email, #respond #url {
     margin-top: 1rem;
     font-size: 0.815rem;
@@ -512,15 +523,15 @@ span.txt-ad-300x600 {
     border: none;
     background: #fff;
     resize: vertical; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003521}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003531}}
   #respond .send-comment {
     float: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003528}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003538}}
 .comment-aded {
   position: relative;
   border-bottom: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003532}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003542}}
   .comment-aded::before {
     content: '';
     position: absolute;
@@ -529,20 +540,20 @@ span.txt-ad-300x600 {
     left: 15px;
     border-bottom: 1px solid #dcdcdc; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003546}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003556}}
 #category .pagination {
   margin-top: 30px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003549}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003559}}
   #category .pagination a, #category .pagination span {
     margin: 0 5px;
     padding: 5px;
     cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003558}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003568}}
   #category .pagination a:hover, #category .pagination a.current, #category .pagination span:not(.dots):hover, #category .pagination span:not(.dots).current {
     background-color: #173e6d;
     color: #fff; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003572}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003582}}
 .link_post .fa {
   position: absolute;
   bottom: 0;
@@ -551,16 +562,16 @@ span.txt-ad-300x600 {
   z-index: 5;
   color: #fff;
   font-size: 40px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003585}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003595}}
 .link_post.big .fa {
   bottom: initial;
   top: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003595}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003605}}
 .link_post.popular .last1 {
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003603}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003613}}
   .link_post.popular .last1 .fa {
     margin: 0;
     top: 50%;
@@ -570,7 +581,7 @@ span.txt-ad-300x600 {
             transform: translate(-50%, -50%);
     font-size: 80px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003621}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003631}}
 .last_video_box .fa {
   position: absolute;
   bottom: 0;
@@ -580,24 +591,24 @@ span.txt-ad-300x600 {
   color: #fff;
   font-size: 40px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003634}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003644}}
 .img-side {
   max-width: 120px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003645}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003655}}
 .post_item .post_title {
   margin: 25px 0 10px;
   font-family: 'ws-bold';
   color: #222222;
   font-size: 16px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003653}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003663}}
 .post_item .post_img {
   position: relative;
   background-size: cover;
   background-position: top;
   background-repet: no-repeat;
   height: 200px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003663}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003673}}
   .post_item .post_img .post_date {
     position: absolute;
     margin: 15px;
@@ -607,7 +618,7 @@ span.txt-ad-300x600 {
     font-family: 'ws-bold';
     font-size: 13px;
     background-color: rgba(255, 255, 255, 0.9); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003675}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003685}}
   .post_item .post_img .comment {
     position: absolute;
     margin: 15px;
@@ -620,32 +631,32 @@ span.txt-ad-300x600 {
     font-size: 13px;
     max-width: 90%;
     text-shadow: 0rem 0.03rem 0.06rem #333; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003693}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003703}}
 .post_item .post_excerpt {
   font-family: 'latoregular';
   color: #777777;
   font-size: 14px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003704}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003714}}
 .see-more-ex a {
   display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003707}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003717}}
   .see-more-ex a .img {
     height: 200px;
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003724}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003734}}
 .kultura .row {
   min-height: 100px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003727}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003737}}
   .kultura .row .img_link {
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003745}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003755}}
 .ogloszenia .row .img {
   height: 100%;
   min-height: 200px;
@@ -653,14 +664,14 @@ span.txt-ad-300x600 {
   background-position: top;
   background-repeat: no-repeat; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003763}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003773}}
 .top_news_list > li {
   padding-top: 8px;
   padding-bottom: 8px;
   font-size: 15px;
   /* margin-top: 16px; */ }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003776}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003786}}
 #popup {
   position: fixed;
   top: 0;
@@ -670,7 +681,7 @@ span.txt-ad-300x600 {
   background-color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
   z-index: 100; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003786}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003796}}
   #popup > .box {
     position: absolute;
     max-width: 80%;
@@ -679,95 +690,95 @@ span.txt-ad-300x600 {
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003796}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003806}}
   #popup:not(.open) {
     display: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003803}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003813}}
 .parallax-window {
   height: 400px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003812}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003822}}
 .home .kultura > .item {
   min-height: 100px;
   margin-top: 16px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003816}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003826}}
   .home .kultura > .item > .img_news_list {
     height: 100%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003827}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003837}}
 .line_separator {
   border-bottom: 5px solid #14365f;
   padding-bottom: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003837}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003847}}
 body.mobile .aktualnosci .post_news_big, body.mobile .reportaze .post_news_big {
   min-height: 300px;
   height: auto;
   float: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003842}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003852}}
   body.mobile .aktualnosci .post_news_big span, body.mobile .reportaze .post_news_big span {
     font-size: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003849}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003859}}
 body.mobile .aktualnosci .link_post, body.mobile .reportaze .link_post {
   margin: 0;
   border: solid 1px #fff; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003853}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003863}}
   body.mobile .aktualnosci .link_post .post_news_small, body.mobile .reportaze .link_post .post_news_small {
     height: 100px; }
     @media (min-width: 576px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003853}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003863}}
       body.mobile .aktualnosci .link_post .post_news_small, body.mobile .reportaze .link_post .post_news_small {
         height: 200px; } }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003863}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003873}}
   body.mobile .aktualnosci .link_post span.post_news_small_tiitle, body.mobile .reportaze .link_post span.post_news_small_tiitle {
     font-size: 12px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003868}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003878}}
   body.mobile .aktualnosci .link_post .fa, body.mobile .reportaze .link_post .fa {
     font-size: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003873}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003883}}
   body.mobile .aktualnosci .link_post:not(:first-child), body.mobile .reportaze .link_post:not(:first-child) {
     margin-bottom: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003882}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003892}}
 body.mobile .popularne {
   margin: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003891}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003901}}
 body.mobile .ogloszenia .row .item {
   border: solid 1px #fff; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003894}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003904}}
   body.mobile .ogloszenia .row .item h3 {
     font-size: 14px;
     padding: 0 5px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003900}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003910}}
   body.mobile .ogloszenia .row .item p {
     padding: 0 5px;
     font-size: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003906}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003916}}
   body.mobile .ogloszenia .row .item .img {
     height: 150px;
     min-height: initial; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003924}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003934}}
 body.mobile .kultura .item .img_news_list p {
   font-size: 12px;
   font-family: 'ws-bold';
   color: #1e1e1e; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003939}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003949}}
 body.mobile #single .comments {
   margin: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003946}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003956}}
 body.mobile #single .latest_news > h1 {
   margin-left: 16px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003951}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003961}}
 body.mobile #single .latest_news > .row {
   margin: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003958}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003968}}
 body.mobile #single .sidebar-single {
   padding: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003969}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003979}}
 .navbar .navbar-toggler {
   outline: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003972}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003982}}
   .navbar .navbar-toggler > .box {
     position: relative;
     width: 30px;
@@ -777,7 +788,7 @@ body.mobile #single .sidebar-single {
     transition: -webkit-transform 0.3s linear;
     transition: transform 0.3s linear;
     transition: transform 0.3s linear, -webkit-transform 0.3s linear; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003979}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003989}}
     .navbar .navbar-toggler > .box > .bar {
       position: absolute;
       left: 0;
@@ -790,225 +801,224 @@ body.mobile #single .sidebar-single {
       transition: -webkit-transform .3s linear;
       transition: transform .3s linear;
       transition: transform .3s linear, -webkit-transform .3s linear; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003988}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003998}}
       .navbar .navbar-toggler > .box > .bar:nth-child(1) {
         top: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003992}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031002}}
       .navbar .navbar-toggler > .box > .bar:nth-child(2) {
         top: 50%;
         -webkit-transform: translate(0, -50%);
                 transform: translate(0, -50%); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\00003997}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031007}}
       .navbar .navbar-toggler > .box > .bar:nth-child(3) {
         bottom: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031004}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031014}}
     .navbar .navbar-toggler > .box.open {
       -webkit-transform: rotateY(180deg);
               transform: rotateY(180deg); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031009}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031019}}
       .navbar .navbar-toggler > .box.open > .bar:nth-child(1) {
         -webkit-transform: rotate(32deg) scale(1.2, 1);
                 transform: rotate(32deg) scale(1.2, 1); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031013}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031023}}
       .navbar .navbar-toggler > .box.open > .bar:nth-child(2) {
         -webkit-transform: translate(-100%, -50%);
                 transform: translate(-100%, -50%); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031017}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031027}}
       .navbar .navbar-toggler > .box.open > .bar:nth-child(3) {
         -webkit-transform: rotate(-32deg) scale(1.2, 1);
                 transform: rotate(-32deg) scale(1.2, 1); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031032}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031042}}
 #minipanel {
   position: relative;
-  /* width: 350px; */
-  max-width: 100%;
   margin-top: 26px;
   margin-bottom: 26px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031041}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031049}}
   #minipanel > .popup {
-    width: 350px;
     /* overflow: hidden; */
     border-left: dashed 1px #dadada; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031046}}
-    #minipanel > .popup > .view {
-      height: 110px; }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031053}}
-      #minipanel > .popup > .view.air > .cell > .title {
-        margin-bottom: 10px;
-        font-size: 12px;
-        color: #777372; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031062}}
-      #minipanel > .popup > .view.air > .cell > .box > .icon {
-        height: 40px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031073}}
-      #minipanel > .popup > .view.air > .cell > .box > .item > .name {
-        font-family: 14px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031078}}
-      #minipanel > .popup > .view.air > .cell > .box > .item > .procent {
-        font-size: 26px;
-        font-family: 'ws-bold'; }
+    #minipanel > .popup > .view {
+      position: relative;
+      height: 110px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031057}}
+      #minipanel > .popup > .view > .cell {
+        padding: 0 10px;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031061}}
+        #minipanel > .popup > .view > .cell > .title {
+          font-size: 12px;
+          color: #777171;
+          font-family: 'latoregular'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031070}}
+        #minipanel > .popup > .view > .cell > .box > .text {
+          font-family: 'latobold'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031075}}
+        #minipanel > .popup > .view > .cell > .box > .icon {
+          padding: 0 10px;
+          height: 30px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031081}}
+        #minipanel > .popup > .view > .cell > .box > .param {
+          padding: 0 5px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031084}}
+          #minipanel > .popup > .view > .cell > .box > .param > .name {
+            font-size: 16px;
+            font-family: 'latoregular'; }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031090}}
-      #minipanel > .popup > .view.air > .cell:nth-child(n+2) > .box {
-        position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031093}}
-        #minipanel > .popup > .view.air > .cell:nth-child(n+2) > .box::before {
-          content: '';
-          position: absolute;
-          top: 24px;
-          left: 0;
-          bottom: 24px;
-          border-left: solid 1px #dadada; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031115}}
-      #minipanel > .popup > .view.weather > .cell > .title {
-        margin-bottom: 10px;
-        font-size: 12px;
-        color: #777372; }
+          #minipanel > .popup > .view > .cell > .box > .param > .procent {
+            font-size: 26px;
+            font-family: 'ws-bold'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031098}}
+        #minipanel > .popup > .view > .cell > .box .trade {
+          font-size: 14px;
+          font-family: 'ws-bold'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031106}}
+        #minipanel > .popup > .view > .cell:nth-child(2) {
+          position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031109}}
+          #minipanel > .popup > .view > .cell:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            margin: 14px 0;
+            border-left: solid 1px #dadada; }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031124}}
-      #minipanel > .popup > .view.weather > .cell > .box > .text {
-        font-size: 18px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031129}}
-      #minipanel > .popup > .view.weather > .cell > .box > .icon {
-        padding: 0 14px;
-        height: 40px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031142}}
-      #minipanel > .popup > .view.weather > .cell.weather > .box > .icon {
-        height: 60px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031153}}
-      #minipanel > .popup > .view.weather > .cell:nth-child(n+2) > .box {
-        position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031156}}
-        #minipanel > .popup > .view.weather > .cell:nth-child(n+2) > .box::before {
-          content: '';
-          position: absolute;
-          top: 14px;
-          left: 0;
-          bottom: 14px;
-          border-left: solid 1px #dadada; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031172}}
-      #minipanel > .popup > .view.weather > .more {
+      #minipanel > .popup > .view > .more {
         position: relative;
-        font-size: 12px;
-        cursor: pointer;
-        color: #777372; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031178}}
-        #minipanel > .popup > .view.weather > .more > .sub {
+        width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031128}}
+        #minipanel > .popup > .view > .more > .sub {
           position: absolute;
+          margin: 0 10px;
           top: 100%;
           left: 0;
           right: 0;
           z-index: 50;
           background-color: #fff;
-          color: #000; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031187}}
-          #minipanel > .popup > .view.weather > .more > .sub > .cell {
+          -webkit-box-shadow: 0px 3px 10px -3px black;
+                  box-shadow: 0px 3px 10px -3px black;
+          /* border-radius: 0 0 20px 20px; */ }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031139}}
+          #minipanel > .popup > .view > .more > .sub > .cell {
             padding: 10px 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031200}}
-            #minipanel > .popup > .view.weather > .more > .sub > .cell > .box > .icon {
-              height: 40px;
-              padding: 0 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031212}}
-        #minipanel > .popup > .view.weather > .more:not(:hover) > .sub {
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031142}}
+            #minipanel > .popup > .view > .more > .sub > .cell > .title {
+              padding: 0 10px;
+              width: 50%;
+              font-size: 14px;
+              font-family: 'latoregular'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031150}}
+            #minipanel > .popup > .view > .more > .sub > .cell > .box {
+              width: 50%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031157}}
+              #minipanel > .popup > .view > .more > .sub > .cell > .box > .icon {
+                height: 40px;
+                padding: 0 20px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031171}}
+        #minipanel > .popup > .view > .more:not(:hover) > .sub {
           display: none !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031223}}
-      #minipanel > .popup > .view.currency > .data {
-        height: 24px;
-        font-size: 12px;
-        color: #777374; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031229}}
-      #minipanel > .popup > .view.currency > .cell {
-        position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031232}}
-        #minipanel > .popup > .view.currency > .cell > .icon {
-          width: 50px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031237}}
-        #minipanel > .popup > .view.currency > .cell > .code {
-          padding-left: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031242}}
-        #minipanel > .popup > .view.currency > .cell > .trade {
-          font-family: 'ws-bold';
-          line-height: 16px;
-          font-size: 14px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031251}}
-        #minipanel > .popup > .view.currency > .cell:nth-child(n+3)::before {
-          content: '';
-          position: absolute;
-          top: 14px;
-          left: 0;
-          bottom: 14px;
-          border-left: solid 1px #e1e1e1; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031267}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031180}}
       #minipanel > .popup > .view:not(.open) {
         display: none !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031278}}
-  #minipanel > .items > .item {
-    position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031281}}
-    #minipanel > .items > .item, #minipanel > .items > .item * {
-      cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031286}}
-    #minipanel > .items > .item > .icon {
-      height: 30px;
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031297}}
-    #minipanel > .items > .item > .title {
-      line-height: 24px;
-      font-size: 12px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031303}}
-    #minipanel > .items > .item:not(:first-child) {
-      margin-left: 7px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031308}}
-    #minipanel > .items > .item::before {
-      content: '';
-      position: absolute;
-      top: 100%;
-      width: 100%;
-      height: 2px;
-      background-color: #a11108;
-      -webkit-transition: -webkit-transform .3s linear;
-      transition: -webkit-transform .3s linear;
-      transition: transform .3s linear;
-      transition: transform .3s linear, -webkit-transform .3s linear;
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031320}}
-    #minipanel > .items > .item:hover {
-      text-decoration: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031323}}
-      #minipanel > .items > .item:hover::before {
-        -webkit-transform: scaleX(1);
-                transform: scaleX(1); }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031334}}
+      @media (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031053}}
+        #minipanel > .popup > .view {
+          width: 320px; } }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031049}}
+      #minipanel > .popup {
+        -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031195}}
+        #minipanel > .popup:not(.mob_open) {
+          display: none; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031204}}
+  #minipanel > .items {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 12px;
+    width: 300px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031212}}
+    #minipanel > .items > .item {
+      position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031215}}
+      #minipanel > .items > .item, #minipanel > .items > .item * {
+        cursor: pointer; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031220}}
+      #minipanel > .items > .item > .icon {
+        height: 30px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031231}}
+      #minipanel > .items > .item > .title {
+        line-height: 24px;
+        font-size: 12px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031237}}
+      #minipanel > .items > .item:not(:first-child) {
+        margin-left: 7px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031242}}
+      #minipanel > .items > .item::before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        height: 2px;
+        background-color: #a11108;
+        -webkit-transition: -webkit-transform .3s linear;
+        transition: -webkit-transform .3s linear;
+        transition: transform .3s linear;
+        transition: transform .3s linear, -webkit-transform .3s linear;
+        -webkit-transform: scaleX(0);
+                transform: scaleX(0); }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031254}}
+      #minipanel > .items > .item:hover, #minipanel > .items > .item.active {
+        text-decoration: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031257}}
+        #minipanel > .items > .item:hover::before, #minipanel > .items > .item.active::before {
+          -webkit-transform: scaleX(1);
+                  transform: scaleX(1); }
+    @media (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031204}}
+      #minipanel > .items {
+        -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1; } }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031273}}
   #minipanel li {
     list-style-type: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031284}}
 #kamery > .row > .item {
   position: relative;
   height: 300px;
   margin: 20px 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031289}}
   #kamery > .row > .item > .img {
     background-position: center;
     background-repeat: no-repeat; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031357}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031296}}
     #kamery > .row > .item > .img > .wrapper {
       padding-bottom: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031303}}
   #kamery > .row > .item > .title {
     height: 40px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031367}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031306}}
     #kamery > .row > .item > .title > .icon {
       margin-right: 10px;
       color: #d1050d;
       font-size: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031374}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031313}}
     #kamery > .row > .item > .title > .text {
       font-size: 24px;
       font-family: 'ws-reguar'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031382}}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031321}}
   #kamery > .row > .item > iframe {
     /* width: 100%; */
     height: 100%; }

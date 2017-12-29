@@ -49,9 +49,10 @@
 
 // var_dump( logger() );
 
-/* print_r( array(
+print_r( array(
 	'weather' => getForecast(),
 	'air' => getAirCon(),
 	
-) ); */
+) );
 
+// print_r( getAirCon() );

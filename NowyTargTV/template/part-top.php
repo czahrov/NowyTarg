@@ -4,9 +4,9 @@
 <div class="container d-flex align-items-center justify-content-center 
 justify-content-md-between flex-wrap">
 	<a class="navbar-brand" href="<?php echo home_url(); ?>"></a>
-	<div id='minipanel' class='row flex-wrap'>
+	<div id='minipanel' class='row flex-wrap flex-grow justify-content-end'>
 		<div class='items d-flex justify-content-between align-self-center'>
-			<div class='item d-flex flex-column' view='weather'>
+			<div class='item d-flex flex-column active' view='weather'>
 				<div class='icon' style='background-image:url(<?php echo get_template_directory_uri(); ?>/media/icon_weather.png);'></div>
 				<div class='title'>
 					Pogoda

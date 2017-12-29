@@ -27,26 +27,32 @@
 	
 ?>
 <div class='view currency d-flex flex-wrap'>
-	<div class='data col-12'>
-		Danie z dnia <?php echo $data[ 'USD' ][ 'rates' ][0][ 'effectiveDate' ]; ?>
-	</div>
 	<?php foreach( $data as $code => $item ): ?>
-	<div class='cell col d-flex flex-wrap align-items-center'>
-		<img class='icon' src='<?php printf( "%s/media/flag/%s.png", get_template_directory_uri(), $code ); ?>' />
-		<div class='code'>
-			<?php echo $code; ?>
-			
+	<div class='cell d-flex flex-column'>
+		<div class='title'>
+			Dane z dnia <?php echo $item[ 'rates' ][0][ 'effectiveDate' ]; ?>
 		</div>
-		<div class='trade buy'>
-			<?php printf( "Kupno: %.2f zł", $item[ 'rates' ][0][ 'bid' ] ); ?>
-			
+		<div class='box d-flex align-items-center flex-grow justify-content-around flex-wrap'>
+			<img class='icon' src='<?php printf( "%s/media/flag/%s.png", get_template_directory_uri(), $code ); ?>' />
+			<div class='text'>
+				<?php echo $code; ?>
+			</div>
+		
 		</div>
-		<div class='trade sell'>
-			<?php printf( "Sprzedaż: %.2f zł", $item[ 'rates' ][0][ 'ask' ] ); ?>
-			
+		<div class='box d-flex flex-column'>
+			<div class='trade buy'>
+				<?php printf( "Kupno: %.2f zł", $item[ 'rates' ][0][ 'bid' ] ); ?>
+				
+			</div>
+			<div class='trade sell'>
+				<?php printf( "Sprzedaż: %.2f zł", $item[ 'rates' ][0][ 'ask' ] ); ?>
+				
+			</div>
+		
 		</div>
 		
 	</div>
+	
 	<?php endforeach; ?>
 	
 </div>

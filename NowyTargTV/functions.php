@@ -1,6 +1,7 @@
 <?php
 	
-	setlocale( LC_ALL, 'poland' );
+	// setlocale( LC_ALL, 'poland' );
+	setlocale( LC_ALL, 'pl_PL' );
 	date_default_timezone_set( "Europe/Warsaw" );
 	
 	add_theme_support( 'post-thumbnails' );

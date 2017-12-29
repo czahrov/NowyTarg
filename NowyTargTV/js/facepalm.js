@@ -294,9 +294,25 @@
 					
 				});
 				
-				button.mouseenter( function( e ){
+				button.click( function( e ){
 					popup.triggerHandler( 'show', $(this).attr( 'view' ) );
 					
+					if( $(this).hasClass( 'active' ) ){
+						console.log( 'hide' );
+						// popup.removeClass( 'mob_open' );
+						popup.toggleClass( 'mob_open' );
+						
+					}
+					else{
+						console.log( 'show' );
+						popup.addClass( 'mob_open' );
+						
+					}
+					
+					$(this)
+					.addClass( 'active' )
+					.siblings()
+					.removeClass( 'active' );
 					
 				} );
 				
