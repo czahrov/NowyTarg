@@ -24,7 +24,8 @@
 		
 	},
 	root.bazar = {
-		basePath: '/SzymonJ/nowytargtv_wp',		// ścieżka do podfolderu ze stroną (np: /adres/do/podfolderu, albo wartość pusta )
+		// basePath: '/SzymonJ/nowytargtv_wp',		// ścieżka do podfolderu ze stroną (np: /adres/do/podfolderu, albo wartość pusta )
+		basePath: '/SCEPTER',		// ścieżka do podfolderu ze stroną (np: /adres/do/podfolderu, albo wartość pusta )
 		logger: /logger/i.test(window.location.hash),		// czy wyświetlać komunikaty o wywoływaniu funkcji
 		mobile: /mobile/i.test(window.location.hash) || undefined,		// czy aktualnie używane urządzenie jest urządzeniem mobilnym
 		
@@ -157,14 +158,17 @@
 				console.log('page.default()');
 			}
 			
-			/* popup galerii zdjęć w single */
-			(function( popup, box, items ){
+			/* slide w popupie galerii zdjęć w single */
+			(function( popup, box, exit, slider, nav, view, galeria ){
 				var lock = false;
-				
-				var TL = new TimelineLite({
+				var TL_popup = new TimelineLite({
 					paused: true,
 					onStart: function(){
 						popup.addClass( 'open' );
+						
+					},
+					onComplete: function(){
+						lock = false;
 						
 					},
 					onReverseComplete: function(){
@@ -172,24 +176,21 @@
 						lock = false;
 						
 					},
-					onComplete: function(){
-						lock = false;
-						
-					},
 					
 				})
-				.add( 'start', 0 )
 				.add(
 					TweenLite.fromTo(
 						popup,
 						.3,
 						{
 							opacity: 0,
+							
 						},
 						{
 							opacity: 1,
+							
 						}
-					), 'start'
+					)
 				)
 				.add(
 					TweenLite.fromTo(
@@ -197,58 +198,148 @@
 						.3,
 						{
 							opacity: 0,
-							// y: -100,
+							y: -200,
+							
 						},
 						{
 							opacity: 1,
-							// y: 0,
+							y: 0,
+							
 						}
-					), 'start+=0.3'
-				)
+					)
+				);
 				
 				popup
 				.on({
-					img: function( e, uri ){
-						if( typeof uri === 'string' ){
-							box.attr( 'src', uri );
+					show: function( e ){
+						if( !lock ){
+							lock = true;
+							TL_popup.play();
 							
 						}
 						
 					},
-					open: function( e, uri ){
-						popup.triggerHandler( 'img', uri );
-						TL.play();
-						
-					},
-					close: function( e ){
-						if( !lock ) TL.reverse();
+					hide: function( e ){
+						if( !lock ){
+							lock = true;
+							TL_popup.reverse();
+							
+						}
 						
 					},
 					click: function( e ){
-						popup.triggerHandler( 'close' );
+						popup.triggerHandler( 'hide' );
 						
 					},
 					
 				});
 				
-				box.click( function( e ){
-					e.stopPropagation();
+				var current = 0;
+				
+				slider
+				.on({
+					init: function( e ){
+						galeria.each( function(){
+							var uri = $(this).attr( 'href' );
+							$( "<div class='item' style='background-image:url(" + uri + ")'></div>" )
+							.appendTo( view );
+							
+						} );
+						
+					},
+					set: function( e, num ){
+						current = num;
+						if( current < 0 ) current = 0;
+						if( current >= galeria.length ) current = galeria.length - 1;
+						
+						TweenLite.to(
+							view,
+							.3,
+							{
+								scrollLeft: function(){
+									return current * $( '#popup > .box > .slider' ).width();
+									
+								},
+								onComplete: function(){
+									lock = false;
+									
+								},
+								
+							}
+						);
+						
+					},
+					next: function( e ){
+						if( !lock ){
+							lock = true;
+							current++;
+							slider.triggerHandler( 'set', current );
+							
+						}
+						
+					},
+					prev: function( e ){
+						if( !lock ){
+							lock = true;
+							current--;
+							slider.triggerHandler( 'set', current );
+							
+						}
+						
+					},
+					click: function( e ){
+						e.stopPropagation();
+						
+					},
+					
+				})
+				.swipe({
+					swipeLeft: function( e ){
+						slider.triggerHandler( 'next' );
+						
+					},
+					swipeRight: function( e ){
+						slider.triggerHandler( 'prev' );
+						
+					},
+					
+				});
+				
+				slider.triggerHandler( 'init' );
+				
+				galeria.click( function( e ){
+					e.preventDefault();
+					popup.triggerHandler( 'show' );
+					slider.triggerHandler( 'set', $(this).index() );
 					
 				} );
 				
-				items.click( function( e ){
+				nav.click( function( e ){
 					
-					if( !lock ){
-						e.preventDefault();
-						lock = true;
-						popup.triggerHandler( 'open', $(this).css( 'background-image' ).match( /(http[^\)]+)/ )[0] );
+					if( $(this).hasClass( 'right' ) ){
+						slider.triggerHandler( 'next' );
+						
+					}
+					else if( $(this).hasClass( 'left' ) ){
+						slider.triggerHandler( 'prev' );
 						
 					}
 					
 				} );
 				
+				exit.click( function(){
+					popup.triggerHandler( 'hide' );
+					
+				} );
+				
 			})
-			( $( '#popup' ), $( '#popup > .box' ), $( '#single .gallery .item.popup' ) );
+			( $( '#popup' ), 
+			$( '#popup > .box' ), 
+			$( '#popup > .box > .exit' ), 
+			$( '#popup > .box > .slider' ), 
+			$( '#popup > .box > .slider > .nav' ), 
+			$( '#popup > .box > .slider > .view' ), 
+			$( '#galeria > .row > .item.popup' ) );
 			
 			/* toggle menu */
 			(function( toggle, panel ){

@@ -296,7 +296,7 @@ Array
 			<div class='text'>
 				<?php printf( "%.0f&#8451", $data[ 'weather' ][ 'current' ][ 'main' ][ 'temp' ] ); ?>
 			</div>
-			<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $data[ 'weather' ][ 'current' ][ 'weather' ][0][ 'icon' ] ); ?>' alt='' />
+			<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $data[ 'weather' ][ 'current' ][ 'weather' ][0][ 'icon' ] ); ?>' title='<?php echo $data[ 'weather' ][ 'current' ][ 'weather' ][0][ 'description' ]; ?>' />
 		
 		</div>
 		
@@ -339,7 +339,7 @@ Array
 					<div class='text'>
 						<?php printf( "%.0f&#8451", $item[ 'main' ][ 'temp' ] ); ?>
 					</div>
-					<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $item[ 'weather' ][0][ 'icon' ] ); ?>' />
+					<img class='icon' src='<?php printf( "%s/media/weather/%s.png", get_template_directory_uri(), $item[ 'weather' ][0][ 'icon' ] ); ?>' title='<?php echo $item[ 'weather' ][0][ 'description' ]; ?>'/>
 				
 				</div>
 				

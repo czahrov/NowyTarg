@@ -4,8 +4,25 @@
 	
 ?>
 
-<div id='popup' class=''>
-	<img class='box' src=''/>
+<div id='popup' class='d-flex'>
+	<div class='box d-flex flex-grow'>
+		<div class='exit'>
+			<div class='icon fa fa-window-close-o'></div>
+		</div>
+		<div class='slider d-flex flex-grow'>
+			<div class='nav left'>
+				<div class='icon fa fa-chevron-circle-left'></div>
+				
+			</div>
+			<div class='view d-flex flex-grow'></div>
+			<div class='nav right'>
+				<div class='icon fa fa-chevron-circle-right'></div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
 	
 </div>
 <!-- Page Content -->
@@ -40,7 +57,7 @@
 					</span>
 					
 				</div>
-				<div class="content">
+				<div class="content flex-grow">
 					<h1 class="news_post_title">
 						<?php the_title(); ?>
 					</h1>

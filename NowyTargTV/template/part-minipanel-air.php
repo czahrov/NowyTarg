@@ -51,7 +51,7 @@
 				
 				
 			?>
-			<img class='icon' src='<?php printf( "%s/media/air/%s.png", get_template_directory_uri(), $note ); ?>' />
+			<img class='icon' src='<?php printf( "%s/media/air/%s.png", get_template_directory_uri(), $note ); ?>'/>
 			<div class='text col text-center'>
 				<?php echo $data[ 'air' ][ 'airquality' ][ 'stIndexLevel' ][ 'indexLevelName' ]; ?>
 			</div>
@@ -79,7 +79,7 @@
 				<div class='name'>
 					<?php echo $code; ?>
 				</div>
-				<div class='procent'>
+				<div class='procent' title='<?php printf( "%s/%s[µg/m3]", $item[ 'value' ], $limit[ $code ] ); ?>'>
 					<?php
 						printf( "%.0f%%", $item[ 'value' ] / $limit[ $code ] * 100 );
 					?>

@@ -785,6 +785,7 @@ span.txt-ad-300x600{
 
 #popup{
 	position: fixed;
+	padding: 50px;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -792,19 +793,105 @@ span.txt-ad-300x600{
 	background-color: rgba(0,0,0,.7);
 	cursor: pointer;
 	z-index: 100;
+	overflow: hidden;
 	
 	& > .box{
-		position: absolute;
-		max-width: 80%;
-		max-height: 80%;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
+		position: relative;
+		
+		& > .exit{
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 5;
+			
+			& > .icon{
+				font-size: 50px;
+				color: red;
+				cursor: pointer;
+				
+			}
+			
+		}
+		
+		&> .slider{
+			position: relative;
+			overflow: hidden;
+			
+			& > .nav{
+				position: absolute;
+				padding: 20px;
+				top: 50%;
+				z-index: 5;
+				opacity: 0;
+				transform: translate(0,-50%);
+				transition-property: transform, opacity;
+				transition: .3s linear;
+				
+				& > .icon{
+					font-size: 60px;
+					color: red;
+					
+				}
+				
+				&.left{
+					right: 100%;
+					
+				}
+				
+				&.right{
+					left: 100%;
+					
+				}
+				
+				&, & *{
+					cursor: pointer;
+					
+				}
+				
+			}
+			
+			& > .view{
+				overflow: hidden;
+				
+				& > .item{
+					flex-basis: 100%;
+					flex-shrink: 0;
+					background:{
+						size: contain;
+						position: center;
+						repeat: no-repeat;
+						
+					};
+					
+				}
+				
+			}
+			
+			&:hover{
+				
+				& > .nav{
+					opacity: 1;
+					
+					&.left{
+						transform: translate(100%,-50%);
+						
+					}
+					
+					&.right{
+						transform: translate(-100%,-50%);
+						
+					}
+					
+				}
+				
+			}
+			
+		}
 		
 	}
 	
 	&:not(.open){
-		display: none;
+		display: none !important;
 		
 	}
 	

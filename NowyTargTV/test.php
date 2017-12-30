@@ -3,9 +3,19 @@
 	Template Name: test
 */
 
-// $jimp = new JoomlaImporter( __DIR__ . "/import/artykuly.json" );
-// var_dump( $jimp->loadItems( 2000 ) );
-// var_dump( logger() );
+// 3038 pozycji
+/* $jimp = new JoomlaImporter( __DIR__ . "/import/artykuly.json" );
+var_dump( $jimp->loadItems( 3000 ) ); */
+
+/* $base = "/var/www/clients/client8/web13/web";
+chdir( "{$base}/images" );
+$remote = glob( "*" );
+chdir( __DIR__ . "/joomla_import/images" );
+$local = glob( "*" );
+print_r( array_diff( $remote, $local ) ); */
+// echo count( $remote ) . PHP_EOL;
+// echo count( $local ) . PHP_EOL;
+
 
 // var_dump( get_post_format( 1983 ) );
 
@@ -31,28 +41,13 @@
 	bardzo zły
 */
 
-// $input = "https://www.youtube.com/watch?v=QYVjcIpvt10|https://youtu.be/FUpza22te6g|FUpza22te6g|OFEUOTnqNHA";
-
-// print_r( json_decode( getForecast(), true ) );
-// $dt = new DateTime();
-// echo $dt->getTimestamp() . PHP_EOL;
-// print_r( stat( __FILE__ ) ) . PHP_EOL;
-/*
-	chcemy wyznaczyć element tablicy wskazujący na południe dnia jutrzejszego
-	obecnie jest 14:30
-	prognozy są co 3 godziny, więc najbliższa jest na 15:00 ( ceil( 14 / 3 ) * 3 )
-	minęło południe, więc do 12 dodajemy 24, mamy 36		// dla godziny mniejszej niż 12, należy dodać 36h
-	od 36 odejmujemy aktualną godzinę ( 15 ), otrzymujemy 21 ( godzin )
-	21 dzielimy na 3, bo co tyle są generowane prognozy, otrzymujemy 7 i tyle powinien wynosić szukany indeks
-	
-*/
-
-// var_dump( logger() );
-
-print_r( array(
+/* print_r( array(
 	'weather' => getForecast(),
 	'air' => getAirCon(),
 	
-) );
+) ); */
 
 // print_r( getAirCon() );
+
+// echo getcwd();
+// var_dump( scandir( "/var/www/clients/client8/web13/web/images" ) );

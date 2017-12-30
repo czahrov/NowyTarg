@@ -39,6 +39,8 @@
 	<!-- rozkład jazdy -->
 	<h1 class="clear">Rozkład jazdy</h1>
 	<div class="last_video_box clear">
-		<img src="<?php echo get_template_directory_uri(); ?>/media/mzk.png">
+		<a href="http://www.mzk.nowytarg.pl/site/rozkladjazdy" target="_blank">
+			<img src="<?php echo get_template_directory_uri(); ?>/media/mzk.png">
+		</a>
 	</div>
 </div>

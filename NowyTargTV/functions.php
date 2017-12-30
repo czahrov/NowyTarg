@@ -600,7 +600,7 @@ EOT; */
 		// print_r( $items );
 		
 		printf(
-			"<div class='col-12 section_title gallery'>
+			"<div id='galeria' class='col-12 section_title gallery'>
 				<h1>Galeria zdjęć</h1>
 				<div class='row'>
 					%s
@@ -1020,26 +1020,55 @@ EOT; */
 	
 	// Zwraca dane o stanie powietrza
 	function getAirCon(){
-		$data = array();
+		static $data = array();
 		
-		// ID stacji pomiarowej w Nowym Targu
-		$id = 10254;
-		
-		$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
-		$resp = file_get_contents( $uri );
-		$resp = json_decode( $resp, true );
-		$data[ 'sensors' ] = $resp;
-		
-		foreach( $resp as $item ){
-			$uri = "http://api.gios.gov.pl/pjp-api/rest/data/getData/{$item['id']}";
-			$data[ 'measure' ][] = json_decode( file_get_contents( $uri ), true );
+		if( empty( $data ) ){
+			// plik z zapisem ostatnich poprawnie pobranych danych z API
+			$file = __DIR__ . "/data/aircon.json";
 			
+			// tworzenie folderu i pliku w sytuacji gdy nie istnieje
+			if( !file_exists( $file ) ){
+				@mkdir( dirname( $file ), 0755, true );
+				touch( $file );
+				
+			}
+			
+			try{
+				// ID stacji pomiarowej w Nowym Targu
+				$id = 10254;
+				
+				$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
+				$resp = file_get_contents( $uri );
+				// sprawdza czy udało się odczytać plik
+				if( $resp === false ) throw new Exception( "brak dostępu do pliku [$uri]" );
+				$resp = json_decode( $resp, true );
+				$data[ 'sensors' ] = $resp;
+				
+				if( !empty( $resp ) ) foreach( $resp as $item ){
+					$uri = "http://api.gios.gov.pl/pjp-api/rest/data/getData/{$item['id']}";
+					$data[ 'measure' ][] = json_decode( file_get_contents( $uri ), true );
+				}
+				
+				$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
+				$resp = file_get_contents( $uri );
+				// sprawdza czy udało się odczytać plik
+				if( $resp === false ) throw new Exception( "brak dostępu do pliku [$uri]" );
+				$resp = json_decode( $resp, true );
+				$data[ 'airquality' ] = $resp;
+				
+				// zapis danych do backupu
+				file_put_contents( $file, json_encode( $data ) );
+				
+			}
+			catch( Exception $e ){
+				/* prawdopodobnie wystąpił błąd dostępu do API
+				pobieranie danych z backupu */
+				$data = json_decode( file_get_contents( $file ), true );
+				
+			}
+		
 		}
 		
-		$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
-		$resp = file_get_contents( $uri );
-		$resp = json_decode( $resp, true );
-		$data[ 'airquality' ] = $resp;
 		
 		/*
 		Array
@@ -1099,71 +1128,63 @@ EOT; */
 		*/
 		
 		// OpenWeatherMap
-		$data = array();
-		$file = __DIR__ . "/prognoza.info.php";
-		$dt = new DateTime();
-		$now = $dt->getTimestamp();
-		// czy plik był aktualizowany NIE dawniej niż 10 minut temu
-		if( file_exists( $file ) && $now - filectime( $file ) <= 10 * 60 ){
-			// wczytanie danych z pliku
-			$data = json_decode( file_get_contents( $file ), true );
-			
-		}
-		else{
-			// pobieranie danych ze strony i zapis do pliku
-			// api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1111111111 
-			$api_key = "7470d10567aa7388d997eba8b8ec3a15";
-			$city_id = 763523;
-			$lat = 49.477465;
-			$long = 20.032096;
-			/* weather, forecast, forecast/daily */
-			$type = 'weather';
-			$language = 'pl';
-			$units = 'metric';
-			$icon_base = "https://openweathermap.org/img/w/";
-			$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
-			
-			// aktualny stan pogody
-			$resp = json_decode(file_get_contents( $url ), true );
-			// logger( $resp );
-			$data[ 'current' ] = $resp;
-			
-			// prognozy na kolejne dni
-			/*
-				chcemy wyznaczyć element tablicy wskazujący na południe dnia jutrzejszego
-				obecnie jest np 14:30
-				prognozy są co 3 godziny, więc najbliższa jest na 15:00 ( ceil( 14 / 3 ) * 3 )
-				minęło południe, więc do 12 dodajemy 24, mamy 36		// dla godziny mniejszej niż 12, należy dodać 36h
-				od 36 odejmujemy aktualną godzinę ( 15 ), otrzymujemy 21 ( godzin )
-				21 dzielimy na 3, bo co tyle są generowane prognozy, otrzymujemy 7 i tyle powinien wynosić szukany indeks
-				
-			*/
-			/* $godzina = getdate()['hours'];
-			$t = ceil( $godzina / 3 ) * 3;
-			$t += $t < 12?( 36 ):( 24 );
-			$t -= $godzina;
-			$t /= 3;
-			$t--; */
-			// logger( $t );
-			$type = 'forecast';
-			$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
-			$resp = json_decode(file_get_contents( $url ), true );
-			// logger( $resp );
-			// $item = $resp[ 'list' ][ $t ];
-			// $data[ 'forecast' ] = array();
-			// logger( $url );
-			foreach( $resp[ 'list' ] as $item ){
-				if( stripos( $item[ 'dt_txt' ], '12:00:00' ) !== false ){
-					$data[ 'forecast' ][] = $item;
+		static $data = array();
+		
+		if( empty( $data ) ){
+			try{
+				// plik z danymi z ostatniego odczytu 
+				$file = __DIR__ . "/data/forecast.json";
+				if( !file_exists( $file ) ){
+					@mkdir( dirname( $file ), 0755 );
+					touch( $file );
 					
 				}
 				
+				// pobieranie danych ze strony i zapis do pliku
+				// api.openweathermap.org/data/2.5/forecast?id=524901&APPID=1111111111 
+				$api_key = "7470d10567aa7388d997eba8b8ec3a15";
+				$city_id = 763523;
+				$lat = 49.477465;
+				$long = 20.032096;
+				/* weather, forecast, forecast/daily */
+				$type = 'weather';
+				$language = 'pl';
+				$units = 'metric';
+				$icon_base = "https://openweathermap.org/img/w/";
+				$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
+				
+				// aktualny stan pogody
+				$resp = json_decode(file_get_contents( $url ), true );
+				// sprawdzenie czy uzyskano dostęp do pliku
+				if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
+				$data[ 'current' ] = $resp;
+				
+				// prognozy na kolejne dni
+				$type = 'forecast';
+				$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
+				$resp = json_decode(file_get_contents( $url ), true );
+				// sprawdzenie czy uzyskano dostęp do pliku
+				if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
+				foreach( $resp[ 'list' ] as $item ){
+					if( stripos( $item[ 'dt_txt' ], '12:00:00' ) !== false ){
+						$data[ 'forecast' ][] = $item;
+						
+					}
+					
+				}
+				
+				// zapis danych do backupu
+				file_put_contents( $file, json_encode( $data ) );
+				
+			}
+			catch( Exception $e ){
+				/* Wystąpił wyjątek, brak dostępu albo awaria API */
+				$data = json_decode( file_get_contents( $file ), true );
+				
 			}
 			
-			file_put_contents( $file, json_encode( $data ) );
-			
 		}
-		
+			
 		return $data;
 		
 		/*
@@ -1217,6 +1238,7 @@ EOT; */
 	
 	// Pobiera dane o aktualnym kursie ( kupno / sprzedaż ) aktualnej waluty
 	function getTrade( $code ){
+		static $data = array();
 		/*		przykład odpowiedzi dla $code = 'USD'
 			{
 				"table": "C",
@@ -1233,7 +1255,32 @@ EOT; */
 			}
 		*/
 		
-		return json_decode( file_get_contents( "http://api.nbp.pl/api/exchangerates/rates/c/{$code}/?format=json" ), true );
+		if( empty( $data ) ){
+			try{
+				$file = __DIR__ . "/data/trade.json";
+				if( !file_exists( $file ) ){
+					@mkdir( dirname( $file ), 0755 );
+					touch( $file );
+					
+				}
+				
+				$uri = "http://api.nbp.pl/api/exchangerates/rates/c/{$code}/?format=json";
+				$resp = file_get_contents( $uri );
+				// błąd dostępu do pliku
+				if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
+				$data = json_decode( $resp, true );
+				// zapis danych do backupu
+				file_put_contents( $file, $resp );
+				
+			}
+			catch( Exception $e ){
+				$data = json_decode( file_get_contents( $file ), true );
+				
+			}
+			
+		}
+		
+		return $data;
 		
 	}
 	
