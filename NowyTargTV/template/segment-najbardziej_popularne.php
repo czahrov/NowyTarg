@@ -20,7 +20,7 @@
 	?>
 	<div class="col-md-6 col-xl-3 no-padding clear-mobile">
 		<a href=<?php echo the_permalink( $item->ID ); ?>" class="link_post popular">
-			<div class="last1" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
+			<div class="last1" style='background-image: url(<?php echo getPostImg( $item->ID, 'medium' ); ?>);'>
 				<?php echo genPostIcon( $item->ID ); ?>
 				<div class="post_category_small">
 					<?php echo $name; ?>

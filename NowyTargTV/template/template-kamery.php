@@ -8,6 +8,8 @@
 	
 	$kamery = get_posts( array(
 		'category_name' => 'kamera-online',
+		'orderby' => 'date',
+		'order' => 'ASC',
 		
 	) );
 	
@@ -24,7 +26,7 @@
 			$alias = get_post_meta( $item->ID, 'alias', true );
 		?>
 		<div class='item col-12 col-md-6 col-xl-4 d-flex flex-column'>
-			<iframe class='' src="http://ipcamlive.com/player/player.php?alias=<?php echo $alias; ?>" frameborder="0" allowfullscreen></iframe>
+			<iframe class='' src="<?php echo $_SERVER[ 'REQUEST_SCHEME' ]; ?>://ipcamlive.com/player/player.php?alias=<?php echo $alias; ?>" frameborder="0" allowfullscreen></iframe>
 			<div class='title text-center d-flex align-items-center justify-content-center'>
 				<div class='icon fa fa-play-circle'></div>
 				<div class='text'><?php echo $title; ?></div>

@@ -15,11 +15,7 @@
 		}
 	*/
 	
-	$data = array(
-		'USD' => getTrade( 'USD' ),
-		'EUR' => getTrade( 'EUR' ),
-		
-	);
+	$data = getTrade( array( 'USD', 'EUR' ) );
 	
 	echo "<!--";
 	// print_r( $data );

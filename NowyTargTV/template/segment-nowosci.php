@@ -12,7 +12,7 @@
 		<?php foreach( $data as $item ): ?>
 		<div class="col-md-6 load_more">
 			<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
-				<div class="post_aktualnosci" style='background-image:url(<?php echo getPostImg( $item->ID ); ?>);'>
+				<div class="post_aktualnosci" style='background-image:url(<?php echo getPostImg( $item->ID, 'medium' ); ?>);'>
 					<div class="news_date"><?php echo get_the_date( "Y-m-d", $item->ID ); ?></div>
 					<span><?php echo get_comment_count( $item->ID )['approved']; ?> komentarzy</span>
 				</div>

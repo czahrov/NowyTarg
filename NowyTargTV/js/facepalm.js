@@ -25,7 +25,7 @@
 	},
 	root.bazar = {
 		// basePath: '/SzymonJ/nowytargtv_wp',		// ścieżka do podfolderu ze stroną (np: /adres/do/podfolderu, albo wartość pusta )
-		basePath: '/SCEPTER',		// ścieżka do podfolderu ze stroną (np: /adres/do/podfolderu, albo wartość pusta )
+		basePath: '',		// ścieżka do podfolderu ze stroną (np: /adres/do/podfolderu, albo wartość pusta )
 		logger: /logger/i.test(window.location.hash),		// czy wyświetlać komunikaty o wywoływaniu funkcji
 		mobile: /mobile/i.test(window.location.hash) || undefined,		// czy aktualnie używane urządzenie jest urządzeniem mobilnym
 		
@@ -161,6 +161,7 @@
 			/* slide w popupie galerii zdjęć w single */
 			(function( popup, box, exit, slider, nav, view, galeria ){
 				var lock = false;
+				var tout;
 				var TL_popup = new TimelineLite({
 					paused: true,
 					onStart: function(){
@@ -332,6 +333,15 @@
 					
 				} );
 				
+				$( window ).resize( function( e ){
+					window.clearTimeout( tout );
+					tout = window.setTimeout( function(){
+						slider.triggerHandler( 'set', current );
+						
+					}, 300 );
+					
+				} );
+				
 			})
 			( $( '#popup' ), 
 			$( '#popup > .box' ), 
@@ -389,13 +399,13 @@
 					popup.triggerHandler( 'show', $(this).attr( 'view' ) );
 					
 					if( $(this).hasClass( 'active' ) ){
-						console.log( 'hide' );
+						// console.log( 'hide' );
 						// popup.removeClass( 'mob_open' );
 						popup.toggleClass( 'mob_open' );
 						
 					}
 					else{
-						console.log( 'show' );
+						// console.log( 'show' );
 						popup.addClass( 'mob_open' );
 						
 					}

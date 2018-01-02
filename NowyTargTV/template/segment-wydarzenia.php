@@ -9,7 +9,7 @@
 			<?php foreach( $data as $num => $item ): ?>
 			<div class="col-12 col-md-6 col-xl-4 item">
 				<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
-					<div class="overview_small_photo" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'></div>
+					<div class="overview_small_photo" style='background-image: url(<?php echo getPostImg( $item->ID, 'medium' ); ?>);'></div>
 					<span class="post_news_small_tiitle">
 						<?php echo $item->post_title; ?>
 					</span>

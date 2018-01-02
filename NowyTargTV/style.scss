@@ -1034,26 +1034,31 @@ body.mobile{
 	#single{
 		
 		.comments{
-			margin: 0;
+			/* margin: 0; */
 			
 		}
 		
 		.latest_news{
 			
 			& > h1{
-				margin-left: 16px;
+				/* margin-left: 16px; */
 				
 			}
 			
 			& > .row{
-				margin: 0;
+				/* margin: 0; */
 				
 			}
 			
 		}
 		
 		.sidebar-single{
-			padding: 0;
+			/* padding: 0; */
+			
+			.row{
+				/* margin: 0; */
+				
+			}
 			
 		}
 		

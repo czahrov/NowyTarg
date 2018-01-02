@@ -66,7 +66,7 @@
 					</div>
 					<?php //do_action( 'get_ad', 'single_inpost' ); ?>
 					<div class='thumb d-flex'>
-						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID() ) ); ?>
+						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID(), isMobile()?( 'medium' ):( 'full' ) ) ); ?>
 					</div>
 					<div class="regular_post_txt">
 						<?php echo preg_replace( "~\[gallery[^\]]+?\]~", "", get_the_content() ); ?>

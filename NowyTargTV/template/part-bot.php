@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 column">
-				<img src="http://poligon.scepter.pl/SzymonJ/nowytargtv_wp/wp-content/themes/NowyTargTV/media/logo_footer.png">
+				<img src="<?php echo get_template_directory_uri(); ?>/media/logo_footer.png">
 				<p>Informacje z Podhala</p>
 			</div>
 			<div class="col-6 col-sm column">
@@ -16,21 +16,22 @@
 			<div class="col-6 col-sm column">
 				<h5>Portal</h5>
 				<ul class="foot_inf">
-					<li><a href="">Polityka prywawtności</a></li>
-					<li><a href="">Redakcja</a></li>
+					<li><a href="<?php echo home_url( '' ); ?>">Regulamin PPV</a></li>
+					<li><a href="<?php echo home_url( '' ); ?>">Polityka prywatności</a></li>
+					<li><a href="<?php echo home_url( '' ); ?>">Redakcja</a></li>
 				</ul>
 			</div>
 			<div class="col-6 col-sm column">
 				<h5>Reklama</h5>
 				<ul class="foot_inf">
-					<li><a href="">Dział reklamy</a></li>
-					<li><a href="">Cennik</a></li>
+					<li><a href="<?php echo home_url( '' ); ?>">Dział reklamy</a></li>
+					<li><a href="<?php echo home_url( '' ); ?>">Cennik</a></li>
 				</ul>
 			</div>
 			<div class="col-6 col-sm column">
 				<h5>Praca</h5>
 				<ul class="foot_inf">
-					<li><a href="">Aktualne oferty</a></li>
+					<li><a href="<?php echo home_url( '' ); ?>">Aktualne oferty</a></li>
 				</ul>
 			</div>
 		</div>
@@ -44,7 +45,7 @@
 				© 2016 Nowotarska Telewizja Kablowa. ul. Józefczaka 1, 34-400 Nowy Targ
 			</div>
 			<div class="col-12 col-sm text-center text-sm-right">
-				projekt i wykonanie: <a href="www.scepter.pl"> Scepter Agencja interaktywa</a>
+				projekt i wykonanie: <a href="http://www.scepter.pl"> Scepter Agencja interaktywna</a>
 			</div>
 		</div>
 	</div>

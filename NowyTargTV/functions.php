@@ -1,7 +1,7 @@
 <?php
 	
-	// setlocale( LC_ALL, 'poland' );
 	setlocale( LC_ALL, 'pl_PL' );
+	// locale_set_default( 'pl-PL' );
 	date_default_timezone_set( "Europe/Warsaw" );
 	
 	add_theme_support( 'post-thumbnails' );
@@ -182,8 +182,8 @@
 			
 			if( $args['parallax'] === true ){
 				printf(
-					"<a href='%s' target='%s' class='parallax-window d-block' data-parallax='scroll' data-image-src='%s'></a> ",
-					$href,
+					"<a %s target='%s' class='parallax-window d-block' data-parallax='scroll' data-image-src='%s'></a> ",
+					empty( $href )?( '' ):( "href={$href}" ),
 					$target,
 					$img
 				);
@@ -193,17 +193,17 @@
 				printf(
 					"<div class='img-ad'>
 						<span class='header-ad'>reklama</span>
-						<a href='%s' target='%s'>
+						<a %s target='%s'>
 							<img src='%s'>
 						</a>
 					</div>",
-					$href,
+					empty( $href )?( '' ):( "href={$href}" ),
 					$target,
 					$img
 				);
 				
 			}
-						
+			
 		}
 		
 	}, 10, 2 );
@@ -581,11 +581,12 @@ EOT; */
 			
 			// 4,5,6
 			foreach( $ids as $id ){
-				$img = wp_get_attachment_image_url( $id, 'full' );
+				$img_thumb = wp_get_attachment_image_url( $id, 'thumbnail' );
+				$img_full = wp_get_attachment_image_url( $id, 'full' );
 				
 				$items[] = sprintf( "<a href='%s' target='_blank' class='item popup col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
-					$img,
-					$img
+					$img_full,
+					$img_thumb
 					
 				);
 				
@@ -795,8 +796,8 @@ EOT; */
 	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
 	
 	// Zwraca url obrazka wyróżniającego
-	function getPostImg( $id ){
-		$thumb = get_the_post_thumbnail_url( $id, 'full' );
+	function getPostImg( $id, $size = 'thumbnail' ){
+		$thumb = get_the_post_thumbnail_url( $id, $size );
 		$meta = get_post_meta( $id, 'thumb', true );
 		
 		return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( false ) );
@@ -1034,11 +1035,18 @@ EOT; */
 			}
 			
 			try{
+				$context = stream_context_create( array(
+					'http' => array(
+						'timeout' => 5.0,
+					),
+					
+				) );
+				
 				// ID stacji pomiarowej w Nowym Targu
 				$id = 10254;
 				
 				$uri = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/{$id}";
-				$resp = file_get_contents( $uri );
+				$resp = @file_get_contents( $uri, false, $context );
 				// sprawdza czy udało się odczytać plik
 				if( $resp === false ) throw new Exception( "brak dostępu do pliku [$uri]" );
 				$resp = json_decode( $resp, true );
@@ -1046,11 +1054,11 @@ EOT; */
 				
 				if( !empty( $resp ) ) foreach( $resp as $item ){
 					$uri = "http://api.gios.gov.pl/pjp-api/rest/data/getData/{$item['id']}";
-					$data[ 'measure' ][] = json_decode( file_get_contents( $uri ), true );
+					$data[ 'measure' ][] = json_decode( @file_get_contents( $uri, false, $context ), true );
 				}
 				
 				$uri = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{$id}";
-				$resp = file_get_contents( $uri );
+				$resp = @file_get_contents( $uri, false, $context );
 				// sprawdza czy udało się odczytać plik
 				if( $resp === false ) throw new Exception( "brak dostępu do pliku [$uri]" );
 				$resp = json_decode( $resp, true );
@@ -1063,7 +1071,7 @@ EOT; */
 			catch( Exception $e ){
 				/* prawdopodobnie wystąpił błąd dostępu do API
 				pobieranie danych z backupu */
-				$data = json_decode( file_get_contents( $file ), true );
+				$data = json_decode( @file_get_contents( $file ), true );
 				
 			}
 		
@@ -1132,6 +1140,13 @@ EOT; */
 		
 		if( empty( $data ) ){
 			try{
+				$context = stream_context_create( array(
+					'http' => array(
+						'timeout' => 5.0,
+					),
+					
+				) );
+				
 				// plik z danymi z ostatniego odczytu 
 				$file = __DIR__ . "/data/forecast.json";
 				if( !file_exists( $file ) ){
@@ -1151,18 +1166,21 @@ EOT; */
 				$language = 'pl';
 				$units = 'metric';
 				$icon_base = "https://openweathermap.org/img/w/";
-				$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
+				$uri = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key}";
+				// http://api.openweathermap.org/data/2.5/weather?id=763523&lang=pl&units=metric&APPID=7470d10567aa7388d997eba8b8ec3a15
 				
 				// aktualny stan pogody
-				$resp = json_decode(file_get_contents( $url ), true );
+				$resp = json_decode( @file_get_contents( $uri, false, $context ), true );
+				
 				// sprawdzenie czy uzyskano dostęp do pliku
 				if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
 				$data[ 'current' ] = $resp;
-				
 				// prognozy na kolejne dni
 				$type = 'forecast';
-				$url = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key} ";
-				$resp = json_decode(file_get_contents( $url ), true );
+				$uri = "http://api.openweathermap.org/data/2.5/{$type}?id={$city_id}&lang={$language}&units={$units}&APPID={$api_key}";
+				// http://api.openweathermap.org/data/2.5/forecast?id=763523&lang=pl&units=metric&APPID=7470d10567aa7388d997eba8b8ec3a15
+				
+				$resp = json_decode( @file_get_contents( $uri, false, $context ), true );
 				// sprawdzenie czy uzyskano dostęp do pliku
 				if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
 				foreach( $resp[ 'list' ] as $item ){
@@ -1178,6 +1196,7 @@ EOT; */
 				
 			}
 			catch( Exception $e ){
+				logger( $e );
 				/* Wystąpił wyjątek, brak dostępu albo awaria API */
 				$data = json_decode( file_get_contents( $file ), true );
 				
@@ -1257,6 +1276,13 @@ EOT; */
 		
 		if( empty( $data ) ){
 			try{
+				$context = stream_context_create( array(
+					'http' => array(
+						'timeout' => 5.0,
+					),
+					
+				) );
+				
 				$file = __DIR__ . "/data/trade.json";
 				if( !file_exists( $file ) ){
 					@mkdir( dirname( $file ), 0755 );
@@ -1264,13 +1290,28 @@ EOT; */
 					
 				}
 				
-				$uri = "http://api.nbp.pl/api/exchangerates/rates/c/{$code}/?format=json";
-				$resp = file_get_contents( $uri );
-				// błąd dostępu do pliku
-				if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
-				$data = json_decode( $resp, true );
+				if( is_array( $code ) ){
+					foreach( $code as $item ){
+						$uri = "http://api.nbp.pl/api/exchangerates/rates/c/{$item}/?format=json";
+						$resp = @file_get_contents( $uri, false, $context );
+						// błąd dostępu do pliku
+						if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
+						$data[ $item ] = json_decode( $resp, true );
+						
+					}
+					
+				}
+				else{
+					$uri = "http://api.nbp.pl/api/exchangerates/rates/c/{$code}/?format=json";
+					$resp = @file_get_contents( $uri, false, $context );
+					// błąd dostępu do pliku
+					if( $resp === false ) throw new Exception( "Brak dostępu do pliku [$uri]" );
+					$data = json_decode( $resp, true );
+					
+				}
+				
 				// zapis danych do backupu
-				file_put_contents( $file, $resp );
+				file_put_contents( $file, $data );
 				
 			}
 			catch( Exception $e ){

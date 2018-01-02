@@ -21,7 +21,7 @@
 		<?php foreach( $wiecej as $item ): ?>
 		<div class="see-more-ex col-md-6 col-lg-12">
 			<a href="<?php echo the_permalink( $item->ID ); ?>">
-				<div class='img' style='background-image:url( <?php echo getPostImg( $item->ID ); ?> )'></div>
+				<div class='img' style='background-image:url( <?php echo getPostImg( $item->ID, 'medium' ); ?> )'></div>
 				<p>
 					<?php echo $item->post_title; ?>
 				</p>

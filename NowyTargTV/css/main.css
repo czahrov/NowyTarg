@@ -561,7 +561,7 @@ a.wiecej{
 
 .last_video_box{
     position: relative;
-    background:grey;
+    /* background:grey; */
     margin-bottom: 1rem;
 }
 

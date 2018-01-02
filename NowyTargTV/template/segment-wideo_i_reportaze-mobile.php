@@ -26,7 +26,7 @@
 				foreach( $przeglad as $num => $item ):
 			if( $num === 0 ):
 			?>
-			<a class="link_post big col-12" href="<?php the_permalink( $item->ID ); ?>">
+			<a class="link_post big col-12" href="<?php the_permalink( $item->ID, 'medium' ); ?>">
 				<div class="post_news_big" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
 					<?php echo genPostIcon( $item->ID ); ?>
 					<img class="cover_img" src="<?php echo get_template_directory_uri(); ?>/media/cover_img.png">

@@ -1,10 +1,10 @@
 <?php
 	session_start();
-	if( !checkAccess() ){
+	/* if( !checkAccess() ){
 		include __DIR__ . "/template/page-wbudowie.php";
 		die();
 		
-	}
+	} */
 ?>
 <!DOCTYPE HTML>
 <html lang='pl'>
