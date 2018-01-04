@@ -12,7 +12,7 @@
 	<div class="col-xl-6">
 		<?php $item = $data[0]; ?>
 		<a class="link_post big" href="<?php the_permalink( $item->ID ); ?>">
-			<div class="post_news_big" style='background-image: url(<?php echo getPostImg( $item->ID, 'large' ); ?>);'>
+			<div class="post_news_big" style='background-image: url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
 				<?php echo genPostIcon( $item->ID ); ?>
 				<img class="cover_img" src="<?php echo get_template_directory_uri(); ?>/media/cover_img.png">
 				<span><?php echo $item->post_title; ?></span>
@@ -27,7 +27,7 @@
 				$item = $data[$i];
 			?>
 			<a class="link_post col-12 col-md-6 col-xl-12" href="<?php the_permalink( $item->ID ); ?>">
-				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID, 'medium' ); ?>);'>
+				<div class="post_news_small" style='background-image: url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
 					<?php echo genPostIcon( $item->ID ); ?>
 				</div>
 				<span class="post_news_small_tiitle"><?php echo $item->post_title; ?></span>

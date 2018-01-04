@@ -70,16 +70,30 @@
 					<div class="post_item col-md-6 load_more">
 						<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
 							<div class="post_multi">
-								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID ); ?>);'>
+								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID, 'large' ); ?>);'>
 									<div class="post_date"><?php echo get_the_date( "Y-m-d", $item->ID ); ?></div>
-									<div class='comment'><?php echo count( get_comments( array( 'post_id' => $item->ID, 'status' => 'approve' ) ) ); ?> komentarzy</div>
+									<div class='comment'><?php echo count( get_approved_comments( $item->ID ) ); ?> komentarzy</div>
 								</div>
 							</div>
 							<div class="post_title">
 								<?php echo $item->post_title; ?>
 							</div>
 							<p class="post_excerpt">
-								<?php echo shortText( $item->post_excerpt ); ?>
+								<?php
+									$text = "";
+									$lead = get_post_meta( $item->ID, 'lead', true );
+									if( !empty( $lead ) ){
+										$text = $lead;
+										
+									}
+									else{
+										$text = $item->post_excerpt;
+										
+									}
+									
+									echo shortText( $text );
+									
+								?>
 							</p>
 						</a>
 					</div>

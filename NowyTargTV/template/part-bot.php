@@ -16,22 +16,22 @@
 			<div class="col-6 col-sm column">
 				<h5>Portal</h5>
 				<ul class="foot_inf">
-					<li><a href="<?php echo home_url( '' ); ?>">Regulamin PPV</a></li>
-					<li><a href="<?php echo home_url( '' ); ?>">Polityka prywatności</a></li>
-					<li><a href="<?php echo home_url( '' ); ?>">Redakcja</a></li>
+					<li><a href="<?php echo home_url( 'regulamin-ppv' ); ?>">Regulamin PPV</a></li>
+					<li><a href="<?php echo home_url( 'polityka-prywatnosci' ); ?>">Polityka prywatności</a></li>
+					<li><a href="<?php echo home_url( 'redakcja' ); ?>">Redakcja</a></li>
 				</ul>
 			</div>
 			<div class="col-6 col-sm column">
 				<h5>Reklama</h5>
 				<ul class="foot_inf">
-					<li><a href="<?php echo home_url( '' ); ?>">Dział reklamy</a></li>
-					<li><a href="<?php echo home_url( '' ); ?>">Cennik</a></li>
+					<li><a href="<?php echo home_url( 'dzial-reklamy' ); ?>">Dział reklamy</a></li>
+					<li><a href="<?php echo home_url( 'cennik' ); ?>">Cennik</a></li>
 				</ul>
 			</div>
 			<div class="col-6 col-sm column">
 				<h5>Praca</h5>
 				<ul class="foot_inf">
-					<li><a href="<?php echo home_url( '' ); ?>">Aktualne oferty</a></li>
+					<li><a href="<?php echo home_url( 'aktualne-oferty' ); ?>">Aktualne oferty</a></li>
 				</ul>
 			</div>
 		</div>

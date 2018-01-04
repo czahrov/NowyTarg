@@ -25,7 +25,7 @@
 			<div class="col-xl-8">
 				<?php $item = $przeglad[0]; ?>
 				<a href="<?php the_permalink( $item->ID ) ?>" class="link_post big">
-					<div class="overview" style='background-image: url(<?php echo getPostImg( $item->ID, 'large' ); ?>);'>
+					<div class="overview" style='background-image: url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
 						<?php echo genPostIcon( $item->ID ); ?>
 						<img class="cover_img" src="<?php echo get_template_directory_uri(); ?>/media/cover_img.png">
 						<span><?php echo $item->post_title ?></span>
@@ -38,7 +38,7 @@
 			?>
 			<div class="col-md-6 col-xl-4">
 				<a class="link_post" href="<?php echo the_permalink( $item->ID ); ?>">
-					<div class="overview_small" style='background-image: url(<?php echo getPostImg( $item->ID, 'medium' ); ?>);'>
+					<div class="overview_small" style='background-image: url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
 						<?php echo genPostIcon( $item->ID ); ?>
 					</div>
 					<span class="post_news_small_tiitle"><?php echo $item->post_title; ?></span>

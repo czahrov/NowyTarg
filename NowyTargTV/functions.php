@@ -796,11 +796,35 @@ EOT; */
 	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
 	
 	// Zwraca url obrazka wyróżniającego
-	function getPostImg( $id, $size = 'thumbnail' ){
+	function getPostImg( $id, $size = 'thumbnail', $srcset = false ){
 		$thumb = get_the_post_thumbnail_url( $id, $size );
 		$meta = get_post_meta( $id, 'thumb', true );
 		
-		return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( false ) );
+		if( !empty( $thumb ) ){
+			if( $srcset === true ){
+				return array(
+					'src' => $thumb,
+					'srcset' => wp_get_attachment_image_srcset( $id, $size ),
+					
+				);
+				
+			}
+			else{
+				return $thumb;
+				
+			}
+			
+		}
+		elseif( !empty( $meta ) ){
+			return home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta;
+			
+		}
+		else{
+			return false;
+			
+		}
+		
+		// return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( false ) );
 		
 	}
 	
@@ -937,14 +961,31 @@ EOT; */
 	
 	// Generuje tablicę z najpopularniejszymi wpisami
 	function getPopulars( $arg = array() ){
-		$params = array(
+		/* $params = array(
 			'category_name' => 'Popularne',
 			
 		);
 		
 		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
 		
-		return get_posts( $params );
+		return get_posts( $params ); */
+		
+		static $data = array();
+		
+		if( empty( $data ) ){
+			$con = mysqli_connect( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
+			if( mysqli_connect_errno() === 0 ){
+				$sql = "SELECT `id`, `count` FROM `nttv_post_views` WHERE `period` = 'total' ORDER BY `count` DESC LIMIT 4";
+				$result = mysqli_query( $con, $sql );
+				$data = mysqli_fetch_all( $result, MYSQLI_ASSOC );
+				mysqli_free_result( $result );
+				mysqli_close( $con );
+
+			}
+			
+		}
+		
+		return $data;
 		
 	}
 	
@@ -1324,4 +1365,5 @@ EOT; */
 		return $data;
 		
 	}
+	
 	

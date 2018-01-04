@@ -1,5 +1,5 @@
 <?php
-	$data = getPopulars( array( 'numberposts' => 4, ) );
+	$data = getPopulars();
 	
 ?>
 <div class="row">
@@ -11,7 +11,7 @@
 <div class="row clear popularne">
 	<?php
 		foreach( $data as $item ):
-		$cats = wp_get_post_categories( $item->ID, array(
+		$cats = wp_get_post_categories( $item[ 'id' ], array(
 			'term_taxonomy_id' => getBaseCats( array( 'exclude' => getCatByName( 'Popularne' ) ) ),
 			
 		) );
@@ -19,9 +19,9 @@
 		
 	?>
 	<div class="col-12 no-padding">
-		<a href=<?php echo the_permalink( $item->ID ); ?>" class="link_post popular">
-			<div class="last1" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'>
-				<?php echo genPostIcon( $item->ID ); ?>
+		<a href=<?php echo the_permalink( $item[ 'id' ] ); ?>" class="link_post popular">
+			<div class="last1" style='background-image: url(<?php echo getPostImg( $item[ 'id' ], 'full' ); ?>);'>
+				<?php echo genPostIcon( $item[ 'id' ] ); ?>
 				<div class="post_category_small">
 					<?php echo $name; ?>
 				</div>

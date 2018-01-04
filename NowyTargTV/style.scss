@@ -627,6 +627,7 @@ span.txt-ad-300x600{
 }
 
 .last_video_box{
+	width: 100%;
 	
 	.fa{
 		position: absolute;
@@ -932,8 +933,9 @@ body.mobile{
 	.aktualnosci, .reportaze{
 		
 		.post_news_big{
-			min-height: 300px;
 			height: auto;
+			min-height: 300px;
+			/* padding-bottom: 50%; */
 			float: none;
 			
 			span{
@@ -945,6 +947,7 @@ body.mobile{
 		
 		.link_post{
 			margin: 0;
+			max-height: 300px;
 			border: solid 1px #fff;
 			
 			.post_news_small{

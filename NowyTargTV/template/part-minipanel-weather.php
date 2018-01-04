@@ -289,7 +289,8 @@ Array
 	<div class='cell left d-flex flex-column'>
 		<div class='title'>
 			<?php
-				echo strftime( "%d %B", (int)$data[ 'weather' ][ 'current' ][ 'dt' ] ) . "<br>Nowy Targ" ;
+				// echo strftime( "%d %B", (int)$data[ 'weather' ][ 'current' ][ 'dt' ] ) . "<br>Nowy Targ" ;
+				echo date_i18n( "d F", (int)$data[ 'weather' ][ 'current' ][ 'dt' ] ) . "<br>Nowy Targ" ;
 			?>
 		</div>
 		<div class='box d-flex align-items-center flex-grow justify-content-around'>
@@ -307,7 +308,8 @@ Array
 				// 2017-12-29 13:21:02
 				$dt = date_create_from_format( "Y-m-d H:i:s", $data[ 'air' ][ 'airquality' ][ 'stCalcDate' ] );
 				
-				printf( "%s<br>Nowy Targ", strftime( "%A %H:%M:%S", $dt->getTimestamp() ) );
+				// printf( "%s<br>Nowy Targ", strftime( "%A %H:%M:%S", $dt->getTimestamp() ) );
+				printf( "%s<br>Nowy Targ", date_i18n( "l H:i:s", $dt->getTimestamp() ) );
 				
 			?>
 		</div>
@@ -332,7 +334,8 @@ Array
 			<div class='cell cell weather d-flex align-items-center justify-content-around'>
 				<div class='title text-left'>
 					<?php
-						echo strftime( "%d.%m, %A", (int)$item[ 'dt' ] );
+						// echo strftime( "%d.%m, %A", (int)$item[ 'dt' ] );
+						echo date_i18n( "d.m, l", (int)$item[ 'dt' ] );
 					?>
 				</div>
 				<div class='box d-flex align-items-center justify-content-between'>

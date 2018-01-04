@@ -3,13 +3,15 @@
 	
 ?>
 <div class="col-12 section_title wydarzenia">
-	<h1>Wydarzenia</h1>
+	<a href='<?php echo get_category_link( getCatByName( 'Będzie się działo' ) ); ?>'>
+		<h1>Wydarzenia</h1>
+	</a>
 	<div class='slider'>
 		<div class="row clear view">
 			<?php foreach( $data as $num => $item ): ?>
 			<div class="col-12 col-md-6 col-xl-4 item">
-				<a class="link_post" href="<?php the_permalink( $item->ID, 'medium' ); ?>">
-					<div class="overview_small_photo" style='background-image: url(<?php echo getPostImg( $item->ID ); ?>);'></div>
+				<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+					<div class="overview_small_photo" style='background-image: url(<?php echo getPostImg( $item->ID, 'large' ); ?>);'></div>
 					<span class="post_news_small_tiitle">
 						<?php echo $item->post_title; ?>
 					</span>

@@ -62,11 +62,22 @@
 						<?php the_title(); ?>
 					</h1>
 					<div class="bold_post_desc">
-						<?php the_excerpt(); ?>
+						<?php
+							$lead = get_post_meta( get_the_ID(), 'lead', true );
+							if( !empty( $lead ) ){
+								echo $lead;
+								
+							}
+							else{
+								the_excerpt();
+								
+							}
+							
+						?>
 					</div>
 					<?php //do_action( 'get_ad', 'single_inpost' ); ?>
 					<div class='thumb d-flex'>
-						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID(), isMobile()?( 'medium' ):( 'full' ) ) ); ?>
+						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID(), 'full' ) ); ?>
 					</div>
 					<div class="regular_post_txt">
 						<?php echo preg_replace( "~\[gallery[^\]]+?\]~", "", get_the_content() ); ?>

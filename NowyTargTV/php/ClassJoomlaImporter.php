@@ -76,12 +76,23 @@
 						
 					break;
 					case "Tekst":
+					case "Tekst 2":
 						// <img src="images/galerie/2017/2017.11.06.abw/P2890524.JPG" alt="" />
 						/* $pattern = '~(<img src=")(.+?)(".+?>)~'; */
-						$pattern = '~(images/[^"]+)~';
 						/* $replace = "${1}" . get_home_url( 'wp-content/themes/NowyTargTV/joomla_import/images' ) . "/${2}${3}"; */
-						$replace = home_url( 'wp-content/themes/NowyTargTV/joomla_import' ) . "/$0";
-						$content = preg_replace( $pattern, $replace, $element['data'][0]['value'] );
+						// $pattern = '~(images/[^"]+)~';
+						// $replace = home_url( 'wp-content/themes/NowyTargTV/joomla_import' ) . "/$0";
+						$pattern = array(
+							'~images[^"]+~',
+							'~\\\/~',
+							'~\\\"~'
+						);
+						$replace = array(
+							home_url( 'wp-content/themes/NowyTargTV/joomla_import' ) . "/$0",
+							'/',
+							'"'
+						);
+						$content .= preg_replace( $pattern, $replace, $element['data'][0]['value'] );
 						
 					break;
 					case "Media":
