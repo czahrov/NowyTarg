@@ -1,9 +1,9 @@
 <?php
-	$data = getWydarzenia( array( 'numberposts' => 6 ) );
+	$data = getBedzieSieDzialo( array( 'numberposts' => 6 ) );
 	
 ?>
 <div class="col-md-9 section_title wydarzenia">
-	<h1>Wydarzenia</h1>
+	<h1>Będzie się działo</h1>
 	<div class='slider'>
 		<div class="row clear view">
 			<?php foreach( $data as $num => $item ): ?>

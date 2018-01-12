@@ -37,7 +37,6 @@
 	</div>
 	<!-- /.col-md-3 -->
 	<div class="col-xl-3 clear-mobile">
-		<h2 class="red_title">Najnowsze wiadomości</h2>
 		<ul class="top_news_list row">
 			<?php for( $i=3; $i<count( $data ); $i++ ): ?>
 			<li class='col-md-6 col-xl-12'>

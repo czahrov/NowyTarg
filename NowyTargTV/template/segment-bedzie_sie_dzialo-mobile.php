@@ -1,10 +1,10 @@
 <?php
-	$data = getWydarzenia( array( 'numberposts' => 6 ) );
+	$data = getBedzieSieDzialo( array( 'numberposts' => 6 ) );
 	
 ?>
 <div class="col-12 section_title wydarzenia">
 	<a href='<?php echo get_category_link( getCatByName( 'Będzie się działo' ) ); ?>'>
-		<h1>Wydarzenia</h1>
+		<h1>Będzie się działo</h1>
 	</a>
 	<div class='slider'>
 		<div class="row clear view">

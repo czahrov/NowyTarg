@@ -49,7 +49,7 @@
 					<?php
 						foreach( $posts as $item ):
 					?>
-					<div class="post_item col-md-6 load_more">
+					<div class="post_item col-md-6">
 						<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
 							<div class="post_multi">
 								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>

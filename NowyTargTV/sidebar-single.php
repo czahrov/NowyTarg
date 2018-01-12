@@ -1,16 +1,6 @@
 <?php
 	$wiecej = getLatestNews( array( 'numberposts' => 5 ) );
 	
-	$wydarzenia = getWydarzenia( array( 'numberposts' => 6 ) );
-	
-	$video = getLatestVideo( array( 'numberposts' => 2 ) );
-	
-	$promo = getLatestVideo( array( 
-		'numberposts' => 2,
-		'category__in' => array( getCatByName( 'Filmy promocyjne' ) ),
-		
-	) );
-	
 ?>
 <div class="col-lg-3 clear-mobile section_title sidebar-single">
 	<div class='d-none d-xl-block'>
@@ -30,30 +20,14 @@
 		<?php endforeach; ?>
 		
 	</div>
-	<h1>Wydarzenia</h1>
-	<ul class="top_news_list row">
-		<?php foreach( $wydarzenia as $item ): ?>
-		<li class='col-sm-6 col-lg-12'>
-			<a href="<?php the_permalink( $item->ID ); ?>"><?php echo $item->post_title; ?></a>
-		</li>
-		<?php endforeach; ?>
-		
-	</ul>
+	<!-- będzie się działo -->
+	<?php get_template_part( "template/segment-sidebar", "bedzie_sie_dzialo" ); ?>
 	<div class='d-none d-xl-block'>
 		<?php if( !isMobile() ) do_action( 'get_ad', 'single_sidebar_mid' ); ?>
 	</div>
-	<h1 class="clear">Najnowsze Video</h1>
-	<?php foreach( $video as $item ): ?>
-	<a href='<?php echo the_permalink( $item->ID ); ?>' class="last_video_box clear">
-		<?php echo genPostIcon( $item->ID ); ?>
-		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
-	</a>
-	<?php endforeach; ?>
-	<h1 class="clear">Filmy Promocyjne</h1>
-	<?php foreach( $promo as $item ): ?>
-	<a href='<?php the_permalink( $item->ID ); ?>' class="last_video_box clear">
-		<?php echo genPostIcon( $item->ID ); ?>
-		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
-	</a>
-	<?php endforeach; ?>
+	<!-- najnowsze wideo -->
+	<?php get_template_part( "template/segment-sidebar", "najnowsze_video" ); ?>
+	<!-- filmy -->
+	<?php get_template_part( "template/segment-sidebar", "video_promocyjne" ); ?>
+	
 </div>

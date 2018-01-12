@@ -28,7 +28,7 @@
 	<!-- wydarzenia i reklama -->
 	<div class="row">
 		<!-- wydarzenia -->
-		<?php get_template_part( "template/segment", "wydarzenia" ); ?>
+		<?php get_template_part( "template/segment", "bedzie_sie_dzialo" ); ?>
 		<!-- /.col-xl-9 -->
 		<!-- reklama -->
 		<div class="col-md-3 clear d-none d-md-block">

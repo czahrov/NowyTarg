@@ -1,32 +1,12 @@
 <?php
-	$video = getLatestVideo( array( 'numberposts' => 2 ) );
-	
-	$promo = getLatestVideo( array( 
-		'numberposts' => 1,
-		'category__in' => array( getCatByName( 'Filmy promocyjne' ) ),
-		
-	) );
-	
 	$tags = getTagCloud();
 	
 ?>
 <div class="col-xl-3 section_title sidebar">
 	<!-- najnowsze wideo -->
-	<h1 class=''>Najnowsze Video</h1>
-	<?php foreach( $video as $item ): ?>
-	<a class="last_video_box clear" href='<?php the_permalink( $item->ID ); ?>'>
-		<div class="play_icon"></div>
-		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
-	</a>
-	<?php endforeach; ?>
+	<?php get_template_part( "template/segment-sidebar", "najnowsze_video" ); ?>
 	<!-- filmy -->
-	<h1 class="clear">Filmy Promocyjne</h1>
-	<?php foreach( $promo as $item ): ?>
-	<a href='<?php the_permalink( $item->ID ); ?>' class="last_video_box clear">
-		<div class="play_icon"></div>
-		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
-	</a>
-	<?php endforeach; ?>
+	<?php get_template_part( "template/segment-sidebar", "video_promocyjne" ); ?>
 	<!-- znaczniki -->
 	<h1 class="clear">Znaczniki portalu</h1>
 	<ul class="hash_tags">

@@ -28,7 +28,7 @@
 	<!-- wydarzenia i reklama -->
 	<div class="row">
 		<!-- wydarzenia -->
-		<?php get_template_part( "template/segment", "wydarzenia-mobile" ); ?>
+		<?php get_template_part( "template/segment", "bedzie_sie_dzialo-mobile" ); ?>
 		<!-- /.col-xl-9 -->
 	</div>
 	<!-- /.row -->

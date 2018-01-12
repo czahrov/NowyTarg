@@ -1,5 +1,14 @@
 <?php
 	
+	if( isset( $_COOKIE[ 'sprytne' ] ) ){
+		define( 'APP_DEBUG', true );
+		
+	}
+	else{
+		define( 'APP_DEBUG', false );
+		
+	}
+	
 	setlocale( LC_ALL, 'pl_PL' );
 	// locale_set_default( 'pl-PL' );
 	date_default_timezone_set( "Europe/Warsaw" );
@@ -693,6 +702,11 @@ EOT; */
 		
 	} );
 	
+	/* Klasa importująca wpisy z JSONa */
+	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
+	
+	/* ==================== POMOCNICZE ==================== */
+	
 	/* Logger do celów diagnostycznych */
 	function logger( $log = null ){
 		static $data = array();
@@ -792,9 +806,6 @@ EOT; */
 		
 	}
 	
-	/* Klasa importująca wpisy z JSONa */
-	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
-	
 	// Zwraca url obrazka wyróżniającego
 	function getPostImg( $id, $size = 'thumbnail', $srcset = false ){
 		$thumb = get_the_post_thumbnail_url( $id, $size );
@@ -825,31 +836,6 @@ EOT; */
 		}
 		
 		// return !empty( $thumb )?( $thumb ):( !empty( $meta )?( home_url( 'wp-content/themes/NowyTargTV/joomla_import/' ) . $meta ):( false ) );
-		
-	}
-	
-	// Zwraca tablicę najnowszych wpisów z wideo
-	function getLatestVideo( $arg = array() ){
-		$params = array(
-			'category__in' => getBaseCats(),
-			'tax_query' => array(
-				array(
-					'taxonomy' => 'post_format',
-					'field' => 'slug',
-					'terms' => array( 'post-format-video' ),
-					
-				),
-				
-			),
-			
-		);
-		
-		if( is_array( $arg ) ){
-			$params = array_merge( $params, $arg );
-			
-		}
-		
-		return get_posts( $params );
 		
 	}
 	
@@ -900,6 +886,71 @@ EOT; */
 		
 	}
 	
+	// Zwraca ID tagu po slugu
+	function getTag( $slug ){
+		$term = get_terms( array(
+			'taxonomy' => 'post_tag',
+			'hide_empty' => false,
+			'slug' => $slug,
+			
+		) );
+		
+		return $term[0];
+		
+	}
+	
+	// Funkcja skracająca opis
+	function shortText( $text ="", $limit = 200 ){
+		$text = strip_tags( $text );
+		$pattern = "~^(.{0,{$limit}}(?:\s))(.+)$~";
+		preg_match( $pattern, $text, $match );
+		$replace = "$1(...)";
+		
+		return preg_replace( $pattern, $replace, $text );
+		
+	}
+	
+	// Sprawdza czy klient korzysta z urządzenia mobilnego
+	function isMobile(){
+		$pattern = "~Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini~i";
+		preg_match( $pattern, $_SERVER[ 'HTTP_USER_AGENT' ], $match );
+		return count( $match ) !== 0;
+		
+	}
+	
+	// sprawdza czy żądanie zostało wysłane poprzez AJAXa
+	function isAjax(){
+		return $_SERVER["HTTP_X_REQUESTED_WITH"] === "XMLHttpRequest";
+		
+	}
+	
+	/* ==================== SEGMENTY ==================== */
+	
+	// Zwraca tablicę najnowszych wpisów z wideo
+	function getLatestVideo( $arg = array() ){
+		$params = array(
+			'category__in' => getBaseCats(),
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'post_format',
+					'field' => 'slug',
+					'terms' => array( 'post-format-video' ),
+					
+				),
+				
+			),
+			
+		);
+		
+		if( is_array( $arg ) ){
+			$params = array_merge( $params, $arg );
+			
+		}
+		
+		return get_posts( $params );
+		
+	}
+	
 	// Generuje tablicę tagów ( WP_Term ) występujących na stronie
 	function getTagCloud( $arg = array() ){
 		$ret = array();
@@ -917,8 +968,8 @@ EOT; */
 		
 	}
 	
-	// Generuje tablicę wpisów z wydarzeniami
-	function getWydarzenia( $arg = array() ){
+	// Generuje tablicę wpisów z kategorii 'będzie się działo'
+	function getBedzieSieDzialo( $arg = array() ){
 		$params = array(
 			'category_name' => 'Będzie się działo',
 			
@@ -1029,37 +1080,7 @@ EOT; */
 		
 	}
 	
-	// Zwraca ID tagu po slugu
-	function getTag( $slug ){
-		$term = get_terms( array(
-			'taxonomy' => 'post_tag',
-			'hide_empty' => false,
-			'slug' => $slug,
-			
-		) );
-		
-		return $term[0];
-		
-	}
-	
-	// Funkcja skracająca opis
-	function shortText( $text ="", $limit = 200 ){
-		$text = strip_tags( $text );
-		$pattern = "~^(.{0,{$limit}}(?:\s))(.+)$~";
-		preg_match( $pattern, $text, $match );
-		$replace = "$1(...)";
-		
-		return preg_replace( $pattern, $replace, $text );
-		
-	}
-	
-	// Sprawdza czy klient korzysta z urządzenia mobilnego
-	function isMobile(){
-		$pattern = "~Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini~i";
-		preg_match( $pattern, $_SERVER[ 'HTTP_USER_AGENT' ], $match );
-		return count( $match ) !== 0;
-		
-	}
+	/* ==================== API ==================== */
 	
 	// Zwraca dane o stanie powietrza
 	function getAirCon(){
@@ -1367,9 +1388,4 @@ EOT; */
 		
 	}
 	
-	// sprawdza czy żądanie zostało wysłane poprzez AJAXa
-	function isAjax(){
-		return $_SERVER["HTTP_X_REQUESTED_WITH"] === "XMLHttpRequest";
-		
-	}
 	

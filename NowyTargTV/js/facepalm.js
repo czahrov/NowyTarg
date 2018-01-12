@@ -158,7 +158,7 @@
 				console.log('page.default()');
 			}
 			
-			/* slide w popupie galerii zdjęć w single */
+			/* slider w popupie galerii zdjęć w single */
 			(function( popup, box, exit, slider, nav, view, galeria ){
 				var lock = false;
 				var tout;
@@ -230,6 +230,11 @@
 					},
 					click: function( e ){
 						popup.triggerHandler( 'hide' );
+						
+					},
+					wheel: function( e ){
+						e.preventDefault();
+						e.stopPropagation();
 						
 					},
 					
@@ -332,6 +337,47 @@
 					popup.triggerHandler( 'hide' );
 					
 				} );
+				
+				$( 'body' ).on({
+					keyup: function( e ){
+						if( $( '#popup' ).hasClass( 'open' ) ){
+							switch( e.key ){
+								case "ArrowRight":
+									slider.triggerHandler( 'next' );
+									
+								break;
+								case "ArrowLeft":
+									slider.triggerHandler( 'prev' );
+									
+								break;
+								case "Escape":
+									popup.triggerHandler( 'hide' );
+									
+								break;
+								
+							}
+							
+						}
+						
+					},
+					keydown: function( e ){
+						if( $( '#popup' ).hasClass( 'open' ) ){
+							switch( e.key ){
+								case "ArrowUp":
+								case "ArrowDown":
+								case " ":
+									e.preventDefault();
+									e.stopPropagation();
+									
+								break;
+								
+							}
+							
+						}
+						
+					},
+					
+				});
 				
 				$( window ).resize( function( e ){
 					window.clearTimeout( tout );
