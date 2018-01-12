@@ -14,6 +14,12 @@ $bpw: (
 	xl: 1200
 );
 
+$paleta:(
+	facebook: #4267b2,
+	twitter: #1da1f2,
+	google: #dc4b3e
+);
+
 *{
 	outline: none;
 	margin: 0;
@@ -397,6 +403,22 @@ span.txt-ad-300x600{
 			
 			.circle_icon{
 				position: relative;
+				color: #fff;
+				
+				&.fb{
+					background-color: map-get( $paleta, facebook );
+					
+				}
+				
+				&.twitter{
+					background-color: map-get( $paleta, twitter );
+					
+				}
+				
+				&.google{
+					background-color: map-get( $paleta, google );
+					
+				}
 				
 				&, & *{
 					cursor: pointer;

@@ -69,5 +69,9 @@ mysqli_free_result( $result );
 
 mysqli_close( $con ); */
 
-print_r( $_SERVER );
-print_r( $_ENV );
+// print_r( $_SERVER );
+// print_r( $_ENV );
+
+define( "APPDEBUG", true );
+$infix = APPDEBUG === true?( "zjadła" ):( "ma" );
+echo "Ala {$infix} kota";

@@ -1,13 +1,6 @@
 <?php
 	
-	if( isset( $_COOKIE[ 'sprytne' ] ) ){
-		define( 'APP_DEBUG', true );
-		
-	}
-	else{
-		define( 'APP_DEBUG', false );
-		
-	}
+	define( 'DMODE', isset( $_COOKIE[ 'sprytne' ] )?( true ):( false ) );
 	
 	setlocale( LC_ALL, 'pl_PL' );
 	// locale_set_default( 'pl-PL' );
@@ -18,24 +11,26 @@
 	add_theme_support( 'post-formats', array( 'gallery', 'video' ) );
 	
 	if( !is_admin() ){
+		$infix = DMODE === true?( "" ):( ".min" );
+		$buster = DMODE === true?( false ):( time() );
+		
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
 		wp_enqueue_script( "jq-touchSwipe", get_stylesheet_directory_uri() . "/js/jquery.touchSwipe.min.js", array(), false, true );
 		wp_enqueue_script( "bootstrap-bundle", get_stylesheet_directory_uri() . "/js/bootstrap.bundle.min.js", array(), false, true );
-		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main.js", array(), time(), true );
-		wp_enqueue_script( "agency", get_stylesheet_directory_uri() . "/js/agency.js", array(), false, true );
-		wp_enqueue_script( "more", get_stylesheet_directory_uri() . "/js/more.js", array(), false, true );
 		wp_enqueue_script( "gsap-css", get_stylesheet_directory_uri() . "/js/CSSPlugin.min.js", array(), false, true );
 		wp_enqueue_script( "gsap-TweenL", get_stylesheet_directory_uri() . "/js/TweenLite.min.js", array(), false, true );
 		wp_enqueue_script( "gsap-TimeL", get_stylesheet_directory_uri() . "/js/TimelineLite.min.js", array(), false, true );
 		wp_enqueue_script( "parallax", get_stylesheet_directory_uri() . "/js/parallax.min.js", array(), false, true );
-		wp_enqueue_script( "facepalm", get_stylesheet_directory_uri() . "/js/facepalm.js", array(), time(), true );
+		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main{$infix}.js", array(), $buster, true );
+		wp_enqueue_script( "agency", get_stylesheet_directory_uri() . "/js/agency{$infix}.js", array(), $buster, true );
+		wp_enqueue_script( "facepalm", get_stylesheet_directory_uri() . "/js/facepalm{$infix}.js", array(), $buster, true );
 		
-		// wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )
-		wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . "/css/bootstrap.css" );
-		wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . "/css/font-awesome.min.css" );
-		wp_enqueue_style( 'main', get_stylesheet_directory_uri() . "/css/main.css", time() );
-		wp_enqueue_style( 'style', get_stylesheet_directory_uri() . "/style.css", array(), time() );
+		// wp_enqueue_style( string $handle, string $src = "", array $deps = array(), string|bool|null $ver = false, string $media = "all" )
+		wp_enqueue_style( "bootstrap", get_stylesheet_directory_uri() . "/css/bootstrap.css" );
+		wp_enqueue_style( "fontawesome", get_stylesheet_directory_uri() . "/css/font-awesome.min.css" );
+		wp_enqueue_style( "main", get_stylesheet_directory_uri() . "/css/main{$infix}.css", array(), $buster );
+		wp_enqueue_style( "style", get_stylesheet_directory_uri() . "/style{$infix}.css", array(), $buster );
 		
 	}
 	

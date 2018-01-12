@@ -7,7 +7,7 @@
 <div id='popup' class='d-flex'>
 	<div class='box d-flex flex-grow'>
 		<div class='exit'>
-			<div class='icon fa fa-window-close-o'></div>
+			<div class='icon f fa fa-window-close-o'></div>
 		</div>
 		<div class='slider d-flex flex-grow'>
 			<div class='nav left'>
@@ -43,13 +43,13 @@
 					<span class='share d-inline-flex'>
 						<span class="social_share">Udostepnij</span>
 						<div class='icons'>
-							<a class="circle_icon" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
+							<a class="circle_icon fb" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
 								<i class="fa fa-facebook" aria-hidden="true"></i>
 							</a>
-							<a class="circle_icon" href="https://twitter.com/intent/tweet?text=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
+							<a class="circle_icon twitter" href="https://twitter.com/intent/tweet?text=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
 								<i class="fa fa-twitter" aria-hidden="true"></i>
 							</a>
-							<a class="circle_icon" href="https://plus.google.com/share?url=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
+							<a class="circle_icon google" href="https://plus.google.com/share?url=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
 								<i class="fa fa-google" aria-hidden="true"></i>
 							</a>
 						</div>
