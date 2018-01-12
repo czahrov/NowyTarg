@@ -25,7 +25,7 @@
 		// wp_enqueue_style( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, string $media = 'all' )
 		wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . "/css/bootstrap.css" );
 		wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . "/css/font-awesome.min.css" );
-		wp_enqueue_style( 'main', get_stylesheet_directory_uri() . "/css/main.css" );
+		wp_enqueue_style( 'main', get_stylesheet_directory_uri() . "/css/main.css", time() );
 		wp_enqueue_style( 'style', get_stylesheet_directory_uri() . "/style.css", array(), time() );
 		
 	}
@@ -581,7 +581,7 @@ EOT; */
 			
 			// 4,5,6
 			foreach( $ids as $id ){
-				$img_thumb = wp_get_attachment_image_url( $id, 'thumbnail' );
+				$img_thumb = wp_get_attachment_image_url( $id, 'large' );
 				$img_full = wp_get_attachment_image_url( $id, 'full' );
 				
 				$items[] = sprintf( "<a href='%s' target='_blank' class='item popup col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
@@ -961,16 +961,17 @@ EOT; */
 	
 	// Generuje tablicę z najpopularniejszymi wpisami
 	function getPopulars( $arg = array() ){
-		/* $params = array(
+		$params = array(
 			'category_name' => 'Popularne',
+			'numberposts' => 4,
 			
 		);
 		
 		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
 		
-		return get_posts( $params ); */
+		return get_posts( $params );
 		
-		static $data = array();
+		/* static $data = array();
 		
 		if( empty( $data ) ){
 			$con = mysqli_connect( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
@@ -985,7 +986,7 @@ EOT; */
 			
 		}
 		
-		return $data;
+		return $data; */
 		
 	}
 	
@@ -1366,4 +1367,9 @@ EOT; */
 		
 	}
 	
+	// sprawdza czy żądanie zostało wysłane poprzez AJAXa
+	function isAjax(){
+		return $_SERVER["HTTP_X_REQUESTED_WITH"] === "XMLHttpRequest";
+		
+	}
 	

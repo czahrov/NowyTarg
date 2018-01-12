@@ -21,7 +21,7 @@
 		<?php foreach( $wiecej as $item ): ?>
 		<div class="see-more-ex col-md-6 col-lg-12">
 			<a href="<?php echo the_permalink( $item->ID ); ?>">
-				<div class='img' style='background-image:url( <?php echo getPostImg( $item->ID, 'medium' ); ?> )'></div>
+				<div class='img' style='background-image:url( <?php echo getPostImg( $item->ID, 'large' ); ?> )'></div>
 				<p>
 					<?php echo $item->post_title; ?>
 				</p>
@@ -46,14 +46,14 @@
 	<?php foreach( $video as $item ): ?>
 	<a href='<?php echo the_permalink( $item->ID ); ?>' class="last_video_box clear">
 		<?php echo genPostIcon( $item->ID ); ?>
-		<img src="<?php echo getPostImg( $item->ID ); ?>">
+		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
 	</a>
 	<?php endforeach; ?>
 	<h1 class="clear">Filmy Promocyjne</h1>
 	<?php foreach( $promo as $item ): ?>
 	<a href='<?php the_permalink( $item->ID ); ?>' class="last_video_box clear">
 		<?php echo genPostIcon( $item->ID ); ?>
-		<img src="<?php echo getPostImg( $item->ID ); ?>">
+		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
 	</a>
 	<?php endforeach; ?>
 </div>

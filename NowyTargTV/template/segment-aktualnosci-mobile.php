@@ -33,6 +33,15 @@
 			</a>
 			<?php endif; ?>
 			<?php endforeach; ?>
+			<div class="col-md-12">
+				<a class="load_more" item-cat='<?php echo getCatByName( 'Aktualności' ); ?>'>
+					ZAŁADUJ WIĘCEJ
+				</a>
+				
+			</div>
+			
 		</div>
+		
 	</div>
+	
 </div>

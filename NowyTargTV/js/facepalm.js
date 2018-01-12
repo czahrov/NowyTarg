@@ -423,6 +423,63 @@
 			$( '#minipanel .popup > .view' ), 
 			$( '#minipanel .item' ) );
 			
+			/* ładuj więcej */
+			(function( link ){
+				link.click( function( e ){
+					try{
+						var self = $(this);
+						var cat_ID = parseInt( self.attr( 'item-cat') );
+						if( isNaN( cat_ID ) ) throw "Identyfikator kategorii jest błędny";
+						var offset = self.parents( '.row:first' ).children( '.link_post' ).length;
+						var num = 4;
+						
+						$.ajax({
+							type: 'POST',
+							url: '/more',
+							data: {
+								category: cat_ID,
+								offset: offset,
+								num: num,
+								
+							},
+							success: function( data, status ){
+								if( data.length === 0 ) throw "Pusta odpowiedź";
+								var resp = JSON.parse( data );
+								var proto = self.parents( '.row:first' ).children( '.link_post:eq(1)' );
+								
+								$.each( resp, function( k, item ){
+									var t = proto.clone();
+									
+									t
+									.attr( 'href', item.url )
+									.children( '.post_news_small' )
+									.css( 'background-image', 'url('+ item.img +')' )
+									.html( item.icon )
+									.siblings( '.post_news_small_tiitle' )
+									.text( item.title );
+									
+									self
+									.parent()
+									.before( t );
+									
+								} );								
+								
+							},
+							
+						});
+						
+					}
+					catch( err ){
+						console.error( err );
+						
+					}					
+					
+					
+				} );
+				
+			})
+			( $( 'a.load_more' ) );
+			
 		},
 		alternate: function(){
 			var addon = root.addon;

@@ -481,7 +481,8 @@ h2.red_title{
     padding-right: 1px;
 }
 
-.ad-padding{
+.ad-padding,
+.add-padding{
     padding-left: 15px;
     padding-right: 15px;
     }
@@ -770,7 +771,7 @@ color: #fff;
     display: none;
 }
 
-#loadMore {
+#loadMore, .load_more {
     display: block;
     width: 100%;
     padding: 5px 15px 5px 15px;
@@ -785,7 +786,7 @@ color: #fff;
     -moz-transition: all 600ms ease-in-out;
     -o-transition: all 600ms ease-in-out;
 }
-#loadMore:hover {
+#loadMore:hover, #load_more:hover {
     background-color: #fff;
 }
 

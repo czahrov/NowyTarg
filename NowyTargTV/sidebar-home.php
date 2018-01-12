@@ -16,7 +16,7 @@
 	<?php foreach( $video as $item ): ?>
 	<a class="last_video_box clear" href='<?php the_permalink( $item->ID ); ?>'>
 		<div class="play_icon"></div>
-		<img src="<?php echo getPostImg( $item->ID, 'medium' ); ?>">
+		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
 	</a>
 	<?php endforeach; ?>
 	<!-- filmy -->
@@ -24,7 +24,7 @@
 	<?php foreach( $promo as $item ): ?>
 	<a href='<?php the_permalink( $item->ID ); ?>' class="last_video_box clear">
 		<div class="play_icon"></div>
-		<img src="<?php echo getPostImg( $item->ID, 'medium' ); ?>">
+		<img src="<?php echo getPostImg( $item->ID, 'large' ); ?>">
 	</a>
 	<?php endforeach; ?>
 	<!-- znaczniki -->
