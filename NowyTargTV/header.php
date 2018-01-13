@@ -19,3 +19,6 @@
 	<?php wp_head(); ?>
 </head>
 <body class='<?php do_action( 'body_class' ); ?>'>
+<a href="<?php echo home_url( '/kamery' ); ?>" class="kamery_ribbon">
+	<img src="<?php echo get_template_directory_uri(); ?>/media/icon_cam_ribbon.png">
+</a>

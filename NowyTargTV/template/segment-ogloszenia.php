@@ -10,7 +10,7 @@
 	?>
 	<div class="row clear city_news">
 		<a href="<?php the_permalink( $item->ID ); ?>" class="list_post col-sm-4">
-			<div class="img" style='background-image:url( <?php echo getPostImg( $item->ID, 'medium' ); ?> )'></div>
+			<div class="img" style='background-image:url( <?php echo getPostImg( $item->ID, 'large' ); ?> )'></div>
 		</a>
 		<div class="col-sm-8">
 			<h3><?php echo $item->post_title; ?></h3>

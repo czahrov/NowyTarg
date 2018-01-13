@@ -63,16 +63,16 @@
 	<div class="row">
 		<div class="col-xl-9 section_title">
 			<h1><?php echo $cat->name; ?></h1>
-				<div class="row clear">
-					<?php
-						foreach( $posts as $item ):
-					?>
-					<div class="post_item col-md-6">
-						<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+				<?php
+					foreach( $posts as $item ):
+				?>
+				<div class='row'>
+					<a class="post_item col-12 d-flex" href="<?php the_permalink( $item->ID ); ?>">
+						<div class="link_post col-4">
 							<div class="post_multi">
-								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID, 'large' ); ?>);'>
+								<div class="post_img" style="background-image:url(<?php echo getPostImg( $item->ID, 'large' ); ?>);">
 									<div class="post_date"><?php echo get_the_date( "Y-m-d H:i", $item->ID ); ?></div>
-									<div class='comment'>
+									<div class="comment">
 										<?php
 											$num = count( get_approved_comments( $item->ID ) );
 											if( $num > 0 ) printf( "komentarzy: %u", $num );
@@ -80,6 +80,8 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="box col d-flex flex-column">
 							<div class="post_title">
 								<?php echo $item->post_title; ?>
 							</div>
@@ -100,16 +102,21 @@
 									
 								?>
 							</p>
-						</a>
-					</div>
-					<?php
-						endforeach;
-					?>
-					<div class="pagination col-md-12 justify-content-center">
-						<?php print_r( $pagin ); ?>
-					</div>
-					<div class="col-md-12"></div>
-				<!-- /.row -->
+							<div class="wiecej">
+								czytaj dalej
+							</div>
+						</div>
+					</a>
+					
+				</div>
+				
+			<?php
+				endforeach;
+			?>
+			<!-- /.row -->
+			<div class="row clear"></div>
+			<div class="pagination col-md-12 justify-content-center">
+				<?php print_r( $pagin ); ?>
 			</div>
 			<!-- /.col-xl-9 -->
 		</div>

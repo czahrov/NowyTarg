@@ -12,7 +12,7 @@
 	
 	if( !is_admin() ){
 		$infix = DMODE === true?( "" ):( ".min" );
-		$buster = DMODE === true?( false ):( time() );
+		$buster = DMODE === true?( time() ):( false );
 		
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
@@ -916,6 +916,23 @@ EOT; */
 	// sprawdza czy żądanie zostało wysłane poprzez AJAXa
 	function isAjax(){
 		return $_SERVER["HTTP_X_REQUESTED_WITH"] === "XMLHttpRequest";
+		
+	}
+	
+	// zwraca tablicę z informacjami o zdjęciu ( opis, etykieta, tekst alternatywny )
+	function getThumbInfo( $id ){
+		$img = get_post( $id );
+		return array_merge(
+			array(
+				'opis' => '',
+				'etykieta' => '',
+			),
+			array(
+				'opis' => $img->post_content,
+				'etykieta' => $img->post_excerpt,
+				
+			)
+		);
 		
 	}
 	

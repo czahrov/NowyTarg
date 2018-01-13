@@ -13,8 +13,13 @@
 		<div class="col-md-6">
 			<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
 				<div class="post_aktualnosci" style='background-image:url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
-					<div class="news_date"><?php echo get_the_date( "Y-m-d", $item->ID ); ?></div>
-					<span><?php echo count( get_approved_comments( $item->ID ) ); ?> komentarzy</span>
+					<div class="news_date"><?php echo get_the_date( "Y-m-d H:i", $item->ID ); ?></div>
+					<span>
+						<?php
+							$num = count( get_approved_comments( $item->ID ) );
+							if( $num > 0 ) printf( "komentarzy: %u", $num );
+						?>
+					</span>
 				</div>
 				<span class="post_aktualnosci_tiitle">
 					<?php echo $item->post_title; ?>

@@ -39,9 +39,9 @@
 			<!-- content -->
 			<div class='post row justify-content-between'>
 				<div class="social_bar_top d-flex flex-wrap justify-content-between">
-					<span class="social_date">Data dodania <?php echo get_the_date( "d.m.Y", get_post()->ID ); ?></span>
+					<span class="social_date">Data dodania <?php echo get_the_date( "d.m.Y H:i", get_post()->ID ); ?></span>
 					<span class='share d-inline-flex'>
-						<span class="social_share">Udostepnij</span>
+						<span class="social_share">Udostępnij</span>
 						<div class='icons'>
 							<a class="circle_icon fb" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink( get_post()->ID ); ?>" target="_blank">
 								<i class="fa fa-facebook" aria-hidden="true"></i>
@@ -76,8 +76,11 @@
 						?>
 					</div>
 					<?php //do_action( 'get_ad', 'single_inpost' ); ?>
-					<div class='thumb d-flex'>
-						<?php printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID(), 'full' ) ); ?>
+					<div class='thumb d-flex flex-column'>
+						<?php
+							printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID(), 'full' ) );
+							printf( "<div class='imginfo'>%s</div>", getThumbInfo( get_post_thumbnail_id( get_the_ID() ) )[ 'opis' ] );
+						?>
 					</div>
 					<div class="regular_post_txt">
 						<?php echo preg_replace( "~\[gallery[^\]]+?\]~", "", get_the_content() ); ?>

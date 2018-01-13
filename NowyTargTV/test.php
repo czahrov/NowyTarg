@@ -72,6 +72,9 @@ mysqli_close( $con ); */
 // print_r( $_SERVER );
 // print_r( $_ENV );
 
-define( "APPDEBUG", true );
+/* define( "APPDEBUG", true );
 $infix = APPDEBUG === true?( "zjadła" ):( "ma" );
-echo "Ala {$infix} kota";
+echo "Ala {$infix} kota"; */
+
+print_r( get_post( 6 ) ) . PHP_EOL;
+print_r( get_post_meta(  6 ) ) . PHP_EOL;
