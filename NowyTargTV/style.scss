@@ -836,6 +836,7 @@ span.txt-ad-300x600{
 	
 	.row{
 		min-height: 100px;
+		margin-bottom: 16px;
 		
 		.img_link{
 			background:{
@@ -1549,5 +1550,15 @@ body{
 		}
 		
 	}
+	
+}
+
+.gocategory{
+	display: block;
+    border: solid 2px black;
+    padding: 5px 10px;
+    text-align: center;
+    font-family: 'latoblack';
+	letter-spacing: 4px;
 	
 }

@@ -21,5 +21,8 @@
 	<!-- /.row -->
 	<div class="dashed"></div>
 	<?php endforeach; ?>
+	<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Ogłoszenia urzędowe' ) ); ?>'>
+		Zobacz więcej
+	</a>
 	<?php do_action( 'get_ad', 'home_bot' ); ?>
 </div>

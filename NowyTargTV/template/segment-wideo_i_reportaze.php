@@ -7,7 +7,7 @@
 	
 	$reportaze = get_posts( array(
 		'category_name' => 'Reportaże',
-		'numberposts' => 9,
+		'numberposts' => 10,
 		
 	) );
 	
@@ -46,6 +46,9 @@
 			</div>
 			<?php endfor; ?>
 		</div>
+		<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Przegląd tygodniowy' ) ); ?>'>
+			Zobacz więcej
+		</a>
 		<!-- /.row -->
 	</div>
 	<!-- /.col-xl-9 -->
@@ -63,5 +66,9 @@
 			</li>
 			<?php endforeach; ?>
 		</ul>
+		<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Reportaże' ) ); ?>'>
+			Zobacz więcej
+		</a>
+		
 	</div>
 </div>

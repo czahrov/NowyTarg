@@ -19,5 +19,9 @@
 		<?php endforeach; ?>
 		
 	</div>
+	<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Kultura' ) ); ?>'>
+		Zobacz więcej
+	</a>
+	
 </div>
 	

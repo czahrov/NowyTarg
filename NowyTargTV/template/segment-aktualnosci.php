@@ -1,6 +1,6 @@
 <?php
 	$data = getAktualnosci( array(
-		'numberposts' => 11,
+		'numberposts' => 13,
 		
 	) );
 	
@@ -49,6 +49,10 @@
 			</li>
 			<?php endfor;?>
 		</ul>
+		<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Aktualności' ) ); ?>'>
+			Zobacz więcej
+		</a>
+		
 	</div>
 	<!-- /.col-md-3 -->
 </div>

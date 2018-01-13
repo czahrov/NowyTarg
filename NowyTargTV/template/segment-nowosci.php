@@ -27,7 +27,7 @@
 				<p class="post_aktulanosci">
 					<?php
 						$text = "";
-						$lead = get_post_meta( get_the_ID(), 'lead', true );
+						$lead = get_post_meta( $item->ID, 'lead', true );
 						if( !empty( $lead ) ){
 							$text = $lead;
 							

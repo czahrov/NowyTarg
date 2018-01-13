@@ -32,5 +32,8 @@
 		</div>
 		<?php endfor; ?>
 	</div>
+	<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Sport' ) ); ?>'>
+		Zobacz więcej
+	</a>
 	<!-- /.row -->
 </div>
