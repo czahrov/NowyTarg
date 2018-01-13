@@ -921,18 +921,75 @@ EOT; */
 	
 	// zwraca tablicę z informacjami o zdjęciu ( opis, etykieta, tekst alternatywny )
 	function getThumbInfo( $id ){
-		$img = get_post( $id );
-		return array_merge(
-			array(
+		$img = get_post( get_post_thumbnail_id( $id ) );
+		
+		if( empty( $img ) ){
+			return array(
 				'opis' => '',
 				'etykieta' => '',
-			),
+			);
+			
+		}
+		else{
 			array(
 				'opis' => $img->post_content,
 				'etykieta' => $img->post_excerpt,
 				
-			)
-		);
+			);
+		}
+		
+	}
+	
+	// generuje mini-wpis dla powiązanego wpisu w obrębie witryny
+	function genRelatedPost( $url ){
+		logger( $url );
+		$pattern = "~([^/]+)/?$~";
+		preg_match( $pattern, $url, $match );
+		logger( $match );
+		$slug = $match[1];
+		logger( $slug );
+		$posts = get_posts( array(
+			'name' => $slug,
+			'numberposts' => 1,
+			
+		) );
+		
+		if( count( $posts ) === 0 ){
+			return $url;
+			
+		}
+		else{
+			$post = $posts[0];
+			
+			return sprintf(
+				"<a class='related_post' href='%s'>
+					<img src='%s'/>
+					<div class='title'>%s</div>
+					<div class='content'>%s</div>
+					
+				</a>",
+				get_the_permalink( $post->ID ),
+				getPostImg( $post->ID ),
+				$post->post_title,
+				getPostLead( $post->ID )
+				
+			);
+			
+		}
+		
+	}
+	
+	// zwraca lead wpisu ( zajawka )
+	function getPostLead( $id ){
+		$lead = get_post_meta( $id, 'lead', true );
+		if( empty( $lead ) ){
+			return get_post( $id )->post_excerpt;
+			
+		}
+		else{
+			return $lead;
+			
+		}
 		
 	}
 	

@@ -543,6 +543,34 @@ span.txt-ad-300x600{
 		
 	}
 	
+	.related_post{
+		padding: 10px;
+		width: 100%;
+		border: solid 1px silver;
+		
+		& > .title{
+			margin-bottom: 10px;
+			font-size: 24px;
+			font-family: 'ws-bold';
+			color: #222;
+			
+		}
+		
+		& > img{
+			margin: 0 10px 10px 0;
+			float: left;
+			
+		}
+		
+		& > .content{
+			color: #777;
+			font-size: 14px;
+			font-family: 'latoregular';
+			
+		}
+		
+	}
+	
 }
 
 #respond
@@ -1503,10 +1531,23 @@ body.mobile{
 	
 }
 
-.kamery_ribbon{
-	position: fixed;
-	top: 150px;
-	left: 0;
-	z-index: 20;
+body{
+	
+	.kamery_ribbon{
+		position: fixed;
+		top: 150px;
+		left: 0;
+		z-index: 20;
+		
+	}
+	
+	&.mobile{
+		
+		.kamery_ribbon{
+			display: none;
+			
+		}
+		
+	}
 	
 }

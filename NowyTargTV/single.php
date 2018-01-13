@@ -79,11 +79,35 @@
 					<div class='thumb d-flex flex-column'>
 						<?php
 							printf( "<img class='align-self-center' src='%s'>", getPostImg( get_the_ID(), 'full' ) );
-							printf( "<div class='imginfo'>%s</div>", getThumbInfo( get_post_thumbnail_id( get_the_ID() ) )[ 'opis' ] );
+							printf( "<div class='imginfo'>%s</div>", getThumbInfo( get_the_ID() )[ 'opis' ] );
 						?>
 					</div>
 					<div class="regular_post_txt">
-						<?php echo preg_replace( "~\[gallery[^\]]+?\]~", "", get_the_content() ); ?>
+						<?php
+							// usuwanie znaczników galerii wp z treści wpisu
+							$content = preg_replace( "~\[gallery[^\]]+?\]~", "", get_the_content() );
+							
+							/* <p>https://nowytarg24.tv/nowotarscy-policjanci-zatrzymali-35-latka-za-posiadanie-narkotykow/</p> */
+							// wyszukuje linki w treści wpisu do innych wpisów w obrębie serwisu
+							/* $pattern = sprintf( "~<p>%s/([^/]+)/</p>~", home_url() );
+							preg_match_all( $pattern, $content, $match );
+							logger( $pattern );
+							logger( $match );
+							
+							// podmienia znalezione linki na zawartość wygenerowaną przez funkcję
+							$replacement = array_map( "genRelatedPost", $match[1] );
+							$content = str_replace( $match[0], $replacement, $content ); */
+							
+							echo apply_filters( 'the_content', $content );
+							
+							if( DMODE === true ){
+								echo "<!--";
+								print_r( logger() );
+								echo "-->";
+								
+							}
+							
+						?>
 					</div>
 					<?php do_action( "youtube", get_the_ID() ); ?>
 					<?php do_action( "gallery", get_the_ID() ); ?>

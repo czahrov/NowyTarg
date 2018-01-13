@@ -76,5 +76,7 @@ mysqli_close( $con ); */
 $infix = APPDEBUG === true?( "zjadła" ):( "ma" );
 echo "Ala {$infix} kota"; */
 
-print_r( get_post( 6 ) ) . PHP_EOL;
-print_r( get_post_meta(  6 ) ) . PHP_EOL;
+print_r( get_posts( array(
+	'name' => 'nowotarscy-policjanci-zatrzymali-35-latka-za-posiadanie-narkotykow',
+	
+) ) ) . PHP_EOL;

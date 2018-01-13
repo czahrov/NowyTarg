@@ -67,8 +67,8 @@
 					foreach( $posts as $item ):
 				?>
 				<div class='row'>
-					<a class="post_item col-12 d-flex" href="<?php the_permalink( $item->ID ); ?>">
-						<div class="link_post col-4">
+					<a class="post_item col-12 d-flex flex-wrap" href="<?php the_permalink( $item->ID ); ?>">
+						<div class="link_post col-12 col-md-4">
 							<div class="post_multi">
 								<div class="post_img" style="background-image:url(<?php echo getPostImg( $item->ID, 'large' ); ?>);">
 									<div class="post_date"><?php echo get_the_date( "Y-m-d H:i", $item->ID ); ?></div>
