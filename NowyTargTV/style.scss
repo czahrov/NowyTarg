@@ -1558,7 +1558,78 @@ body{
     border: solid 2px black;
     padding: 5px 10px;
     text-align: center;
-    font-family: 'latoblack';
-	letter-spacing: 4px;
+    font-family: 'latobold';
+	/* letter-spacing: 4px; */
+	
+}
+
+footer{
+	
+	li{
+		list-style-type: none;
+		
+	}
+	
+	p{
+		margin-bottom: initial;
+		
+	}
+		
+	a{
+		&, &:hover{
+			color: inherit;
+			
+		}
+		
+	}
+	
+}
+
+#old
+{
+	
+	.location{
+		margin: 20px 0;
+		font-family: 'ws-bold';
+		
+		.item{
+			margin-right: 5px;
+			font-family: 'latobold';
+			
+			&:not(:first-child)::before{
+				content: '/';
+				margin-right: 5px;
+				
+			}
+			
+		}
+		
+	}
+	
+	.cell{
+		max-height: 500px;
+		overflow: auto;
+		border: solid 1px black;
+		
+		a{
+			display: block;
+			margin: 5px -15px;
+			padding: 5px 10px;
+			transition: background .3s linear;
+			
+			&:hover{
+				background-color: silver;
+				
+			}
+			
+		}
+		
+		&.title{
+			font-family: 'latoblack';
+			font-size: 22px;
+			
+		}
+		
+	}
 	
 }

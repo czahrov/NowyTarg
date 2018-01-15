@@ -12,7 +12,7 @@
 	
 	if( !is_admin() ){
 		$infix = DMODE === true?( "" ):( ".min" );
-		$buster = DMODE === true?( time() ):( false );
+		$buster = DMODE === true?( time() ):( time() );
 		
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
@@ -55,9 +55,30 @@
 	register_nav_menu( "menu-top", "menu na górze strony" );
 	
 	register_sidebar( array(
-		'name' => 'waluta',
-		'id' => 'sidebar-currency',
-		'description' => 'Sidebar kurs wymiany walut',
+		'name' => 'stopka-kontakt',
+		'description' => 'Segment "Kontakt" w stopce strony',
+		'class' => 'foot_inf',
+		
+	) );
+	
+	register_sidebar( array(
+		'name' => 'stopka-portal',
+		'description' => 'Segment "Portal" w stopce strony',
+		'class' => 'foot_inf',
+		
+	) );
+	
+	register_sidebar( array(
+		'name' => 'stopka-reklama',
+		'description' => 'Segment "Reklama" w stopce strony',
+		'class' => 'foot_inf',
+		
+	) );
+	
+	register_sidebar( array(
+		'name' => 'stopka-praca',
+		'description' => 'Segment "Praca" w stopce strony',
+		'class' => 'foot_inf',
 		
 	) );
 	

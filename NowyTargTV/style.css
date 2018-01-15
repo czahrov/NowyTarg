@@ -1169,5 +1169,47 @@ body.mobile .kamery_ribbon {
   border: solid 2px black;
   padding: 5px 10px;
   text-align: center;
-  font-family: 'latoblack';
-  letter-spacing: 4px; }
+  font-family: 'latobold';
+  /* letter-spacing: 4px; */ }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031568}}
+footer li {
+  list-style-type: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031573}}
+footer p {
+  margin-bottom: initial; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031579}}
+footer a, footer a:hover {
+  color: inherit; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031591}}
+#old .location {
+  margin: 20px 0;
+  font-family: 'ws-bold'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031595}}
+  #old .location .item {
+    margin-right: 5px;
+    font-family: 'latobold'; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031599}}
+    #old .location .item:not(:first-child)::before {
+      content: '/';
+      margin-right: 5px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031609}}
+#old .cell {
+  max-height: 500px;
+  overflow: auto;
+  border: solid 1px black; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031614}}
+  #old .cell a {
+    display: block;
+    margin: 5px -15px;
+    padding: 5px 10px;
+    -webkit-transition: background .3s linear;
+    transition: background .3s linear; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031620}}
+    #old .cell a:hover {
+      background-color: silver; }
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031627}}
+  #old .cell.title {
+    font-family: 'latoblack';
+    font-size: 22px; }
