@@ -66,18 +66,25 @@
 	<div class="row">
 		<div class="col-xl-9 section_title">
 			<h1><?php echo $tag->name; ?></h1>
-				<div class="row clear">
-					<?php
-						foreach( $posts as $item ):
-					?>
-					<div class="post_item col-md-6 load_more">
-						<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+				<?php
+					foreach( $posts as $item ):
+				?>
+				<div class='row'>
+					<a class="post_item col-12 d-flex flex-wrap" href="<?php the_permalink( $item->ID ); ?>">
+						<div class="link_post col-12 col-md-4">
 							<div class="post_multi">
-								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
-									<div class="post_date"><?php echo get_the_date( "Y-m-d", $item->ID ); ?></div>
-									<div class='comment'><?php echo count( get_approved_comments( $item->ID ) ); ?> komentarzy</div>
+								<div class="post_img" style="background-image:url(<?php echo getPostImg( $item->ID, 'large' ); ?>);">
+									<div class="post_date"><?php echo get_the_date( "Y-m-d H:i", $item->ID ); ?></div>
+									<div class="comment">
+										<?php
+											$num = count( get_approved_comments( $item->ID ) );
+											if( $num > 0 ) printf( "komentarzy: %u", $num );
+										?>
+									</div>
 								</div>
 							</div>
+						</div>
+						<div class="box col d-flex flex-column">
 							<div class="post_title">
 								<?php echo $item->post_title; ?>
 							</div>
@@ -98,17 +105,21 @@
 									
 								?>
 							</p>
-						</a>
-					</div>
-					<?php
-						endforeach;
-					?>
-					<div class="pagination col-md-12 justify-content-center">
-						<?php print_r( $pagin ); ?>
-					</div>
-					<div class="col-md-12"></div>
+							<div class="wiecej">
+								czytaj dalej
+							</div>
+						</div>
+					</a>
+					
+				</div>
+				<?php
+					endforeach;
+				?>
+				<div class="pagination col-md-12 justify-content-center">
+					<?php print_r( $pagin ); ?>
+				</div>
+				<div class="col-md-12"></div>
 				<!-- /.row -->
-			</div>
 			<!-- /.col-xl-9 -->
 		</div>
 		<!-- wydarzenia -->

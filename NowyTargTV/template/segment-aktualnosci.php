@@ -1,6 +1,6 @@
 <?php
 	$data = getAktualnosci( array(
-		'numberposts' => 13,
+		'numberposts' => 8,
 		
 	) );
 	
@@ -38,17 +38,27 @@
 	<!-- /.col-md-3 -->
 	<div class="col-xl-3 clear-mobile">
 		<ul class="top_news_list row">
-			<?php for( $i=3; $i<count( $data ); $i++ ): ?>
-			<li class='col-md-6 col-xl-12'>
-				<?php printf( "<a href='%s'>%s%s</a>",
-					get_the_permalink( $data[$i]->ID ),
-					$data[$i]->post_title,
-					genPostIcon( $item->ID )
-					
-				); ?>
-			</li>
-			<?php endfor;?>
+			<?php
+				for( $i=3; $i<count( $data ); $i++ ):
+				$item = $data[$i];
+			?>
+			
+			<a href="<?php the_permalink( $item->ID ); ?>" class="item col-12 col-md-6 col-lg-12">
+				<div class="img_news_list d-flex">
+					<div class="img_link col-4 col-lg-3 col-xl-4" style='background-image:url( <?php echo getPostImg( $item->ID ); ?> );'>
+						<?php echo genPostIcon( $item->ID ); ?>
+					</div>
+					<p class='col'>
+						<?php echo $item->post_title; ?>
+					</p>
+				</div>
+			</a>
+			
+			<?php
+				endfor;
+			?>
 		</ul>
+		
 		<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Aktualności' ) ); ?>'>
 			Zobacz więcej
 		</a>

@@ -1060,15 +1060,35 @@ EOT; */
 	
 	// Generuje tablicę wpisów z kategorii 'będzie się działo'
 	function getBedzieSieDzialo( $arg = array() ){
+		// zapis dat początku i końca imprez: Y-m-d H:i
+		
 		$params = array(
-			'category_name' => 'Będzie się działo',
+			'category_name' => 'bedzie-sie-dzialo',
+			'meta_key' => 'event_start',
+			'orderby' => 'meta_value',
+			'order' => 'ASC',
+			'meta_query' => array(
+				'relation' => 'AND',
+				array(
+					'key' => 'event_end',
+					'value' => date( 'Y-m-d H:i' ),
+					'compare' => '>',
+					
+				),
+				
+			),
 			
 		);
 		
 		if( is_array( $arg ) ) $params = array_merge( $params, $arg );
 		
 		return get_posts( $params );
-		
+		/* 
+			SELECT * FROM `nttv_postmeta`
+			WHERE `meta_key` = 'event_end'
+			AND `meta_value` > '2018-01-16 10:49'
+			ORDER BY `meta_value` ASC
+		*/
 	}
 	
 	// Generuje tablicę z ostatnimi nowościami

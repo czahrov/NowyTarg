@@ -10,7 +10,7 @@
 	
 	$page_num = !empty( $_GET[ 'strona' ] )?( (int)$_GET[ 'strona' ] ):( 1 );
 	
-	$pagin = paginate_links( array(
+	$pagin_params = array(
 		'base' => $base_link . "%_%",
 		'format' => "?strona=%#%",
 		'current' => $page_num,
@@ -19,7 +19,19 @@
 		// 'type' => 'array',
 		// 'show_all' => true,
 		
-	) );
+	);
+	
+	if( isMobile() ){
+		$pagin_params = array_merge( $pagin_params, array(
+			'end_size' => 1,
+			'mid_size' => 2,
+			'prev_next' => false,
+			
+		) );
+		
+	}
+	
+	$pagin = paginate_links( $pagin_params );
 	
 	echo "<!--cat\r\n";
 	// print_r( $page_num );
@@ -45,16 +57,16 @@
 	<div class="row">
 		<div class="col-xl-9 section_title">
 			<h1><?php printf( "Szukana fraza: %s", $search_word ); ?></h1>
-				<div class="row clear">
-					<?php
-						foreach( $posts as $item ):
-					?>
-					<div class="post_item col-md-6">
-						<a class="link_post" href="<?php the_permalink( $item->ID ); ?>">
+				<?php
+					foreach( $posts as $item ):
+				?>
+				<div class='row'>
+					<a class="post_item col-12 d-flex flex-wrap" href="<?php the_permalink( $item->ID ); ?>">
+						<div class="link_post col-12 col-md-4">
 							<div class="post_multi">
-								<div class='post_img' style='background-image:url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
+								<div class="post_img" style="background-image:url(<?php echo getPostImg( $item->ID, 'large' ); ?>);">
 									<div class="post_date"><?php echo get_the_date( "Y-m-d H:i", $item->ID ); ?></div>
-									<div class='comment'>
+									<div class="comment">
 										<?php
 											$num = count( get_approved_comments( $item->ID ) );
 											if( $num > 0 ) printf( "komentarzy: %u", $num );
@@ -62,6 +74,8 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="box col d-flex flex-column">
 							<div class="post_title">
 								<?php echo $item->post_title; ?>
 							</div>
@@ -82,17 +96,21 @@
 									
 								?>
 							</p>
-						</a>
-					</div>
-					<?php
-						endforeach;
-					?>
-					<div class="pagination col-md-12 justify-content-center">
-						<?php print_r( $pagin ); ?>
-					</div>
-					<div class="col-md-12"></div>
+							<div class="wiecej">
+								czytaj dalej
+							</div>
+						</div>
+					</a>
+					
+				</div>
+				<?php
+					endforeach;
+				?>
+				<div class="pagination col-md-12 justify-content-center">
+					<?php print_r( $pagin ); ?>
+				</div>
+				<div class="col-md-12"></div>
 				<!-- /.row -->
-			</div>
 			<!-- /.col-xl-9 -->
 		</div>
 		<!-- wydarzenia -->
