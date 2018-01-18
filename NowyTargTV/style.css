@@ -161,6 +161,18 @@ Author URI: http://www.scepter.pl
   src: url("fonts/worksans/WorkSans-SemiBold.eot?#iefix") format("embedded-opentype"), url("fonts/worksans/WorkSans-SemiBold.woff") format("woff"), url("fonts/worksans/WorkSans-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal; }
+@font-face {
+  font-family: 'FuturaRegular';
+  src: url("fonts/FuturaTEE Regular.ttf"); }
+@font-face {
+  font-family: 'FuturaMedium';
+  src: url("fonts/FuturaTEEMed Regular.ttf"); }
+@font-face {
+  font-family: 'FuturaBold';
+  src: url("fonts/FuturaTEE Bold.ttf"); }
+@font-face {
+  font-family: 'LatoBlackItalic';
+  src: url("fonts/lato/lato-blackitalic-webfont.woff2"); }
 @media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\0000324}}
 * {
   outline: none;
@@ -1243,3 +1255,19 @@ footer a, footer a:hover {
   #old .cell.title {
     font-family: 'latoblack';
     font-size: 22px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031688}}
+.post_news_big {
+  background-size: cover;
+  background-position: top center; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031697}}
+.navbar-brand {
+  height: 80px;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: transparent; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Praca\/Poligon\/Nowy\%20Targ\/themes\/NowyTargTV\/style\.scss}line{font-family:\000031708}}
+#logo_bot {
+  height: 50px; }

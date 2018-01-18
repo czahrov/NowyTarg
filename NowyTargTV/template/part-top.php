@@ -3,7 +3,9 @@
 
 <div class="container d-flex align-items-center justify-content-center 
 justify-content-md-between flex-wrap">
-	<a class="navbar-brand" href="<?php echo home_url(); ?>"></a>
+	<a class="navbar-brand" href="<?php echo home_url(); ?>">
+		<?php include __DIR__ . "/../media/logo.svg"; ?>
+	</a>
 	<div id='minipanel' class='row flex-wrap flex-grow justify-content-end'>
 		<div class='items d-flex justify-content-between align-self-center'>
 			<div class='item d-flex flex-column active' view='weather'>

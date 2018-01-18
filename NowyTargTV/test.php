@@ -19,4 +19,4 @@ echo $dt_stop - $dt_start . "[s]"; */
 	bardzo zły
 */
 
-print_r( get_category_by_slug( 'bedzie-sie-dzialo' ) );
+// print_r( get_category_by_slug( 'bedzie-sie-dzialo' ) );
