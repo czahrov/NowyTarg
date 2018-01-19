@@ -6,10 +6,8 @@
 	
 ?>
 <div class="col-xl-9 section_title">
-	<a href='<?php echo get_category_link( getCatByName( 'Sport' ) ); ?>'>
-		<h1>Sport</h1>
-	</a>
-	<div class="row clear">
+	<h1>Sport</h1>
+	<div class="row clear sport">
 		<div class="col-xl-8">
 			<?php $item = $data[0]; ?>
 			<a class="link_post big" href="<?php the_permalink( $item->ID ); ?>">
@@ -34,8 +32,8 @@
 		</div>
 		<?php endfor; ?>
 	</div>
-	<a class='gocategory' href='<?php echo get_category_link( getCatByName( 'Sport' ) ); ?>'>
-		Zobacz więcej
+	<a class="load_more" item-segment='sport' item-cat='<?php echo getCatByName( 'Sport' ); ?>'>
+		ZAŁADUJ WIĘCEJ
 	</a>
 	<!-- /.row -->
 </div>

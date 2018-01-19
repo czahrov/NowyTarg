@@ -34,7 +34,7 @@
 			<?php endif; ?>
 			<?php endforeach; ?>
 			<div class="col-md-12">
-				<a class="load_more" item-cat='<?php echo getCatByName( 'Aktualności' ); ?>'>
+				<a class="load_more" item-segment='aktualnosci' item-cat='<?php echo getCatByName( 'Aktualności' ); ?>'>
 					ZAŁADUJ WIĘCEJ
 				</a>
 				

@@ -474,10 +474,49 @@
 				link.click( function( e ){
 					try{
 						var self = $(this);
+						// id kategorii, z której pobierane są wpisy
 						var cat_ID = parseInt( self.attr( 'item-cat') );
 						if( isNaN( cat_ID ) ) throw "Identyfikator kategorii jest błędny";
-						var offset = self.parents( '.row:first' ).children( '.link_post' ).length;
+						// liczba pobieranych wpisów
 						var num = 4;
+						// liczba już załadowanych wpisów na stronie
+						var offset = null;
+						
+						switch( self.attr( 'item-segment' ) ){
+							case 'aktualnosci':
+							case 'przeglad':
+								offset = self
+								.parents( '.row:first' )
+								.find( '.link_post' )
+								.length;
+								
+							break;
+							case 'reportaze':
+								offset = self
+								.parents( '.top_news_list' )
+								.children( '.item' )
+								.length;
+								
+							break;
+							case 'sport':
+								offset = self
+								.siblings( '.row.sport' )
+								.find( '.link_post:not(.big)' )
+								.length;
+								
+							break;
+							case 'kultura':
+								offset = self
+								.parent()
+								.siblings( '.item' )
+								.length;
+								
+							break;
+							default:
+								
+						}
+						
+						
 						
 						$.ajax({
 							type: 'POST',
@@ -491,22 +530,105 @@
 							success: function( data, status ){
 								if( data.length === 0 ) throw "Pusta odpowiedź";
 								var resp = JSON.parse( data );
-								var proto = self.parents( '.row:first' ).children( '.link_post:eq(1)' );
+								// klonowany obiekt
+								var proto = null;
 								
+								switch( self.attr( 'item-segment' ) ){
+									case 'aktualnosci':
+									case 'przeglad':
+										proto = self
+										.parents( '.row:first' )
+										.find( '.link_post:not(.big):first' )
+										
+									break;
+									case 'reportaze':
+										proto = self
+										.siblings( '.item:first');
+										
+									break;
+									case 'sport':
+										proto = self
+										.siblings( '.row.sport' )
+										.find( '.link_post:not(.big):first' )
+										.parent();
+										
+									break;
+									case 'kultura':
+										proto = self
+										.parent()
+										.siblings( '.item:first' );
+										
+									break;
+									default:
+										
+								}
+								
+								// kopiowanie obiektu, wypełnianie danymi z odpowiedzi i wklejanie
 								$.each( resp, function( k, item ){
 									var t = proto.clone();
 									
-									t
-									.attr( 'href', item.url )
-									.children( '.post_news_small' )
-									.css( 'background-image', 'url('+ item.img +')' )
-									.html( item.icon )
-									.siblings( '.post_news_small_tiitle' )
-									.text( item.title );
-									
-									self
-									.parent()
-									.before( t );
+									switch( self.attr( 'item-segment' ) ){
+										case 'aktualnosci':
+										case 'przeglad':
+											
+											t
+											.attr( 'href', item.url )
+											.children( '.post_news_small' )
+											.css( 'background-image', 'url('+ item.img +')' )
+											.html( item.icon )
+											.siblings( '.post_news_small_tiitle' )
+											.text( item.title + item.icon );
+											
+											self
+											.parent().
+											before( t );
+											
+										break;
+										case 'reportaze':
+											
+											t
+											.attr( 'href', item.url )
+											.find( '.img_link' )
+											.css( 'background-image', 'url('+ item.img +')' )
+											.next( 'p' )
+											.text( item.title + item.icon );
+											
+											self
+											.before( t );
+											
+										break;
+										case 'sport':
+											
+											t
+											.children( '.link_post' )
+											.attr( 'href', item.url )
+											.children( '.overview_small' )
+											.css( 'background-image', 'url('+ item.img +')' )
+											.next( 'span' )
+											.text( item.title + item.icon );
+											
+											self
+											.prev( '.row.sport' )
+											.append( t );
+											
+										break;
+										case 'kultura':
+											
+											t
+											.attr( 'href', item.url )
+											.find( '.img_link' )
+											.css( 'background-image', 'url('+ item.img +')' )
+											.next( 'p' )
+											.text( item.title + item.icon );
+											
+											self
+											.parent()
+											.before( t );
+											
+										break;
+										default:
+										
+									}
 									
 								} );								
 								

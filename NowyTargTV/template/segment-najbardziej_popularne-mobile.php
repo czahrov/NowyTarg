@@ -18,7 +18,7 @@
 		$name = get_category( $cats[0] )->name;
 		
 	?>
-	<div class="col-12 no-padding">
+	<div class="col-12 col-md-6 col-xl-12 no-padding">
 		<a href=<?php echo the_permalink( $item->ID ); ?>" class="link_post popular">
 			<div class="last1" style='background-image: url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
 				<?php echo genPostIcon( $item->ID ); ?>

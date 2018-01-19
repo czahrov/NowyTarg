@@ -3,7 +3,9 @@
 	
 ?>
 <div class="col-md-9 section_title wydarzenia">
-	<h1>Będzie się działo</h1>
+	<a href='<?php echo get_category_link( getCatByName( 'Będzie się działo' ) ); ?>'>
+		<h1>Będzie się działo</h1>
+	</a>
 	<div class='slider'>
 		<div class="row clear view">
 			<?php foreach( $data as $num => $item ): ?>

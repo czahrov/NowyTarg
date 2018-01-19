@@ -14,7 +14,12 @@
 ?>
 <div class="row">
 	<div class="col-md-12 section_title">
-		<h1>video i reportaże</h1>
+		<a href='<?php echo get_category_link( getCatByName( 'Przegląd tygodniowy' ) ); ?>'>
+			<h1>Przegląd</h1>
+		</a>
+		<a href='<?php echo get_category_link( getCatByName( 'Reportaże' ) ); ?>' style='float:right'>
+			<h1>Reportaże</h1>
+		</a>
 	</div>
 </div>
 <!-- /.row -->

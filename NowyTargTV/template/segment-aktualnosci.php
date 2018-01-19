@@ -1,13 +1,15 @@
 <?php
 	$data = getAktualnosci( array(
-		'numberposts' => 11,
+		'numberposts' => 12,
 		
 	) );
 	
 ?>
 <div class="row section_title aktualnosci">
 	<div class="col-md-12">
-		<h1>Aktualności</h1>
+		<a href='<?php echo get_category_link( getCatByName( 'Aktualności' ) ); ?>'>
+			<h1>Aktualności</h1>
+		</a>
 	</div>
 	<div class="col-xl-6">
 		<?php $item = $data[0]; ?>
@@ -37,14 +39,13 @@
 	</div>
 	<!-- /.col-md-3 -->
 	<div class="col-xl-3 clear-mobile">
-		<h2 class="red_title">Najnowsze wiadomości</h2>
 		<ul class="top_news_list row">
 			<?php for( $i=3; $i<count( $data ); $i++ ): ?>
 			<li class='col-md-6 col-xl-12'>
 				<?php printf( "<a href='%s'>%s%s</a>",
 					get_the_permalink( $data[$i]->ID ),
 					$data[$i]->post_title,
-					genPostIcon( $item->ID )
+					genPostIcon( $data[$i]->ID )
 					
 				); ?>
 			</li>

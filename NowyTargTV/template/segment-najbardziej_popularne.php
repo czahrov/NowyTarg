@@ -4,7 +4,9 @@
 ?>
 <div class="row">
 	<div class="col-md-12 section_title">
-		<h1>Najbardziej popularne</h1>
+		<a href='<?php echo get_category_link( getCatByName( 'Popularne' ) ); ?>'>
+			<h1>Najbardziej popularne</h1>
+		</a>
 	</div>
 </div>
 <!-- /.row -->

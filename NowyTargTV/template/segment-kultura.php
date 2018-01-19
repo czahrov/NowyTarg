@@ -3,7 +3,9 @@
 	
 ?>
 <div class="col-xl-3 section_title kultura">
-	<h1>Kultura</h1>
+	<a href='<?php echo get_category_link( getCatByName( 'Kultura' ) ); ?>'>
+		<h1>Kultura</h1>
+	</a>
 	<div class='row kultura'>
 		<?php foreach( $data as $item ): ?>
 		<a href="<?php the_permalink( $item->ID ); ?>" class="item col-md-6 col-xl-12">

@@ -3,7 +3,9 @@
 	
 ?>
 <div class="col-xl-9 section_title ogloszenia">
-	<h1>Ogłoszenia urzędowe</h1>
+	<a href='<?php echo get_category_link( getCatByName( 'Ogłoszenia urzędowe' ) ); ?>'>
+		<h1>Ogłoszenia urzędowe</h1>
+	</a>
 	<?php
 		foreach( $data as $num => $item ):
 		if( $num === 2 ) do_action( 'get_ad', 'home_ogloszenia' );

@@ -1,5 +1,5 @@
 <?php
-	$data = getKultura( array( 'numberposts' => 5 ) );
+	$data = getKultura( array( 'numberposts' => 6 ) );
 	
 ?>
 <div class="col-12 section_title kultura">
@@ -8,7 +8,7 @@
 	</a>
 	<div class='row kultura'>
 		<?php foreach( $data as $item ): ?>
-		<a href="<?php the_permalink( $item->ID ); ?>" class="item col-12">
+		<a href="<?php the_permalink( $item->ID ); ?>" class="item col-12 col-md-6 col-xl-12">
 			<div class="img_news_list d-flex">
 				<div class="col-5 col-sm-4 img_link" style='background-image:url( <?php echo getPostImg( $item->ID, 'medium' ); ?> );'></div>
 				<p class='col'>
@@ -17,8 +17,13 @@
 				</p>
 			</div>
 		</a>
-		<div class="dashed col-12"></div>
 		<?php endforeach; ?>
+		<div class="col-md-12">
+			<a class="load_more" item-segment='kultura' item-cat='<?php echo getCatByName( 'Kultura' ); ?>'>
+				ZAŁADUJ WIĘCEJ
+			</a>
+			
+		</div>
 		
 	</div>
 </div>

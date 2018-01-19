@@ -14,8 +14,8 @@
 ?>
 <div class="row">
 	<div class="col-md-12 section_title">
-		<a href='<?php echo get_category_link( getCatByName( 'Reportaże' ) ); ?>'>
-			<h1>video i reportaże</h1>
+		<a href='<?php echo get_category_link( getCatByName( 'Przegląd tygodniowy' ) ); ?>'>
+			<h1>Przegląd</h1>
 		</a>
 	</div>
 </div>
@@ -45,7 +45,7 @@
 			<?php endif; ?>
 			<?php endforeach; ?>
 			<div class="col-md-12">
-				<a class="load_more" item-cat='<?php echo getCatByName( 'Reportaże' ); ?>'>
+				<a class="load_more" item-segment='przeglad' item-cat='<?php echo getCatByName( 'Przegląd tygodniowy' ); ?>'>
 					ZAŁADUJ WIĘCEJ
 				</a>
 				
@@ -53,20 +53,34 @@
 		</div>
 		<!-- /.row -->
 	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 section_title">
+		<a href='<?php echo get_category_link( getCatByName( 'Reportaże' ) ); ?>'>
+			<h1>Reportaże</h1>
+		</a>
+	</div>
+</div>
 	<!-- /.col-xl-9 -->
+<div class="row clear reportaze">
 	<div class="col-12 clear-mobile">
 		<h2 class="red_title">Reportaże</h2>
-		<ul class="top_news_list">
+		<ul class="top_news_list row">
 			<?php foreach( $reportaze as $item ): ?>
-			<li class='col-12'>
-				<?php printf( "<a href='%s'>%s%s</a>",
-					get_the_permalink( $item->ID ),
-					$item->post_title,
-					genPostIcon( $item->ID )
-					
-				); ?>
-			</li>
+			<a href="<?php the_permalink( $item->ID ); ?>" class="item col-12 col-md-6 col-lg-12">
+				<div class="img_news_list d-flex">
+					<div class="img_link col-4 col-lg-3 col-xl-4" style='background-image:url( <?php echo getPostImg( $item->ID ); ?> );'>
+						<?php echo genPostIcon( $item->ID ); ?>
+					</div>
+					<p class='col'>
+						<?php echo $item->post_title; ?>
+					</p>
+				</div>
+			</a>
 			<?php endforeach; ?>
+			<a class="load_more" item-segment='reportaze' item-cat='<?php echo getCatByName( 'Reportaże' ); ?>'>
+				ZAŁADUJ WIĘCEJ
+			</a>
 		</ul>
 	</div>
 </div>
