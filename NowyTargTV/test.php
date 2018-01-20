@@ -20,3 +20,5 @@ echo $dt_stop - $dt_start . "[s]"; */
 */
 
 // print_r( get_category_by_slug( 'bedzie-sie-dzialo' ) );
+
+nice_likes();

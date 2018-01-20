@@ -25,7 +25,7 @@
 		<h2 class="red_title">Przegląd tygodniowy</h2>
 		<div class="row no-gutters">
 			<?php
-				foreach( $przeglad as $num => $item ):
+			foreach( $przeglad as $num => $item ):
 			if( $num === 0 ):
 			?>
 			<a class="link_post big col-12" href="<?php the_permalink( $item->ID ); ?>">
@@ -78,9 +78,9 @@
 				</div>
 			</a>
 			<?php endforeach; ?>
-			<a class="load_more" item-segment='reportaze' item-cat='<?php echo getCatByName( 'Reportaże' ); ?>'>
-				ZAŁADUJ WIĘCEJ
-			</a>
 		</ul>
+		<a class="load_more" item-segment='reportaze' item-cat='<?php echo getCatByName( 'Reportaże' ); ?>'>
+			ZAŁADUJ WIĘCEJ
+		</a>
 	</div>
 </div>

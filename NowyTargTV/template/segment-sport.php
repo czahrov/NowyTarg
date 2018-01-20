@@ -5,11 +5,11 @@
 	) );
 	
 ?>
-<div class="col-xl-9 section_title">
+<div class="col-xl-9 section_title sport_kultura">
 	<a href='<?php echo get_category_link( getCatByName( 'Sport' ) ); ?>'>
 		<h1>Sport</h1>
 	</a>
-	<div class="row clear">
+	<div class="row clear sport">
 		<div class="col-xl-8">
 			<?php $item = $data[0]; ?>
 			<a class="link_post big" href="<?php the_permalink( $item->ID ); ?>">

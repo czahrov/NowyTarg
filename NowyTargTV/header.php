@@ -19,6 +19,19 @@
 	<?php wp_head(); ?>
 </head>
 <body class='<?php do_action( 'body_class' ); ?>'>
-<a href="<?php echo home_url( '/kamery' ); ?>" class="kamery_ribbon">
-	<img src="<?php echo get_template_directory_uri(); ?>/media/icon_cam_ribbon.png">
-</a>
+<div id='sidestick' class='item'>
+	<a  class='item fejs' href='https://www.facebook.com/nowytarg24tv/' target='_blank'>
+		<img src='/media/fejsbook.png' />
+	</a>
+	<a  class='item live' href='<?php echo home_url( '/kamery' ); ?>'>
+		<img src='/media/cam_bar.png' />
+	</a>
+	<div class='item traffic'>
+		<img src="/media/zakopianka_bar.png" />
+	</div>
+	
+</div>
+<div id='popup_side' class='flex-column'>
+	<div id='gmap' class=''></div>
+	
+</div>

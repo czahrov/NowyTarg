@@ -572,6 +572,11 @@ span.txt-ad-300x600{
 		
 	}
 	
+	li{
+		list-style-type: none;
+		
+	}
+	
 }
 
 #respond
@@ -1425,7 +1430,8 @@ body.mobile{
 				
 				}
 				
-				&:not(:hover){
+				&:not(:hover)
+				{
 					
 					& > .sub{
 						display: none !important;
@@ -1590,27 +1596,6 @@ body.mobile{
 	
 }
 
-body{
-	
-	.kamery_ribbon{
-		position: fixed;
-		top: 150px;
-		left: 0;
-		z-index: 20;
-		
-	}
-	
-	&.mobile{
-		
-		.kamery_ribbon{
-			display: none;
-			
-		}
-		
-	}
-	
-}
-
 .gocategory{
 	display: block;
     border: solid 2px black;
@@ -1712,8 +1697,113 @@ footer{
 	
 }
 
-#logo_bot{
+#logo_bot
+{
 	height: 50px;
 	
 }
 
+body{
+	
+	#sidestick
+	{
+		position: fixed;
+		top: 50%;
+		left: 0;
+		transform: translate( 0, -50% );
+		z-index: 10;
+		
+		.item{
+			display: block;
+			
+			&.fejs{
+				
+				
+			}
+			
+			&.traffic{
+				
+				&, & *{
+					cursor: pointer;
+					
+				}
+				
+			}
+			
+			
+		}
+		
+	}
+	
+	&.mobile{
+		
+		#sidestick
+		{
+			top: initial;
+			bottom: 0;
+			transform-origin: bottom right;
+			transform: translate( -100%, 0 ) rotate( 90deg );
+			
+			img{
+				max-height: 120px;
+				max-height: calc( 100vw / 3 );
+				
+			}
+			
+		}
+		
+	}
+	
+	&:not(.mobile){
+		.sidebar{
+			margin-top: 0.5rem;
+			
+		}
+		
+	}
+	
+}
+
+#popup_side
+{
+	position: fixed;
+	display: flex;
+	padding: 50px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba( 255,255,255,0.8 );
+	z-index: 50;
+	
+	#gmap
+	{
+		flex: 1;
+		background-color: black;
+		
+	}
+	
+	&:not(.open){
+		display: none;
+		
+	}
+	
+}
+
+.reportaze{
+	
+	.section_title{
+		margin: 12px 0;
+		
+	}
+	
+}
+
+.sport_kultura{
+	
+	& > .sport{
+		margin-top: 6px;
+		
+	}
+	
+}

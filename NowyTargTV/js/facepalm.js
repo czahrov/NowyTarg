@@ -493,7 +493,7 @@
 							break;
 							case 'reportaze':
 								offset = self
-								.parents( '.top_news_list' )
+								.siblings( '.top_news_list' )
 								.children( '.item' )
 								.length;
 								
@@ -501,7 +501,7 @@
 							case 'sport':
 								offset = self
 								.siblings( '.row.sport' )
-								.find( '.link_post:not(.big)' )
+								.find( '.link_post' )
 								.length;
 								
 							break;
@@ -515,8 +515,6 @@
 							default:
 								
 						}
-						
-						
 						
 						$.ajax({
 							type: 'POST',
@@ -538,12 +536,13 @@
 									case 'przeglad':
 										proto = self
 										.parents( '.row:first' )
-										.find( '.link_post:not(.big):first' )
+										.find( '.link_post:not(.big):first' );
 										
 									break;
 									case 'reportaze':
 										proto = self
-										.siblings( '.item:first');
+										.siblings( '.top_news_list')
+										.children( '.item:first');
 										
 									break;
 									case 'sport':
@@ -577,11 +576,11 @@
 											.css( 'background-image', 'url('+ item.img +')' )
 											.html( item.icon )
 											.siblings( '.post_news_small_tiitle' )
-											.text( item.title + item.icon );
+											.html( item.title + item.icon );
 											
 											self
-											.parent().
-											before( t );
+											.parent()
+											.before( t );
 											
 										break;
 										case 'reportaze':
@@ -591,10 +590,11 @@
 											.find( '.img_link' )
 											.css( 'background-image', 'url('+ item.img +')' )
 											.next( 'p' )
-											.text( item.title + item.icon );
+											.html( item.title + item.icon );
 											
 											self
-											.before( t );
+											.siblings( '.top_news_list' )
+											.append( t );
 											
 										break;
 										case 'sport':
@@ -603,9 +603,10 @@
 											.children( '.link_post' )
 											.attr( 'href', item.url )
 											.children( '.overview_small' )
+											.html( item.icon )
 											.css( 'background-image', 'url('+ item.img +')' )
 											.next( 'span' )
-											.text( item.title + item.icon );
+											.html( item.title );
 											
 											self
 											.prev( '.row.sport' )
@@ -619,7 +620,7 @@
 											.find( '.img_link' )
 											.css( 'background-image', 'url('+ item.img +')' )
 											.next( 'p' )
-											.text( item.title + item.icon );
+											.html( item.title + item.icon );
 											
 											self
 											.parent()
@@ -647,6 +648,73 @@
 				
 			})
 			( $( 'a.load_more' ) );
+			
+			// popup
+			(function( popup ){
+				popup.on({
+					open: function( e ){
+						$(this).addClass( 'open' );
+						
+					},
+					close: function( e ){
+						$(this).removeClass( 'open' );
+						
+					},
+					click: function( e ){
+						$(this).triggerHandler( 'close' );
+						
+					},
+					wheel: function( e ){
+						e.preventDefault();
+						
+					},
+					
+				});
+				
+			})
+			( $( '#popup_side') );
+			
+			// mapa google
+			(function( btn_open, popup, mapa ){
+				
+				mapa.click( function( e ){
+					e.stopPropagation();
+					
+				} );
+				
+				btn_open.click( function( e ){
+					
+					popup.triggerHandler( 'open' );
+					
+					var point_krakow = [ 50.036171, 19.940513 ];
+					var point_zakopane = [ 49.309807, 19.968819 ];
+					
+					$( mapa )
+					.gmap3({
+						address:"Zakopianka",
+						zoom: 10,
+						mapTypeId: google.maps.MapTypeId.ROADMAP,
+						navigationControl: true,
+						scrollwheel: true,
+						
+					})
+					.trafficlayer()
+					.marker([
+						{
+							position: point_krakow,
+						},
+						{
+							position: point_zakopane,
+						},
+						
+					]);
+					
+				} );
+				
+			})
+			( $( '#sidestick > .traffic' ),
+			$( '#popup_side' ),
+			$( '#popup_side #gmap' ) );
 			
 		},
 		alternate: function(){

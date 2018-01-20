@@ -12,7 +12,8 @@
 	
 	if( !is_admin() ){
 		$infix = DMODE === true?( "" ):( ".min" );
-		$buster = DMODE === true?( time() ):( time() );
+		// $buster = DMODE === true?( time() ):( false );
+		$buster = time();
 		
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
@@ -22,6 +23,8 @@
 		wp_enqueue_script( "gsap-TweenL", get_stylesheet_directory_uri() . "/js/TweenLite.min.js", array(), false, true );
 		wp_enqueue_script( "gsap-TimeL", get_stylesheet_directory_uri() . "/js/TimelineLite.min.js", array(), false, true );
 		wp_enqueue_script( "parallax", get_stylesheet_directory_uri() . "/js/parallax.min.js", array(), false, true );
+		wp_enqueue_script( "gmap", get_stylesheet_directory_uri() . "/js/gmap3.js", array(), false, true );
+		wp_enqueue_script( "gmap_api", "https://maps.google.com/maps/api/js?key=AIzaSyDiWLbHPOu5_TNpUOF_86vACb_nD_oCtRw", array(), false, true );
 		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main{$infix}.js", array(), $buster, true );
 		wp_enqueue_script( "agency", get_stylesheet_directory_uri() . "/js/agency{$infix}.js", array(), $buster, true );
 		wp_enqueue_script( "facepalm", get_stylesheet_directory_uri() . "/js/facepalm{$infix}.js", array(), $buster, true );
@@ -79,6 +82,14 @@
 		'name' => 'stopka-praca',
 		'description' => 'Segment "Praca" w stopce strony',
 		'class' => 'foot_inf',
+		
+	) );
+	
+	register_sidebar( array(
+		'name' => 'Głosowanie',
+		'id' => 'rating',
+		'description' => 'Głosowanie na artykuł',
+		'class' => '',
 		
 	) );
 	
@@ -1498,4 +1509,8 @@ EOT; */
 		
 	}
 	
-	
+	// głosowanie
+	/* function thumbs_rating_print($content){
+		return $content.thumbs_rating_getlink();
+	}
+	add_filter('the_content', 'thumbs_rating_print'); */

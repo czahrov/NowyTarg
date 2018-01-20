@@ -43,20 +43,12 @@
 	print_r( $page_num );
 	echo "\r\n-->"; */
 	
-	if( $cat->slug === 'bedzie-sie-dzialo' ){
-		$posts = getBedzieSieDzialo();
-		$pagin = '';
+	$posts = get_posts( array(
+		'category' => $cat->cat_ID,
+		'posts_per_page' => get_option( 'posts_per_page' ),
+		'paged' => $page_num,
 		
-	}
-	else{
-		$posts = get_posts( array(
-			'category' => $cat->cat_ID,
-			'posts_per_page' => get_option( 'posts_per_page' ),
-			'paged' => $page_num,
-			
-		) );
-		
-	}
+	) );
 	
 	
 ?>
