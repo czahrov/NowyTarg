@@ -1,13 +1,15 @@
-<?php
+<?php	
+	$num_p = empty( getUstawienia()[ 'przeglad_num' ] )?( 5 ):( (int)getUstawienia()[ 'przeglad_num' ][0] );
 	$przeglad = get_posts( array(
 		'category_name' => 'Przegląd tygodniowy',
-		'numberposts' => 5,
+		'numberposts' => $num_p,
 		
 	) );
 	
+	$num_r = empty( getUstawienia()[ 'reportaze_num' ] )?( 8 ):( (int)getUstawienia()[ 'reportaze_num' ][0] );
 	$reportaze = get_posts( array(
 		'category_name' => 'Reportaże',
-		'numberposts' => 8,
+		'numberposts' => $num_r,
 		
 	) );
 	

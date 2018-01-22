@@ -1,6 +1,8 @@
 <?php
+	$num = empty( getUstawienia()[ 'aktualnosci_num' ] )?( 12 ):( (int)getUstawienia()[ 'aktualnosci_num' ][0] );
+	
 	$data = getAktualnosci( array(
-		'numberposts' => 12,
+		'numberposts' => $num,
 		
 	) );
 	

@@ -1,5 +1,9 @@
 <?php
-	$data = getKultura( array( 'numberposts' => 6 ) );
+	$num = empty( getUstawienia()[ 'kultura_mob_num' ] )?( 6 ):( (int)getUstawienia()[ 'kultura_mob_num' ][0] );
+	$data = getKultura( array(
+		'numberposts' => $num,
+		
+	) );
 	
 ?>
 <div class="col-12 section_title kultura">

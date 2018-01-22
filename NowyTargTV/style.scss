@@ -531,7 +531,7 @@ span.txt-ad-300x600{
 				height: 200px;
 				background:{
 					size: cover;
-					position: center;
+					position: top;
 					repeat: no-repeat;
 					origin: content-box;
 					clip: content-box;
@@ -953,7 +953,7 @@ span.txt-ad-300x600{
 #popup
 {
 	position: fixed;
-	padding: 50px;
+	padding: 0;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -1736,7 +1736,6 @@ body{
 	}
 	
 	&.mobile{
-		
 		#sidestick
 		{
 			top: initial;
@@ -1752,9 +1751,26 @@ body{
 			
 		}
 		
+		.foot_copy{
+			padding-bottom: 80px;
+			
+		}
+		
 	}
 	
 	&:not(.mobile){
+		
+		#sidestick
+		{
+			max-width: 30px;
+			
+			@media( min-width: map-get( $bpw, xl ) ){
+				max-width: initial;
+				
+			}
+			
+		}
+		
 		.sidebar{
 			margin-top: 0.5rem;
 			
@@ -1807,3 +1823,20 @@ body{
 	}
 	
 }
+
+.navbar-toggler{
+	
+	position: relative;
+	
+	&::before{
+		content: 'MENU';
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		transform: translate( 0, -50% );
+		color: #000;
+		
+	}
+	
+}
+

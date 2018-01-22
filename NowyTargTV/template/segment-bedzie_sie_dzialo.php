@@ -1,5 +1,9 @@
 <?php
-	$data = getBedzieSieDzialo( array( 'numberposts' => 6 ) );
+	$num = empty( getUstawienia()[ 'bedzie_num' ] )?( 5 ):( (int)getUstawienia()[ 'bedzie_num' ][0] );
+	$data = getBedzieSieDzialo( array(
+		'numberposts' => $num,
+		
+	) );
 	
 ?>
 <div class="col-md-9 section_title wydarzenia">

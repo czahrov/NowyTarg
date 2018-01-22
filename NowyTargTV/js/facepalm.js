@@ -398,9 +398,10 @@
 			$( '#galeria > .row > .item.popup' ) );
 			
 			/* toggle menu */
-			(function( toggle, panel ){
+			(function( toggler, toggle, panel ){
 				
 				toggle.click( function( e ){
+					console.log( 'toggle' );
 					
 					if( panel.hasClass( 'show' ) ){
 						toggle.removeClass( 'open' );
@@ -414,7 +415,9 @@
 				} );
 				
 			})
-			( $( '.navbar-toggler > .box' ), $( '.navbar-collapse' ) );
+			( $( '.navbar-toggler' ),
+			$( '.navbar-toggler > .box' ), 
+			$( '.navbar-collapse' ) );
 			
 			/* minipanel */
 			(function( panel, popup, view, button ){

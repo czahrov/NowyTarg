@@ -1,6 +1,8 @@
 <?php
+	$num = empty( getUstawienia()[ 'aktualnosci_mob_num' ] )?( 9 ):( (int)getUstawienia()[ 'aktualnosci_mob_num' ][0] );
+	
 	$data = getAktualnosci( array(
-		'numberposts' => 9,
+		'numberposts' => $num,
 		
 	) );
 	

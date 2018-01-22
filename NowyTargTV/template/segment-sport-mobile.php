@@ -1,6 +1,7 @@
 <?php
+	$num = empty( getUstawienia()[ 'sport_mob_num' ] )?( 5 ):( (int)getUstawienia()[ 'sport_mob_num' ][0] );	
 	$data = getSport( array(
-		'numberposts' => 5,
+		'numberposts' => $num,
 		
 	) );
 	

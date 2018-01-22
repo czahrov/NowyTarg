@@ -617,7 +617,7 @@ EOT; */
 			
 			// 4,5,6
 			foreach( $ids as $id ){
-				$img_thumb = wp_get_attachment_image_url( $id, 'large' );
+				$img_thumb = wp_get_attachment_image_url( $id, 'full' );
 				$img_full = wp_get_attachment_image_url( $id, 'full' );
 				
 				$items[] = sprintf( "<a href='%s' target='_blank' class='item popup col-12 col-sm-6 col-md-4 col-lg-3' style='background-image:url(%s)'></a>", 
@@ -939,10 +939,16 @@ EOT; */
 	
 	// Sprawdza czy klient korzysta z urządzenia mobilnego
 	function isMobile(){
-		$pattern = "~Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini~i";
-		preg_match( $pattern, $_SERVER[ 'HTTP_USER_AGENT' ], $match );
-		return count( $match ) !== 0;
+		static $ret = null;
 		
+		if( $ret === null ){
+			$pattern = "~Mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini~i";
+			preg_match( $pattern, $_SERVER[ 'HTTP_USER_AGENT' ], $match );
+			$ret = count( $match ) !== 0;
+			
+		}
+		
+		return $ret;
 	}
 	
 	// sprawdza czy żądanie zostało wysłane poprzez AJAXa
@@ -1023,6 +1029,18 @@ EOT; */
 			
 		}
 		
+	}
+	
+	// pobiera dane ze strony ustawienia
+	function getUstawienia(){
+		static $data = array();
+		
+		if( empty( $data ) ){
+			$data = get_post_meta( get_page_by_title( 'Ustawienia' )->ID );
+			
+		}
+		
+		return $data;
 	}
 	
 	/* ==================== SEGMENTY ==================== */
@@ -1509,8 +1527,10 @@ EOT; */
 		
 	}
 	
-	// głosowanie
-	/* function thumbs_rating_print($content){
+	// głosowanie "Thumbs Rating"
+	function thumbs_rating_print($content){
 		return $content.thumbs_rating_getlink();
 	}
-	add_filter('the_content', 'thumbs_rating_print'); */
+	add_filter('the_content', 'thumbs_rating_print');
+	
+	

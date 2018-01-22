@@ -1,5 +1,17 @@
 <?php
-	$data = getBedzieSieDzialo( array( 'numberposts' => 6 ) );
+	if( isMobile() ){
+		$num = empty( getUstawienia()[ 'bedzie_mob_num' ] )?( 5 ):( (int)getUstawienia()[ 'bedzie_mob_num' ][0] );
+		
+	}
+	else{
+		$num = empty( getUstawienia()[ 'bedzie_num' ] )?( 5 ):( (int)getUstawienia()[ 'bedzie_num' ][0] );
+		
+	}
+	
+	$data = getBedzieSieDzialo( array(
+		'numberposts' => $num,
+		
+	) );
 	
 ?>
 <h1>Będzie się działo</h1>

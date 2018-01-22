@@ -1,5 +1,9 @@
 <?php
-	$data =getOgloszenia( array( 'numberposts' => 4 ) );
+	$num = empty( getUstawienia()[ 'ogloszenia_mob_num' ] )?( 4 ):( (int)getUstawienia()[ 'ogloszenia_mob_num' ][0] );
+	$data =getOgloszenia( array(
+		'numberposts' => $num,
+		
+	) );
 	
 ?>
 <div class="col-12 section_title ogloszenia">

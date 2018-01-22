@@ -1,6 +1,15 @@
 <?php
+	if( isMobile() ){
+		$num = empty( getUstawienia()[ 'nowosci_mob_num' ] )?( 2 ):( (int)getUstawienia()[ 'nowosci_mob_num' ][0] );
+		
+	}
+	else{
+		$num = empty( getUstawienia()[ 'nowosci_num' ] )?( 2 ):( (int)getUstawienia()[ 'nowosci_num' ][0] );
+		
+	}
+	
 	$data = getLatestNews( array(
-		'numberposts' => 2,
+		'numberposts' => $num,
 		'exclude' => array( get_post()->ID ),
 		
 	) );

@@ -1,13 +1,15 @@
 <?php
+	$num_p = empty( getUstawienia()[ 'przeglad_mob_num' ] )?( 7 ):( (int)getUstawienia()[ 'przeglad_mob_num' ][0] );	
 	$przeglad = get_posts( array(
 		'category_name' => 'Przegląd tygodniowy',
-		'numberposts' => 7
+		'numberposts' => $num_p,
 		
 	) );
 	
+	$num_r = empty( getUstawienia()[ 'reportaze_mob_num' ] )?( 12 ):( (int)getUstawienia()[ 'reportaze_mob_num' ][0] );
 	$reportaze = get_posts( array(
 		'category_name' => 'Reportaże',
-		'numberposts' => 12,
+		'numberposts' => $num,
 		
 	) );
 	

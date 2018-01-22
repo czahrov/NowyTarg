@@ -1,5 +1,9 @@
 <?php
-	$data = getKultura( array( 'numberposts' => 5 ) );
+	$num = empty( getUstawienia()[ 'kultura_num' ] )?( 5 ):( (int)getUstawienia()[ 'kultura_num' ][0] );
+	$data = getKultura( array(
+		'numberposts' => $num,
+		
+	) );
 	
 ?>
 <div class="col-xl-3 section_title kultura">
