@@ -327,7 +327,7 @@ Array
 		</div>
 		
 	</div>
-	<div class='more text-center col-12' onclick='void(0);'>
+	<div class='more text-center col-12'>
 		więcej &#9660;
 		<div class='sub d-flex flex-column'>
 			<?php foreach( $data[ 'weather' ][ 'forecast' ] as $item ): ?>

@@ -12,8 +12,8 @@
 	
 	if( !is_admin() ){
 		$infix = DMODE === true?( "" ):( ".min" );
-		// $buster = DMODE === true?( time() ):( false );
-		$buster = time();
+		$buster = DMODE === true?( time() ):( false );
+		// $buster = time();
 		
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
@@ -142,10 +142,6 @@
 		
 		if( is_home() ){
 			$t[] = 'home';
-			
-		}
-		else{
-			$t[] = get_post()->post_name;
 			
 		}
 		

@@ -420,7 +420,7 @@
 			$( '.navbar-collapse' ) );
 			
 			/* minipanel */
-			(function( panel, popup, view, button ){
+			(function( panel, popup, view, more, button ){
 				popup
 				.on({
 					show: function( e, id ){
@@ -466,10 +466,16 @@
 					
 				} );
 				
+				more.click( function( e ){
+					$(this).toggleClass( 'open' );
+					
+				} );
+				
 			})
 			( $( '#minipanel' ), 
 			$( '#minipanel .popup' ), 
 			$( '#minipanel .popup > .view' ), 
+			$( '#minipanel .popup > .view.weather > .more' ), 
 			$( '#minipanel .item' ) );
 			
 			/* ładuj więcej */

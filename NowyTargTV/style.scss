@@ -1388,6 +1388,7 @@ body.mobile{
 			& > .more{
 				position: relative;
 				width: 100%;
+				cursor: pointer;
 				
 				& > .sub{
 					position: absolute;
@@ -1430,7 +1431,7 @@ body.mobile{
 				
 				}
 				
-				&:not(:hover)
+				&:not(.open)
 				{
 					
 					& > .sub{
@@ -1688,11 +1689,7 @@ footer{
 
 .navbar-brand{
 	height: 80px;
-	margin:{
-		top: 0;
-		bottom: 0;
-		
-	};
+	margin: 0 auto;
 	background: transparent;
 	
 }
