@@ -1088,6 +1088,7 @@ EOT; */
 		// zapis dat początku i końca imprez: Y-m-d H:i
 		
 		$params = array(
+			'numberposts' => -1,
 			'category_name' => 'bedzie-sie-dzialo',
 			'meta_key' => 'event_start',
 			'orderby' => 'meta_value',
