@@ -864,10 +864,11 @@ span.txt-ad-300x600{
 }
 
 .kultura{
+	margin-bottom: 16px;
 	
-	.row{
-		min-height: 100px;
-		margin-bottom: 16px;
+	& > .item{
+		
+		margin-top: 16px;
 		
 		.img_link{
 			background:{
@@ -880,7 +881,7 @@ span.txt-ad-300x600{
 		}
 		
 	}
-		
+	
 }
 
 .ogloszenia{
