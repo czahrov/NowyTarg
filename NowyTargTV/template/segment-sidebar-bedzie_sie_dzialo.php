@@ -1,4 +1,9 @@
 <?php
+	// wyłączenie wyświetlania segmentu w sidebarze 'Będzie się działo' podczas gdy wpis należy do tej kategorii ( dublowanie z 'Zobacz więcej')
+	if( !in_array( getCatByName( 'Będzie się działo' ), wp_get_post_categories( get_post()->ID ) ) ):
+?>
+<?php
+	
 	if( isMobile() ){
 		$num = empty( getUstawienia()[ 'bedzie_mob_num' ] )?( 5 ):( (int)getUstawienia()[ 'bedzie_mob_num' ][0] );
 		
@@ -35,3 +40,6 @@
 		endforeach;
 	?>
 </ul>
+<?php
+	endif;
+?>

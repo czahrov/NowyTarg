@@ -8,10 +8,21 @@
 		
 	}
 	
-	$wiecej = getLatestNews( array(
-		'numberposts' => $num,
+	// sprawdza czy aktualnie wyświetlany wpis należy do kategorii 'Będzie się działo'
+	if( in_array( getCatByName( 'Będzie się działo' ), wp_get_post_categories( get_post()->ID ) ) ){
+		$wiecej = getBedzieSieDzialo( array(
+			'numberposts' => $num,
+			
+		) );
 		
-	) );
+	}
+	else{
+		$wiecej = getLatestNews( array(
+			'numberposts' => $num,
+			
+		) );
+		
+	}
 	
 ?>
 <h1 class="clear">Zobacz więcej</h1>
