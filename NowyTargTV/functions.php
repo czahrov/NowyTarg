@@ -1088,8 +1088,8 @@ EOT; */
 		// zapis dat początku i końca imprez: Y-m-d H:i
 		
 		$params = array(
-			'numberposts' => -1,
 			'category_name' => 'bedzie-sie-dzialo',
+			'numberposts' => -1,
 			'meta_key' => 'event_start',
 			'orderby' => 'meta_value',
 			'order' => 'ASC',
@@ -1207,6 +1207,9 @@ EOT; */
 	function getOgloszenia( $arg = array() ){
 		$params = array(
 			'category_name' => 'Ogłoszenia urzędowe',
+			'meta_key' => 'pub_end',
+			'meta_value' => date( 'Y-m-d H:i' ),
+			'meta_compare' => '>=',
 			
 		);
 		

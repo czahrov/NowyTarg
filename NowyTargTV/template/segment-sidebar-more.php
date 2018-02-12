@@ -16,6 +16,14 @@
 		) );
 		
 	}
+	elseif( in_array( getCatByName( 'Ogłoszenia urzędowe' ), wp_get_post_categories( get_post()->ID ) ) ){
+		$wiecej = getOgloszenia( array(
+			'numberposts' => $num,
+			'exclude' => get_post()->ID,
+			
+		) );
+		
+	}
 	else{
 		$wiecej = getLatestNews( array(
 			'numberposts' => $num,
