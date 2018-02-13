@@ -48,6 +48,11 @@
 		$pagin = '';
 		
 	}
+	elseif( $cat->slug === 'ogloszenia-urzedowe' ){
+		$posts = getOgloszenia();
+		$pagin = '';
+		
+	}
 	else{
 		$posts = get_posts( array(
 			'category' => $cat->cat_ID,
