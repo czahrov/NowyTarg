@@ -18,4 +18,3 @@ echo $dt_stop - $dt_start . "[s]"; */
 	zły
 	bardzo zły
 */
-

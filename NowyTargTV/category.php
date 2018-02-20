@@ -49,7 +49,10 @@
 		
 	}
 	elseif( $cat->slug === 'ogloszenia-urzedowe' ){
-		$posts = getOgloszenia();
+		$posts = getOgloszenia( array(
+			'numberposts' => -1,
+			
+		) );
 		$pagin = '';
 		
 	}
