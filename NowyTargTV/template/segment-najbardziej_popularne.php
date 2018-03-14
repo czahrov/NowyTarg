@@ -21,7 +21,7 @@
 		
 	?>
 	<div class="col-md-6 col-xl-3 no-padding clear-mobile">
-		<a href=<?php echo the_permalink( $item->ID ); ?>" class="link_post popular">
+		<a href="<?php echo the_permalink( $item->ID ); ?>" class="link_post popular">
 			<div class="last1" style='background-image: url(<?php echo getPostImg( $item->ID, 'full' ); ?>);'>
 				<?php echo genPostIcon( $item->ID ); ?>
 				<div class="post_category_small">
