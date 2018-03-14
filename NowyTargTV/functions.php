@@ -6,6 +6,42 @@
 	// locale_set_default( 'pl-PL' );
 	date_default_timezone_set( "Europe/Warsaw" );
 	
+	// error_function( error_level, error_message, error_file, error_line, error_context )
+	set_error_handler( function( $level, $msg, $file, $line, $context ){
+		if( in_array( $level, array( E_USER_ERROR, E_RECOVERABLE_ERROR ) ) ){
+			echo "Wystąpił błąd.<br>Administrator został poinformowany";
+			
+			$log = __DIR__ . "/log/error.log";
+			$from = "autoreport@{$_SERVER[ 'SERVER_NAME' ]}";
+			$to = "d.worhacz@scepter.pl";
+			$title = sprintf(
+				"Na stronie %s wystąpił błąd",
+				$_SERVER[ 'SERVER_NAME' ]
+				
+			);
+			$headers = array(
+				"FROM: {$from}",
+				"SUBJECT: {$title}"
+			);
+			$raport = spritnf(
+				"%s ERROR:%u %s\r\n%s[%u]\r\n%s",
+				date( "d-m-Y H:i:s" ),
+				$level,
+				$msg,
+				$file,
+				$line,
+				$context
+				
+			);
+			
+			error_log( $raport, 1, $to, implode( "\r\n", $headers ) );
+			error_log( $raport . "\r\n---\r\n", 3, $to, implode( "\r\n", $headers ) );
+			
+			die();
+		}
+		
+	}, E_ALL );
+	
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5' );
 	add_theme_support( 'post-formats', array( 'gallery', 'video' ) );
