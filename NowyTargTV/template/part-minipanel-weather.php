@@ -309,7 +309,9 @@ Array
 				$dt = date_create_from_format( "Y-m-d H:i:s", $data[ 'air' ][ 'airquality' ][ 'stCalcDate' ] );
 				
 				// printf( "%s<br>Nowy Targ", strftime( "%A %H:%M:%S", $dt->getTimestamp() ) );
-				printf( "%s<br>Nowy Targ", date_i18n( "l H:i:s", $dt->getTimestamp() ) );
+				// !!! AP wylaczylem bo wywalalo exception i strona nie dzialala !!!
+				printf( "<br>Nowy Targ" );
+				//printf( "%s<br>Nowy Targ", date_i18n( "l H:i:s", $dt->getTimestamp() ) );
 				
 			?>
 		</div>
