@@ -1,6 +1,6 @@
 <?php
 	
-	define( 'DMODE', isset( $_COOKIE[ 'sprytne' ] )?( true ):( false ) );
+	define( 'DMODE', isset( $_COOKIE[ 'sprytne' ] ) );
 	
 	setlocale( LC_ALL, 'pl_PL' );
 	// locale_set_default( 'pl-PL' );
@@ -49,7 +49,6 @@
 	if( !is_admin() ){
 		$infix = DMODE === true?( "" ):( ".min" );
 		$buster = DMODE === true?( time() ):( false );
-		// $buster = time();
 		
 		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
 		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
@@ -70,6 +69,7 @@
 		wp_enqueue_style( "fontawesome", get_stylesheet_directory_uri() . "/css/font-awesome.min.css" );
 		wp_enqueue_style( "main", get_stylesheet_directory_uri() . "/css/main{$infix}.css", array(), $buster );
 		wp_enqueue_style( "style", get_stylesheet_directory_uri() . "/style{$infix}.css", array(), $buster );
+		wp_enqueue_style( "style_map", get_stylesheet_directory_uri() . "/style.css.map", array(), $buster );
 		
 	}
 	
@@ -761,6 +761,67 @@ EOT; */
 		
 	} );
 	
+	/* generuje kod HTML pojedynczego komentarza */
+	add_action( 'print_comment', function( $comment ){
+		$nick = $comment->comment_author;
+		$date = get_comment_date( 'F d, Y, \o H:i:s', $comment->comment_ID );
+		$content = $comment->comment_content;
+		$reply = get_comment_reply_link( array(
+			'depth' => 1,
+			'max_depth' => get_option( 'thread_comments_depth' ),
+			
+		), $comment->comment_ID );
+		
+		echo <<<EOT
+		<div class="comment-aded col-12">
+			<p class="comm-nick">
+				$nick
+			</p>
+			<p class="comm-date">
+				$date
+			</p>
+			<p class="comm-msg">
+				$content
+			</p>
+			<button class="button-answer">
+				$reply
+			</button>
+		</div>
+EOT;
+		
+	} );
+	
+	/* wypisuje komentarze */
+	function commentPrinter( $postID = 0, $postParent = 0, $commTree = array() ){
+		if( empty( $commTree ) ){
+			$commTree = get_comments( array(
+				'post_id' => $postID,
+				'parent' => $postParent,
+				
+			) );
+			
+		}
+		
+		foreach( $commTree as $comm ){
+			$subTree = get_comments( array(
+				'post_id' => $postID,
+				'parent' => $comm->comment_ID,
+				
+			) );
+			
+			do_action( 'print_comment', $comm );
+			
+			if( !empty( $subTree ) ){
+				echo "<div class='anwser'>";
+				commentPrinter( $postID, $comm->comment_ID, $subTree );
+				echo "</div>";
+				
+			}
+			
+		}
+		
+	}
+	
 	/* Klasa importująca wpisy z JSONa */
 	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
 	
@@ -1073,6 +1134,22 @@ EOT; */
 		}
 		
 		return $data;
+	}
+	
+	// zwraca poziom komentarza ( liczbę przodków )
+	function getCommentLevel( $comment ){
+		$lvl = 0;
+		$terminator = 0;
+		$item = get_comment( $comment );
+		while( $terminator < 10 && $item->comment_parent !== 0 ){
+			$terminator++;
+			$lvl++;
+			$item = get_comment( $item->comment_parent );
+			
+		}
+		
+		return $lvl;
+		
 	}
 	
 	/* ==================== SEGMENTY ==================== */
