@@ -59,6 +59,11 @@ a,img{
 	
 }
 
+.hide{
+	display: none;
+	
+}
+
 @media(max-width: map-get( $bpw, lg ) - 1px){
 	.navbar-toggler{
 		margin-bottom: 10px;
@@ -1844,3 +1849,19 @@ body{
 	
 }
 
+.custom_parallax{
+	display: block;
+	overflow: hidden;
+	position: relative;
+	max-height: 400px;
+	
+	img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		
+	}
+	
+}

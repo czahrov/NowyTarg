@@ -46,33 +46,6 @@
 	add_theme_support( 'html5' );
 	add_theme_support( 'post-formats', array( 'gallery', 'video' ) );
 	
-	if( !is_admin() ){
-		$infix = DMODE === true?( "" ):( ".min" );
-		$buster = DMODE === true?( time() ):( false );
-		
-		// wp_enqueue_script( string $handle, string $src = '', array $deps = array(), string|bool|null $ver = false, bool $in_footer = false )
-		wp_enqueue_script( "jq", get_stylesheet_directory_uri() . "/js/jquery-3.2.1.min.js", array(), false, true );
-		wp_enqueue_script( "jq-touchSwipe", get_stylesheet_directory_uri() . "/js/jquery.touchSwipe.min.js", array(), false, true );
-		wp_enqueue_script( "bootstrap-bundle", get_stylesheet_directory_uri() . "/js/bootstrap.bundle.min.js", array(), false, true );
-		wp_enqueue_script( "gsap-css", get_stylesheet_directory_uri() . "/js/CSSPlugin.min.js", array(), false, true );
-		wp_enqueue_script( "gsap-TweenL", get_stylesheet_directory_uri() . "/js/TweenLite.min.js", array(), false, true );
-		wp_enqueue_script( "gsap-TimeL", get_stylesheet_directory_uri() . "/js/TimelineLite.min.js", array(), false, true );
-		wp_enqueue_script( "parallax", get_stylesheet_directory_uri() . "/js/parallax.min.js", array(), false, true );
-		wp_enqueue_script( "gmap", get_stylesheet_directory_uri() . "/js/gmap3.js", array(), false, true );
-		wp_enqueue_script( "gmap_api", "https://maps.google.com/maps/api/js?key=AIzaSyDiWLbHPOu5_TNpUOF_86vACb_nD_oCtRw", array(), false, true );
-		wp_enqueue_script( "main", get_stylesheet_directory_uri() . "/js/main{$infix}.js", array(), $buster, true );
-		wp_enqueue_script( "agency", get_stylesheet_directory_uri() . "/js/agency{$infix}.js", array(), $buster, true );
-		wp_enqueue_script( "facepalm", get_stylesheet_directory_uri() . "/js/facepalm{$infix}.js", array(), $buster, true );
-		
-		// wp_enqueue_style( string $handle, string $src = "", array $deps = array(), string|bool|null $ver = false, string $media = "all" )
-		wp_enqueue_style( "bootstrap", get_stylesheet_directory_uri() . "/css/bootstrap.css" );
-		wp_enqueue_style( "fontawesome", get_stylesheet_directory_uri() . "/css/font-awesome.min.css" );
-		wp_enqueue_style( "main", get_stylesheet_directory_uri() . "/css/main{$infix}.css", array(), $buster );
-		wp_enqueue_style( "style", get_stylesheet_directory_uri() . "/style{$infix}.css", array(), $buster );
-		wp_enqueue_style( "style_map", get_stylesheet_directory_uri() . "/style.css.map", array(), $buster );
-		
-	}
-	
 	function checkAccess(){
 		
 		if( $_SESSION[ 'sprytne' ] === true ){
@@ -249,11 +222,18 @@
 			*/
 			
 			if( $args['parallax'] === true ){
-				printf(
-					"<a %s target='%s' class='parallax-window d-block' data-parallax='scroll' data-image-src='%s'></a> ",
+				/* printf(
+					"<a %s target='%s' class='parallax-window d-block' data-parallax='scroll' data-image-src='%s' data-natural-width=1200 data-natural-height=600></a> ",
 					empty( $href )?( '' ):( "href={$href}" ),
 					$target,
 					$img
+				); */
+				printf(
+					'<a %s target="%s" class="custom_parallax" parallax-img="%s" parallax-min-height=400></a> ',
+					empty( $href )?( '' ):( "href={$href}" ),
+					$target,
+					$img
+					
 				);
 				
 			}

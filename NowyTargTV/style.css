@@ -196,6 +196,9 @@ a, a * {
 a, img {
   display: inline-block; }
 
+.hide {
+  display: none; }
+
 @media (max-width: 991px) {
   .navbar-toggler {
     margin-bottom: 10px; }
@@ -1120,5 +1123,17 @@ body:not(.mobile) .sidebar {
     -webkit-transform: translate(0, -50%);
             transform: translate(0, -50%);
     color: #000; }
+
+.custom_parallax {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  max-height: 400px; }
+  .custom_parallax img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; }
 
 /*# sourceMappingURL=style.css.map */

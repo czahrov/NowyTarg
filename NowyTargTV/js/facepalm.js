@@ -725,6 +725,106 @@
 			$( '#popup_side' ),
 			$( '#popup_side #gmap' ) );
 			
+			// custom parallax
+			(function( parallax ){
+				parallax.each(function(){
+					try{
+						var self = $(this);
+						var url = self.attr('parallax-img');
+						var min_height = parseInt( self.attr('parallax-min-height') );
+						var view_pos = function(){
+							return $( 'html, body' ).prop( 'scrollTop' );
+							
+						};
+						var parallax_start = function(){
+							return self.offset().top + self.height() - window.innerHeight;
+							
+						};
+						var parallax_end = function(){
+							return self.offset().top + self.height();
+							
+						};
+						var factor = function(){
+							return self.height() / ( parallax_end() - parallax_start() );
+							
+						};
+						
+						var img = $('<img src="'+ url +'" />')
+						.appendTo( self )
+						.on({
+							load: function( e ){
+								self
+								.css({
+									height: img.height(),
+									
+								});
+								
+							},
+							
+						});
+						
+						$(window)
+						.on({
+							resize: function( e ){
+								self
+								.css({
+									height: img.height(),
+									
+								});
+								
+							},
+							scroll: function( e ){
+								
+								if( img.height() > min_height ){
+									img
+									.css({
+										transform: function(){
+											var y;
+											
+											if( view_pos() <= parallax_start() - self.height() ){
+												y = self.height() - img.height();
+												
+											}
+											else if( view_pos() >= parallax_end() ){
+												y = 0;
+												
+											}
+											else{
+												y = ( view_pos() - self.offset().top ) * factor();
+												
+											}
+											
+											return "translateY("+ y +"px)";
+										},
+										
+									});
+									
+								}
+								else{
+									img
+									.css({
+										transform: "translateY(0)",
+										
+									})
+								}
+								
+							},
+							
+						});
+						
+					}
+					catch( err ){
+						console.error( err );
+						
+					}
+					
+				});
+				
+			})
+			(
+				$( '.custom_parallax' )
+			);
+			
 		},
 		alternate: function(){
 			var addon = root.addon;
