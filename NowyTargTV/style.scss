@@ -1864,4 +1864,15 @@ body{
 		
 	}
 	
+	&.standard{
+		max-height: none;
+		max-height: initial;
+		
+		img{
+			position: static;
+			
+		}
+		
+	}
+	
 }

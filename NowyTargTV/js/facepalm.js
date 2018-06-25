@@ -822,7 +822,7 @@
 				
 			})
 			(
-				$( '.custom_parallax' )
+				$( '.custom_parallax:not(.standard)' )
 			);
 			
 		},

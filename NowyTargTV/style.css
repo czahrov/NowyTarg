@@ -1135,5 +1135,10 @@ body:not(.mobile) .sidebar {
     left: 0;
     width: 100%;
     height: auto; }
+  .custom_parallax.standard {
+    max-height: none;
+    max-height: initial; }
+    .custom_parallax.standard img {
+      position: static; }
 
 /*# sourceMappingURL=style.css.map */

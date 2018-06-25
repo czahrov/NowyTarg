@@ -222,19 +222,28 @@
 			*/
 			
 			if( $args['parallax'] === true ){
-				/* printf(
-					"<a %s target='%s' class='parallax-window d-block' data-parallax='scroll' data-image-src='%s' data-natural-width=1200 data-natural-height=600></a> ",
-					empty( $href )?( '' ):( "href={$href}" ),
-					$target,
-					$img
-				); */
-				printf(
-					'<a %s target="%s" class="custom_parallax" parallax-img="%s" parallax-min-height=400></a> ',
-					empty( $href )?( '' ):( "href={$href}" ),
-					$target,
-					$img
+				if( in_array( UADetector(), array( 'chrome', 'firefox', 'ie', 'opera' ) ) ){
+					printf(
+						'<a %s target="%s" class="custom_parallax" parallax-img="%s" parallax-min-height=400></a> ',
+						empty( $href )?( '' ):( "href={$href}" ),
+						$target,
+						$img
+						
+					);
 					
-				);
+				}
+				else{
+					printf(
+						'<a %s target="%s" class="custom_parallax standard">
+							<img src="%s" />
+						</a> ',
+						empty( $href )?( '' ):( "href={$href}" ),
+						$target,
+						$img
+						
+					);
+					
+				}
 				
 			}
 			else{
@@ -806,6 +815,69 @@ EOT;
 	require_once __DIR__ . "/php/ClassJoomlaImporter.php";
 	
 	/* ==================== POMOCNICZE ==================== */
+	
+	/* detekcja przeglądarki */
+	function UADetector( $browserName = null ){
+		/*
+			FireFox 60
+			Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+			
+			Maxthon
+			Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.9.5.1000 Chrome/39.0.2146.0 Safari/537.36
+			
+			Opera 53
+			Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.170 Safari/537.36 OPR/53.0.2907.99
+			
+			Chrome 67
+			Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+			
+			IE 11
+			Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko
+			
+			Safari
+			Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
+			
+		*/
+
+		static $found = "";
+		
+		if( empty( $found ) ){
+			$UA = strtolower( $_SERVER['HTTP_USER_AGENT'] );
+			$keys = array(
+				'firefox' => array( 'firefox' ),
+				'maxthon' => array( 'maxthon' ),
+				'opera' => array( 'opr', 'opera' ),
+				'chrome' => array( 'chrome' ),
+				'ie' => array( 'trident', 'msie' ),
+				'safari' => array( 'safari' ),
+				
+				
+			);
+			
+			foreach( $keys as $name => $key ){
+				$pattern = '/' . implode( "|", $key ) . '/';
+				preg_match( $pattern, $UA, $match );
+				if( count( $match[0] ) > 0 ){
+					$found = $name;
+					break;
+					
+				}
+				
+			}
+			
+		}
+		
+		if( $browserName === null ){
+			return $found;
+		}
+		elseif( is_string( $browserName ) ){
+			return in_array( strtolower( $browserName ), $found );
+		}
+		else{
+			return false;
+		}
+		
+	}
 	
 	/* Logger do celów diagnostycznych */
 	function logger( $log = null ){
